@@ -22,5 +22,16 @@ final class TimerViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Timer"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "gearshape"),
+            style: .plain,
+            target: self, action: #selector(openSettings)
+        )
+    }
+    
+    @objc
+    private func openSettings() {
+        let vc = SettingsViewController()
+        show(vc, sender: self)
     }
 }

@@ -21,6 +21,8 @@
 		DF0D6F2229C353E80031DB04 /* SolvesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2129C353E80031DB04 /* SolvesViewController.swift */; };
 		DF0D6F2529C358720031DB04 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2429C358720031DB04 /* StatisticsView.swift */; };
 		DF0D6F2729C359C70031DB04 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2629C359C70031DB04 /* StatisticsViewController.swift */; };
+		DF0D6F2A29C363410031DB04 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2929C363410031DB04 /* SettingsView.swift */; };
+		DF0D6F2C29C364380031DB04 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2B29C364380031DB04 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		DF0D6F2129C353E80031DB04 /* SolvesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolvesViewController.swift; sourceTree = "<group>"; };
 		DF0D6F2429C358720031DB04 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		DF0D6F2629C359C70031DB04 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		DF0D6F2929C363410031DB04 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		DF0D6F2B29C364380031DB04 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,10 +113,10 @@
 		DF0D6EE429C329AD0031DB04 /* SpeedCubingTimer */ = {
 			isa = PBXGroup;
 			children = (
-				DF0D6F1E29C350250031DB04 /* Extensions */,
-				DF0D6F1929C34AD20031DB04 /* Features */,
 				DF0D6EE529C329AD0031DB04 /* AppDelegate.swift */,
 				DF0D6EE929C329AD0031DB04 /* RootViewController.swift */,
+				DF0D6F1E29C350250031DB04 /* Extensions */,
+				DF0D6F1929C34AD20031DB04 /* Features */,
 				DF0D6EEE29C329AE0031DB04 /* Assets.xcassets */,
 				DF0D6EF029C329AE0031DB04 /* LaunchScreen.storyboard */,
 				DF0D6EF329C329AE0031DB04 /* Info.plist */,
@@ -143,6 +147,7 @@
 				DF0D6F1A29C34B480031DB04 /* Timer */,
 				DF0D6F1B29C34B560031DB04 /* Solves */,
 				DF0D6F2329C3584C0031DB04 /* Statistics */,
+				DF0D6F2829C363220031DB04 /* Settings */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -180,6 +185,15 @@
 				DF0D6F2629C359C70031DB04 /* StatisticsViewController.swift */,
 			);
 			path = Statistics;
+			sourceTree = "<group>";
+		};
+		DF0D6F2829C363220031DB04 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DF0D6F2929C363410031DB04 /* SettingsView.swift */,
+				DF0D6F2B29C364380031DB04 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,9 +328,11 @@
 			files = (
 				DF0D6F1D29C34BF40031DB04 /* TimerViewController.swift in Sources */,
 				DF0D6F1629C349DA0031DB04 /* TimerView.swift in Sources */,
+				DF0D6F2C29C364380031DB04 /* SettingsViewController.swift in Sources */,
 				DF0D6F2029C350450031DB04 /* UIViewController.swift in Sources */,
 				DF0D6EEA29C329AD0031DB04 /* RootViewController.swift in Sources */,
 				DF0D6F1829C34A4A0031DB04 /* SolvesView.swift in Sources */,
+				DF0D6F2A29C363410031DB04 /* SettingsView.swift in Sources */,
 				DF0D6F2529C358720031DB04 /* StatisticsView.swift in Sources */,
 				DF0D6F2729C359C70031DB04 /* StatisticsViewController.swift in Sources */,
 				DF0D6F2229C353E80031DB04 /* SolvesViewController.swift in Sources */,
