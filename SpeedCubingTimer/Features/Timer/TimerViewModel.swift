@@ -14,6 +14,7 @@ final class TimerViewModel: ObservableObject {
     @Published var seconds = 0
     @Published var fractions = 0
     @Published var holdingScreen = false
+    @Published var scramble = ScrambleGenerator.generate()
     
     private var timer = Timer()
     private var timerIsRunning = false

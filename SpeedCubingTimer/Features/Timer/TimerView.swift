@@ -13,10 +13,15 @@ struct TimerView: View {
     
     var body: some View {
         VStack {
+            Text(viewModel.scramble)
+            
+            Spacer()
+            
             Text(String(format: "%02d:%02d:%02d.%02d", viewModel.hours, viewModel.minutes, viewModel.seconds, viewModel.fractions))
-                .font(.largeTitle)
-                .monospaced()
+                .font(.system(size: 44, design: .monospaced))
                 .foregroundColor(viewModel.holdingScreen ? .red : .black)
+            
+            Spacer()
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         .contentShape(Rectangle())

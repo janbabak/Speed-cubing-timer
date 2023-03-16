@@ -24,6 +24,7 @@
 		DF0D6F2A29C363410031DB04 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2929C363410031DB04 /* SettingsView.swift */; };
 		DF0D6F2C29C364380031DB04 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2B29C364380031DB04 /* SettingsViewController.swift */; };
 		DF0D6F2E29C368F10031DB04 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2D29C368F10031DB04 /* TimerViewModel.swift */; };
+		DF0D6F3029C386BE0031DB04 /* ScrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2F29C386BD0031DB04 /* ScrambleGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		DF0D6F2929C363410031DB04 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		DF0D6F2B29C364380031DB04 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DF0D6F2D29C368F10031DB04 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		DF0D6F2F29C386BD0031DB04 /* ScrambleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrambleGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 				DF0D6F1529C349DA0031DB04 /* TimerView.swift */,
 				DF0D6F1C29C34BF40031DB04 /* TimerViewController.swift */,
 				DF0D6F2D29C368F10031DB04 /* TimerViewModel.swift */,
+				DF0D6F2F29C386BD0031DB04 /* ScrambleGenerator.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				DF0D6F2A29C363410031DB04 /* SettingsView.swift in Sources */,
 				DF0D6F2529C358720031DB04 /* StatisticsView.swift in Sources */,
 				DF0D6F2729C359C70031DB04 /* StatisticsViewController.swift in Sources */,
+				DF0D6F3029C386BE0031DB04 /* ScrambleGenerator.swift in Sources */,
 				DF0D6F2229C353E80031DB04 /* SolvesViewController.swift in Sources */,
 				DF0D6EE629C329AD0031DB04 /* AppDelegate.swift in Sources */,
 			);
