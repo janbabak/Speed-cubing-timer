@@ -22,5 +22,7 @@ final class StatisticsViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Statistics"
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }

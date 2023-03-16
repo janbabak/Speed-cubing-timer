@@ -50,7 +50,8 @@ final class TimerViewModel: ObservableObject {
             hours: hours,
             minutes: minutes,
             seconds: seconds,
-            fractions: fractions
+            fractions: fractions,
+            penalty: .noPenalty
         )
     }
     

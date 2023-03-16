@@ -34,6 +34,8 @@ final class TimerViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Timer"
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "gearshape"),
             style: .plain,

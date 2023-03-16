@@ -33,5 +33,7 @@ final class SolvesViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Solves"
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }

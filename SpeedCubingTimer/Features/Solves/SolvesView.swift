@@ -11,10 +11,19 @@ struct SolvesView: View {
     @ObservedObject var solvesViewModel: SolvesViewModel
     
     var body: some View {
-        Text("Solves view")
-        
-        ForEach(solvesViewModel.solves, id: \.id) { solve in
-            Text(solve.scramble)
+        List(solvesViewModel.solves) { solve in
+            listItem(solve: solve)
+        }
+        .padding(.top, 16)
+    }
+    
+    @ViewBuilder
+    func listItem(solve: Solve) -> some View {
+        VStack(alignment: .leading) {
+            Text(solve.formattedTime)
+                .padding(.bottom, 4)
+            Text(solve.scramble).font(.caption)
+            //TODO: add links to detail
         }
     }
 }
