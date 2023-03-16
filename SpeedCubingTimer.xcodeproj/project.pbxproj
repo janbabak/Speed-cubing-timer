@@ -8,14 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		DF0D6EE629C329AD0031DB04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6EE529C329AD0031DB04 /* AppDelegate.swift */; };
-		DF0D6EE829C329AD0031DB04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6EE729C329AD0031DB04 /* SceneDelegate.swift */; };
-		DF0D6EEA29C329AD0031DB04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6EE929C329AD0031DB04 /* ViewController.swift */; };
-		DF0D6EED29C329AD0031DB04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF0D6EEB29C329AD0031DB04 /* Main.storyboard */; };
+		DF0D6EEA29C329AD0031DB04 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6EE929C329AD0031DB04 /* RootViewController.swift */; };
 		DF0D6EEF29C329AE0031DB04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF0D6EEE29C329AE0031DB04 /* Assets.xcassets */; };
 		DF0D6EF229C329AE0031DB04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF0D6EF029C329AE0031DB04 /* LaunchScreen.storyboard */; };
 		DF0D6EFD29C329AE0031DB04 /* SpeedCubingTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6EFC29C329AE0031DB04 /* SpeedCubingTimerTests.swift */; };
 		DF0D6F0729C329AE0031DB04 /* SpeedCubingTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F0629C329AE0031DB04 /* SpeedCubingTimerUITests.swift */; };
 		DF0D6F0929C329AE0031DB04 /* SpeedCubingTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F0829C329AE0031DB04 /* SpeedCubingTimerUITestsLaunchTests.swift */; };
+		DF0D6F1629C349DA0031DB04 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F1529C349DA0031DB04 /* TimerView.swift */; };
+		DF0D6F1829C34A4A0031DB04 /* SolvesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F1729C34A4A0031DB04 /* SolvesView.swift */; };
+		DF0D6F1D29C34BF40031DB04 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F1C29C34BF40031DB04 /* TimerViewController.swift */; };
+		DF0D6F2029C350450031DB04 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F1F29C350450031DB04 /* UIViewController.swift */; };
+		DF0D6F2229C353E80031DB04 /* SolvesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2129C353E80031DB04 /* SolvesViewController.swift */; };
+		DF0D6F2529C358720031DB04 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2429C358720031DB04 /* StatisticsView.swift */; };
+		DF0D6F2729C359C70031DB04 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2629C359C70031DB04 /* StatisticsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,9 +43,7 @@
 /* Begin PBXFileReference section */
 		DF0D6EE229C329AD0031DB04 /* SpeedCubingTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeedCubingTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0D6EE529C329AD0031DB04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DF0D6EE729C329AD0031DB04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DF0D6EE929C329AD0031DB04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DF0D6EEC29C329AD0031DB04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DF0D6EE929C329AD0031DB04 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		DF0D6EEE29C329AE0031DB04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF0D6EF129C329AE0031DB04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF0D6EF329C329AE0031DB04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +52,13 @@
 		DF0D6F0229C329AE0031DB04 /* SpeedCubingTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpeedCubingTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0D6F0629C329AE0031DB04 /* SpeedCubingTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedCubingTimerUITests.swift; sourceTree = "<group>"; };
 		DF0D6F0829C329AE0031DB04 /* SpeedCubingTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedCubingTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DF0D6F1529C349DA0031DB04 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		DF0D6F1729C34A4A0031DB04 /* SolvesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolvesView.swift; sourceTree = "<group>"; };
+		DF0D6F1C29C34BF40031DB04 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		DF0D6F1F29C350450031DB04 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		DF0D6F2129C353E80031DB04 /* SolvesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolvesViewController.swift; sourceTree = "<group>"; };
+		DF0D6F2429C358720031DB04 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		DF0D6F2629C359C70031DB04 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +109,10 @@
 		DF0D6EE429C329AD0031DB04 /* SpeedCubingTimer */ = {
 			isa = PBXGroup;
 			children = (
+				DF0D6F1E29C350250031DB04 /* Extensions */,
+				DF0D6F1929C34AD20031DB04 /* Features */,
 				DF0D6EE529C329AD0031DB04 /* AppDelegate.swift */,
-				DF0D6EE729C329AD0031DB04 /* SceneDelegate.swift */,
-				DF0D6EE929C329AD0031DB04 /* ViewController.swift */,
-				DF0D6EEB29C329AD0031DB04 /* Main.storyboard */,
+				DF0D6EE929C329AD0031DB04 /* RootViewController.swift */,
 				DF0D6EEE29C329AE0031DB04 /* Assets.xcassets */,
 				DF0D6EF029C329AE0031DB04 /* LaunchScreen.storyboard */,
 				DF0D6EF329C329AE0031DB04 /* Info.plist */,
@@ -125,6 +135,51 @@
 				DF0D6F0829C329AE0031DB04 /* SpeedCubingTimerUITestsLaunchTests.swift */,
 			);
 			path = SpeedCubingTimerUITests;
+			sourceTree = "<group>";
+		};
+		DF0D6F1929C34AD20031DB04 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				DF0D6F1A29C34B480031DB04 /* Timer */,
+				DF0D6F1B29C34B560031DB04 /* Solves */,
+				DF0D6F2329C3584C0031DB04 /* Statistics */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		DF0D6F1A29C34B480031DB04 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				DF0D6F1529C349DA0031DB04 /* TimerView.swift */,
+				DF0D6F1C29C34BF40031DB04 /* TimerViewController.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		DF0D6F1B29C34B560031DB04 /* Solves */ = {
+			isa = PBXGroup;
+			children = (
+				DF0D6F1729C34A4A0031DB04 /* SolvesView.swift */,
+				DF0D6F2129C353E80031DB04 /* SolvesViewController.swift */,
+			);
+			path = Solves;
+			sourceTree = "<group>";
+		};
+		DF0D6F1E29C350250031DB04 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DF0D6F1F29C350450031DB04 /* UIViewController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DF0D6F2329C3584C0031DB04 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				DF0D6F2429C358720031DB04 /* StatisticsView.swift */,
+				DF0D6F2629C359C70031DB04 /* StatisticsViewController.swift */,
+			);
+			path = Statistics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +288,6 @@
 			files = (
 				DF0D6EF229C329AE0031DB04 /* LaunchScreen.storyboard in Resources */,
 				DF0D6EEF29C329AE0031DB04 /* Assets.xcassets in Resources */,
-				DF0D6EED29C329AD0031DB04 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +312,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF0D6EEA29C329AD0031DB04 /* ViewController.swift in Sources */,
+				DF0D6F1D29C34BF40031DB04 /* TimerViewController.swift in Sources */,
+				DF0D6F1629C349DA0031DB04 /* TimerView.swift in Sources */,
+				DF0D6F2029C350450031DB04 /* UIViewController.swift in Sources */,
+				DF0D6EEA29C329AD0031DB04 /* RootViewController.swift in Sources */,
+				DF0D6F1829C34A4A0031DB04 /* SolvesView.swift in Sources */,
+				DF0D6F2529C358720031DB04 /* StatisticsView.swift in Sources */,
+				DF0D6F2729C359C70031DB04 /* StatisticsViewController.swift in Sources */,
+				DF0D6F2229C353E80031DB04 /* SolvesViewController.swift in Sources */,
 				DF0D6EE629C329AD0031DB04 /* AppDelegate.swift in Sources */,
-				DF0D6EE829C329AD0031DB04 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +357,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DF0D6EEB29C329AD0031DB04 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DF0D6EEC29C329AD0031DB04 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DF0D6EF029C329AE0031DB04 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -441,7 +493,6 @@
 				INFOPLIST_FILE = SpeedCubingTimer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -468,7 +519,6 @@
 				INFOPLIST_FILE = SpeedCubingTimer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
