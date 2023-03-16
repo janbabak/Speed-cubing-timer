@@ -10,10 +10,12 @@ import SwiftUI
 
 final class TimerViewController: UIViewController {
     
+    private let viewModel = TimerViewModel()
+    
     override func loadView() {
         super.loadView()
         
-        let rootView = TimerView()
+        let rootView = TimerView(viewModel: viewModel)
         let vc = UIHostingController(rootView: rootView)
         embedController(vc)
     }

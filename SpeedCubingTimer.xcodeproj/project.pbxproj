@@ -23,6 +23,7 @@
 		DF0D6F2729C359C70031DB04 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2629C359C70031DB04 /* StatisticsViewController.swift */; };
 		DF0D6F2A29C363410031DB04 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2929C363410031DB04 /* SettingsView.swift */; };
 		DF0D6F2C29C364380031DB04 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2B29C364380031DB04 /* SettingsViewController.swift */; };
+		DF0D6F2E29C368F10031DB04 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2D29C368F10031DB04 /* TimerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		DF0D6F2629C359C70031DB04 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		DF0D6F2929C363410031DB04 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		DF0D6F2B29C364380031DB04 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		DF0D6F2D29C368F10031DB04 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			children = (
 				DF0D6F1529C349DA0031DB04 /* TimerView.swift */,
 				DF0D6F1C29C34BF40031DB04 /* TimerViewController.swift */,
+				DF0D6F2D29C368F10031DB04 /* TimerViewModel.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				DF0D6F1629C349DA0031DB04 /* TimerView.swift in Sources */,
 				DF0D6F2C29C364380031DB04 /* SettingsViewController.swift in Sources */,
 				DF0D6F2029C350450031DB04 /* UIViewController.swift in Sources */,
+				DF0D6F2E29C368F10031DB04 /* TimerViewModel.swift in Sources */,
 				DF0D6EEA29C329AD0031DB04 /* RootViewController.swift in Sources */,
 				DF0D6F1829C34A4A0031DB04 /* SolvesView.swift in Sources */,
 				DF0D6F2A29C363410031DB04 /* SettingsView.swift in Sources */,
