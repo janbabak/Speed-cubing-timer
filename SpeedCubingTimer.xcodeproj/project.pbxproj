@@ -25,6 +25,8 @@
 		DF0D6F2C29C364380031DB04 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2B29C364380031DB04 /* SettingsViewController.swift */; };
 		DF0D6F2E29C368F10031DB04 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2D29C368F10031DB04 /* TimerViewModel.swift */; };
 		DF0D6F3029C386BE0031DB04 /* ScrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2F29C386BD0031DB04 /* ScrambleGenerator.swift */; };
+		DF0D6F3329C38F070031DB04 /* Solve.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F3229C38F070031DB04 /* Solve.swift */; };
+		DF0D6F3529C3912B0031DB04 /* SolvesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F3429C3912B0031DB04 /* SolvesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		DF0D6F2B29C364380031DB04 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DF0D6F2D29C368F10031DB04 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		DF0D6F2F29C386BD0031DB04 /* ScrambleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrambleGenerator.swift; sourceTree = "<group>"; };
+		DF0D6F3229C38F070031DB04 /* Solve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solve.swift; sourceTree = "<group>"; };
+		DF0D6F3429C3912B0031DB04 /* SolvesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolvesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 			children = (
 				DF0D6EE529C329AD0031DB04 /* AppDelegate.swift */,
 				DF0D6EE929C329AD0031DB04 /* RootViewController.swift */,
+				DF0D6F3129C38EE60031DB04 /* Models */,
 				DF0D6F1E29C350250031DB04 /* Extensions */,
 				DF0D6F1929C34AD20031DB04 /* Features */,
 				DF0D6EEE29C329AE0031DB04 /* Assets.xcassets */,
@@ -172,6 +177,7 @@
 			children = (
 				DF0D6F1729C34A4A0031DB04 /* SolvesView.swift */,
 				DF0D6F2129C353E80031DB04 /* SolvesViewController.swift */,
+				DF0D6F3429C3912B0031DB04 /* SolvesViewModel.swift */,
 			);
 			path = Solves;
 			sourceTree = "<group>";
@@ -200,6 +206,14 @@
 				DF0D6F2B29C364380031DB04 /* SettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		DF0D6F3129C38EE60031DB04 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DF0D6F3229C38F070031DB04 /* Solve.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,12 +353,14 @@
 				DF0D6F2E29C368F10031DB04 /* TimerViewModel.swift in Sources */,
 				DF0D6EEA29C329AD0031DB04 /* RootViewController.swift in Sources */,
 				DF0D6F1829C34A4A0031DB04 /* SolvesView.swift in Sources */,
+				DF0D6F3529C3912B0031DB04 /* SolvesViewModel.swift in Sources */,
 				DF0D6F2A29C363410031DB04 /* SettingsView.swift in Sources */,
 				DF0D6F2529C358720031DB04 /* StatisticsView.swift in Sources */,
 				DF0D6F2729C359C70031DB04 /* StatisticsViewController.swift in Sources */,
 				DF0D6F3029C386BE0031DB04 /* ScrambleGenerator.swift in Sources */,
 				DF0D6F2229C353E80031DB04 /* SolvesViewController.swift in Sources */,
 				DF0D6EE629C329AD0031DB04 /* AppDelegate.swift in Sources */,
+				DF0D6F3329C38F070031DB04 /* Solve.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

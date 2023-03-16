@@ -9,32 +9,33 @@ import SwiftUI
 
 struct TimerView: View {
     
-    @ObservedObject var viewModel: TimerViewModel
+    @ObservedObject var timerViewModel: TimerViewModel
+    @ObservedObject var solvesViewModel: SolvesViewModel
     
     var body: some View {
         VStack {
-            Text(viewModel.scramble)
+            Text(timerViewModel.scramble)
             
             Spacer()
             
-            Text(String(format: "%02d:%02d:%02d.%02d", viewModel.hours, viewModel.minutes, viewModel.seconds, viewModel.fractions))
+            Text(String(format: "%02d:%02d:%02d.%02d", timerViewModel.hours, timerViewModel.minutes, timerViewModel.seconds, timerViewModel.fractions))
                 .font(.system(size: 44, design: .monospaced))
-                .foregroundColor(viewModel.holdingScreen ? .red : .black)
+                .foregroundColor(timerViewModel.holdingScreen ? .red : .primary)
             
             Spacer()
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         .contentShape(Rectangle())
         .onTapGesture {
-            viewModel.onTapGesture()
+            solvesViewModel.addSolve(solve: timerViewModel.onTapGesture())
         }
         .gesture(
             DragGesture(minimumDistance: 0)
                 .onChanged { _ in
-                    viewModel.onDragGestureChange()
+                    timerViewModel.onDragGestureChange()
                 }
                 .onEnded { _ in
-                    viewModel.onTouchUpGesture()
+                    timerViewModel.onTouchUpGesture()
                 }
         )
     }
@@ -42,6 +43,6 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(viewModel: TimerViewModel())
+        TimerView(timerViewModel: .init(), solvesViewModel: .init())
     }
 }

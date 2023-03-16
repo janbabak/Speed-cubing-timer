@@ -10,12 +10,22 @@ import SwiftUI
 
 final class TimerViewController: UIViewController {
     
+    private var solvesViewModel: SolvesViewModel
     private let viewModel = TimerViewModel()
+    
+    required init(solvesViewModel: SolvesViewModel) {
+        self.solvesViewModel = solvesViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
         
-        let rootView = TimerView(viewModel: viewModel)
+        let rootView = TimerView(timerViewModel: viewModel, solvesViewModel: solvesViewModel)
         let vc = UIHostingController(rootView: rootView)
         embedController(vc)
     }

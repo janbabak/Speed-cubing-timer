@@ -8,19 +8,20 @@
 import UIKit
 
 class RootViewController: UIViewController {
+    private var solvesViewModel = SolvesViewModel()
     private weak var tabBar: UITabBarController!
 
     override func loadView() {
         super.loadView()
         
         //timer
-        let timerController = TimerViewController()
+        let timerController = TimerViewController(solvesViewModel: solvesViewModel)
         let timerNavigationController = UINavigationController(rootViewController: timerController)
         timerNavigationController.tabBarItem.title = "Timer"
         timerNavigationController.tabBarItem.image = UIImage(systemName: "timer")
         
         //solves
-        let solvesController = SolvesViewController()
+        let solvesController = SolvesViewController(solvesViewModel: solvesViewModel)
         let solvesNavigationController = UINavigationController(rootViewController: solvesController)
         solvesNavigationController.tabBarItem.title = "Solves"
         solvesNavigationController.tabBarItem.image = UIImage(systemName: "list.bullet")

@@ -21,9 +21,12 @@ final class TimerViewModel: ObservableObject {
     private let timerInterval = 0.01
     
     //start or stop the timer based on its state (running or not)
-    func onTapGesture() {
-        guard timerIsRunning else { return }
+    func onTapGesture() -> Solve? {
+        guard timerIsRunning else { return nil }
         stopTimer()
+        let solve = createSolve()
+        scramble = ScrambleGenerator.generate()
+        return solve
     }
     
     //when drag (hold) gesture starts
@@ -38,6 +41,17 @@ final class TimerViewModel: ObservableObject {
         guard !timerIsRunning else { return }
         holdingScreen = false
         startTimer()
+    }
+    
+    func createSolve() -> Solve {
+        Solve(
+            scramble: scramble,
+            date: Date(),
+            hours: hours,
+            minutes: minutes,
+            seconds: seconds,
+            fractions: fractions
+        )
     }
     
     private func startTimer() {

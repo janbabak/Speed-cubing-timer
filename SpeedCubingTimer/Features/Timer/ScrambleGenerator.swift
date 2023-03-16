@@ -17,6 +17,7 @@ final class ScrambleGenerator {
     static func generateThreeByThree() -> String {
         var scramble: [String] = []
         
+        //randomly choose moves of faces
         while (scramble.count < 20) {
             var symbol: String
             
@@ -44,6 +45,7 @@ final class ScrambleGenerator {
             scramble.append(symbol)
         }
         
+        //ranomly choose number of rotations for every move
         for i in 0..<scramble.count {
             switch (Int.random(in: 0...2)) {
             case 0:
