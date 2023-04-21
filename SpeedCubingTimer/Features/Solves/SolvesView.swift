@@ -20,8 +20,17 @@ struct SolvesView: View {
     @ViewBuilder
     func listItem(solve: Solve) -> some View {
         VStack(alignment: .leading) {
-            Text(solve.formattedTime)
-                .padding(.bottom, 4)
+            HStack {
+                Text(solve.formattedTime)
+                    .padding(.bottom, 4)
+                
+                Spacer()
+                
+                if (solve.penalty != .noPenalty) {
+                    Text(solve.penalty.rawValue)
+                        .foregroundColor(.red)
+                }
+            }
             Text(solve.scramble).font(.caption)
             //TODO: add links to detail
         }

@@ -15,23 +15,26 @@ struct TimerView: View {
     var body: some View {
         VStack {
             Text(timerViewModel.scramble)
+                .font(.title2)
             
             Spacer()
             
-            Text(String(format: "%02d:%02d:%02d.%02d", timerViewModel.hours, timerViewModel.minutes, timerViewModel.seconds, timerViewModel.fractions))
-                .font(.system(size: 44, design: .monospaced))
-                .foregroundColor(timerViewModel.holdingScreen ? .red : .primary)
+            time
             
             Spacer()
+            
+            buttons
         }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 16)
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         .contentShape(Rectangle())
         .onTapGesture {
-            solvesViewModel.addSolve(solve: timerViewModel.onTapGesture())
+            timerViewModel.onTapGesture()
         }
         .gesture(
             DragGesture(minimumDistance: 0)
-                .onChanged { _ in
+                .onChanged { value in
                     timerViewModel.onDragGestureChange()
                 }
                 .onEnded { _ in
@@ -39,10 +42,35 @@ struct TimerView: View {
                 }
         )
     }
+    
+    var time: some View {
+        Text(timerViewModel.solve.formattedTime)
+            .font(.system(size: 44, design: .monospaced))
+            .foregroundColor(timerViewModel.holdingScreen ? .red : .primary)
+    }
+    
+    var buttons: some View {
+        HStack {
+            //delete solve
+            FullwidthButton(label: "Delete", tint: .red) {
+                print("tap")
+            }
+            // did not finished
+            FullwidthButton(label: "DNF", tint: .orange) {
+                timerViewModel.dnf()
+                solvesViewModel.lastDnf()
+            }
+            // +2 seconds
+            FullwidthButton(label: "+2", tint: .blue) {
+                timerViewModel.plus2Seconds()
+                solvesViewModel.lastPlus2Seconds()
+            }
+        }
+    }
 }
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(timerViewModel: .init(), solvesViewModel: .init())
+        TimerView(timerViewModel: .init(solvesViewMode: .init()), solvesViewModel: .init())
     }
 }

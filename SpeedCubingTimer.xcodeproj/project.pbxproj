@@ -27,6 +27,7 @@
 		DF0D6F3029C386BE0031DB04 /* ScrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2F29C386BD0031DB04 /* ScrambleGenerator.swift */; };
 		DF0D6F3329C38F070031DB04 /* Solve.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F3229C38F070031DB04 /* Solve.swift */; };
 		DF0D6F3529C3912B0031DB04 /* SolvesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F3429C3912B0031DB04 /* SolvesViewModel.swift */; };
+		DF3359F629DE0288000490D2 /* FullwidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3359F529DE0288000490D2 /* FullwidthButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		DF0D6F2F29C386BD0031DB04 /* ScrambleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrambleGenerator.swift; sourceTree = "<group>"; };
 		DF0D6F3229C38F070031DB04 /* Solve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solve.swift; sourceTree = "<group>"; };
 		DF0D6F3429C3912B0031DB04 /* SolvesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolvesViewModel.swift; sourceTree = "<group>"; };
+		DF3359F529DE0288000490D2 /* FullwidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullwidthButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				DF0D6EE929C329AD0031DB04 /* RootViewController.swift */,
 				DF0D6F3129C38EE60031DB04 /* Models */,
 				DF0D6F1E29C350250031DB04 /* Extensions */,
+				DF3359F429DE0267000490D2 /* Components */,
 				DF0D6F1929C34AD20031DB04 /* Features */,
 				DF0D6EEE29C329AE0031DB04 /* Assets.xcassets */,
 				DF0D6EF029C329AE0031DB04 /* LaunchScreen.storyboard */,
@@ -214,6 +217,14 @@
 				DF0D6F3229C38F070031DB04 /* Solve.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DF3359F429DE0267000490D2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				DF3359F529DE0288000490D2 /* FullwidthButton.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +372,7 @@
 				DF0D6F2229C353E80031DB04 /* SolvesViewController.swift in Sources */,
 				DF0D6EE629C329AD0031DB04 /* AppDelegate.swift in Sources */,
 				DF0D6F3329C38F070031DB04 /* Solve.swift in Sources */,
+				DF3359F629DE0288000490D2 /* FullwidthButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,12 +541,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S7CBC7Z8QU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SpeedCubingTimer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -555,12 +569,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S7CBC7Z8QU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SpeedCubingTimer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

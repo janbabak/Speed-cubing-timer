@@ -19,7 +19,8 @@ final class SolvesViewModel: ObservableObject {
                 hours: 0,
                 minutes: 0,
                 seconds: 16,
-                fractions: 34
+                fractions: 34,
+                penalty: .DNF
             ),
             Solve(
                 scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
@@ -27,17 +28,36 @@ final class SolvesViewModel: ObservableObject {
                 hours: 0,
                 minutes: 0,
                 seconds: 12,
-                fractions: 59
+                fractions: 59,
+                penalty: .plus2
             ),
             Solve(
                 scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
                 date: Date(),
                 hours: 0,
                 minutes: 0,
-                seconds: 13,
-                fractions: 99
+                seconds: 59,
+                fractions: 99,
+                penalty: .noPenalty
             )
         ]
+    }
+    
+    //set last solve penalty to dnf
+    func lastDnf() {
+        setPenaltyBySolveId(penalty: .DNF, solveId: solves.last?.id ?? "")
+    }
+    
+    //add penalty of 2 seconds to last solve
+    func lastPlus2Seconds() {
+        setPenaltyBySolveId(penalty: .plus2, solveId: solves.last?.id ?? "")
+    }
+    
+    //set penalty of solve by its id
+    func setPenaltyBySolveId(penalty: SolvePenalty, solveId: String) {
+        guard let solveIndex = solves.firstIndex(where: { $0.id == solveId }) else { return }
+        
+        solves[solveIndex].penalty = penalty
     }
     
     func addSolve(solve: Solve?) {
