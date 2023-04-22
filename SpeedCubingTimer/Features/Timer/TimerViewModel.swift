@@ -9,32 +9,65 @@ import SwiftUI
 
 final class TimerViewModel: ObservableObject {
     
-    @Published var holdingScreen = false
-    @Published var scramble = ScrambleGenerator.generate()
-    @Published var solve = Solve()
+    @Published private(set) var solves: [Solve] = []
+    @Published private(set) var scramble = ScrambleGenerator.generate()
+    @Published private(set) var holdingScreen = false
     
-    private var solvesViewModel: SolvesViewModel
+    var lastSolve: Solve {
+        get {
+            solves.last ?? Solve() // solves won't be ever empty
+        }
+        set {
+            guard solves.count > 0 else { return }
+            solves[solves.count - 1] = newValue
+        }
+    }
+    
     private var timer = Timer()
     private var timerIsRunning = false
     private let timerInterval = 0.01
     
-    init(solvesViewMode: SolvesViewModel) {
-        self.solvesViewModel = solvesViewMode
-        
-        guard let lastSolve = solvesViewMode.solves.last else { return }
-        
-        solve = Solve(scramble: "", date: Date(), hours: lastSolve.hours, minutes: lastSolve.minutes, seconds: lastSolve.seconds, fractions: lastSolve.fractions, penalty: lastSolve.penalty)
+    init() {
+        //TODO: remove after testing
+        self.solves = [
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 16,
+                fractions: 34,
+                penalty: .DNF
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 12,
+                fractions: 59,
+                penalty: .plus2
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 59,
+                fractions: 99,
+                penalty: .noPenalty
+            )
+        ]
     }
     
-    //start or stop the timer based on its state (running or not)
+    //on tab gesture - stop the timer based on its state (running or not)
     func onTapGesture() -> Void {
         guard timerIsRunning else { return }
+        
         stopTimer()
-        solve.date = Date()
-        solve.scramble = scramble
-        scramble = ScrambleGenerator.generate()
-        print(solve)
-        solvesViewModel.addSolve(solve: solve)
+        lastSolve.date = Date()
+        scramble = ScrambleGenerator.generate() // prepare next scramle
+        print(lastSolve)
     }
     
     //when drag (hold) gesture starts
@@ -44,39 +77,49 @@ final class TimerViewModel: ObservableObject {
         }
     }
     
-    //hold (drag) gesture end - fires the timer (if not running)
+    // on end of hold gesture - fires the timer (if not running)
     func onTouchUpGesture() {
         guard !timerIsRunning else { return }
         holdingScreen = false
         startTimer()
     }
     
-    func dnf() {
-        solve.penalty = .DNF
+    // create new solve - add new solve to solves array
+    func createSolve() {
+        solves.append(Solve(scramble: scramble))
     }
     
-    func plus2Seconds() {
-        solve.penalty = .plus2
+    //set last solve penalty to dnf
+    func setDnfToLastSolve() {
+        setPenaltyBySolveId(penalty: .DNF, solveId: solves.last?.id ?? "")
     }
     
-    func createSolve() -> Solve {
-        solve.date = Date()
-        solve.scramble = scramble
-        return solve
+    //add penalty of 2 seconds to last solve
+    func setPlus2toLastSolve() {
+        setPenaltyBySolveId(penalty: .plus2, solveId: solves.last?.id ?? "")
     }
     
+    //set penalty of solve by its id
+    func setPenaltyBySolveId(penalty: SolvePenalty, solveId: String) {
+        guard let solveIndex = solves.firstIndex(where: { $0.id == solveId }) else { return }
+        
+        solves[solveIndex].penalty = penalty
+    }
+    
+    // start timer
     private func startTimer() {
         print("⏱️ Timer started.")
-        solve = Solve()
+        createSolve()
         timerIsRunning = true
         timer = Timer.scheduledTimer(withTimeInterval: timerInterval, repeats: true) { [weak self] timer in
-            self!.solve.fractions += 1
-            
+            self!.lastSolve.fractions += 1
             self!.carryToHigherOrder()
         }
     }
     
+    // carray fractions or seconds or minutes overflow to higher order
     private func carryToHigherOrder() {
+        guard var solve = solves.last else { return }
         if solve.fractions > 99 {
             solve.seconds += 1
             solve.fractions = 0
@@ -93,9 +136,10 @@ final class TimerViewModel: ObservableObject {
         }
     }
     
+    // stop timer
     private func stopTimer() {
-        print("⏱️ Timer stopped.")
-        timerIsRunning = false
         timer.invalidate()
+        timerIsRunning = false
+        print("⏱️ Timer stopped.")
     }
 }

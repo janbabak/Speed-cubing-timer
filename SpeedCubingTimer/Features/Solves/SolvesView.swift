@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct SolvesView: View {
-    @ObservedObject var solvesViewModel: SolvesViewModel
+    @ObservedObject var timerViewModel: TimerViewModel
     
     var body: some View {
-        List(solvesViewModel.solves) { solve in
+        List(timerViewModel.solves) { solve in
             listItem(solve: solve)
         }
         .padding(.top, 16)
@@ -39,6 +39,6 @@ struct SolvesView: View {
 
 struct SolvesView_Previews: PreviewProvider {
     static var previews: some View {
-        SolvesView(solvesViewModel: .init())
+        SolvesView(timerViewModel: .init())
     }
 }

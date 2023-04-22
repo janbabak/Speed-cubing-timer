@@ -10,7 +10,6 @@ import SwiftUI
 struct TimerView: View {
     
     @ObservedObject var timerViewModel: TimerViewModel
-    @ObservedObject var solvesViewModel: SolvesViewModel
     
     var body: some View {
         VStack {
@@ -44,11 +43,12 @@ struct TimerView: View {
     }
     
     var time: some View {
-        Text(timerViewModel.solve.formattedTime)
+        Text(timerViewModel.lastSolve.formattedTime)
             .font(.system(size: 44, design: .monospaced))
             .foregroundColor(timerViewModel.holdingScreen ? .red : .primary)
     }
     
+    // delete, DNF, +2 buttons
     var buttons: some View {
         HStack {
             //delete solve
@@ -57,13 +57,11 @@ struct TimerView: View {
             }
             // did not finished
             FullwidthButton(label: "DNF", tint: .orange) {
-                timerViewModel.dnf()
-                solvesViewModel.lastDnf()
+                timerViewModel.setDnfToLastSolve()
             }
             // +2 seconds
             FullwidthButton(label: "+2", tint: .blue) {
-                timerViewModel.plus2Seconds()
-                solvesViewModel.lastPlus2Seconds()
+                timerViewModel.setPlus2toLastSolve()
             }
         }
     }
@@ -71,6 +69,6 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(timerViewModel: .init(solvesViewMode: .init()), solvesViewModel: .init())
+        TimerView(timerViewModel: .init())
     }
 }

@@ -26,7 +26,6 @@
 		DF0D6F2E29C368F10031DB04 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2D29C368F10031DB04 /* TimerViewModel.swift */; };
 		DF0D6F3029C386BE0031DB04 /* ScrambleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F2F29C386BD0031DB04 /* ScrambleGenerator.swift */; };
 		DF0D6F3329C38F070031DB04 /* Solve.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F3229C38F070031DB04 /* Solve.swift */; };
-		DF0D6F3529C3912B0031DB04 /* SolvesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D6F3429C3912B0031DB04 /* SolvesViewModel.swift */; };
 		DF3359F629DE0288000490D2 /* FullwidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3359F529DE0288000490D2 /* FullwidthButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +70,6 @@
 		DF0D6F2D29C368F10031DB04 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		DF0D6F2F29C386BD0031DB04 /* ScrambleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrambleGenerator.swift; sourceTree = "<group>"; };
 		DF0D6F3229C38F070031DB04 /* Solve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solve.swift; sourceTree = "<group>"; };
-		DF0D6F3429C3912B0031DB04 /* SolvesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolvesViewModel.swift; sourceTree = "<group>"; };
 		DF3359F529DE0288000490D2 /* FullwidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullwidthButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,7 +178,6 @@
 			children = (
 				DF0D6F1729C34A4A0031DB04 /* SolvesView.swift */,
 				DF0D6F2129C353E80031DB04 /* SolvesViewController.swift */,
-				DF0D6F3429C3912B0031DB04 /* SolvesViewModel.swift */,
 			);
 			path = Solves;
 			sourceTree = "<group>";
@@ -364,7 +361,6 @@
 				DF0D6F2E29C368F10031DB04 /* TimerViewModel.swift in Sources */,
 				DF0D6EEA29C329AD0031DB04 /* RootViewController.swift in Sources */,
 				DF0D6F1829C34A4A0031DB04 /* SolvesView.swift in Sources */,
-				DF0D6F3529C3912B0031DB04 /* SolvesViewModel.swift in Sources */,
 				DF0D6F2A29C363410031DB04 /* SettingsView.swift in Sources */,
 				DF0D6F2529C358720031DB04 /* StatisticsView.swift in Sources */,
 				DF0D6F2729C359C70031DB04 /* StatisticsViewController.swift in Sources */,
