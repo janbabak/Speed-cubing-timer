@@ -107,9 +107,14 @@ final class TimerViewModel: ObservableObject {
         solves[solveIndex].penalty = penalty
     }
     
-    // remove solve
-    func removeSolve(at offset: IndexSet) {
+    // delete solve
+    func deleteSolve(at offset: IndexSet) {
         solves.remove(atOffsets: offset)
+    }
+    
+    // delete last solve
+    func deleteLastSolve() {
+        solves.removeLast()
     }
     
     // MARK: - private functions

@@ -8,7 +8,6 @@
 import UIKit
 
 class RootViewController: UIViewController {
-//    private var solvesViewModel = SolvesViewModel()
     private var timerViewModel = TimerViewModel()
     private weak var tabBar: UITabBarController!
 
@@ -22,7 +21,6 @@ class RootViewController: UIViewController {
         timerNavigationController.tabBarItem.image = UIImage(systemName: "timer")
         
         //solves
-//        let solvesController = SolvesViewController(solvesViewModel: solvesViewModel)
         let solvesController = SolvesViewController(timerViewModel: timerViewModel)
         let solvesNavigationController = UINavigationController(rootViewController: solvesController)
         solvesNavigationController.tabBarItem.title = "Solves"

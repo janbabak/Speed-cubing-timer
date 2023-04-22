@@ -33,7 +33,7 @@ struct TimerView: View {
         }
         .gesture(
             DragGesture(minimumDistance: 0)
-                .onChanged { value in
+                .onChanged { _ in
                     viewModel.onDragGestureChange()
                 }
                 .onEnded { _ in
@@ -53,7 +53,7 @@ struct TimerView: View {
         HStack {
             //delete solve
             FullwidthButton(label: "Delete", tint: .red) {
-                print("tap")
+                viewModel.deleteLastSolve()
             }
             // did not finished
             FullwidthButton(label: "DNF", tint: .orange) {

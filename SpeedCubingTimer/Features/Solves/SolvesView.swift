@@ -25,7 +25,7 @@ struct SolvesView: View {
             ForEach(viewModel.solves.reversed(), id: \.id) { solve in
                 listItem(solve: solve)
             }
-            .onDelete(perform: viewModel.removeSolve)
+            .onDelete(perform: viewModel.deleteSolve)
         }
     }
     

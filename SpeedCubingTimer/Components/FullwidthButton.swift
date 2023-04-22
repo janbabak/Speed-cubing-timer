@@ -25,7 +25,6 @@ struct FullwidthButton: View {
         .buttonStyle(.borderedProminent)
         .tint(tint)
         .controlSize(controlSize)
-        
     }
 }
 
