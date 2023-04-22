@@ -24,7 +24,7 @@ final class TimerViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let rootView = TimerView(timerViewModel: timerViewModel)
+        let rootView = TimerView(viewModel: timerViewModel)
         let vc = UIHostingController(rootView: rootView)
         embedController(vc)
     }

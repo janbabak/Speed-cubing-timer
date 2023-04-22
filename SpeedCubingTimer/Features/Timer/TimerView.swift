@@ -9,11 +9,11 @@ import SwiftUI
 
 struct TimerView: View {
     
-    @ObservedObject var timerViewModel: TimerViewModel
+    @ObservedObject var viewModel: TimerViewModel
     
     var body: some View {
         VStack {
-            Text(timerViewModel.scramble)
+            Text(viewModel.scramble)
                 .font(.title2)
             
             Spacer()
@@ -29,23 +29,23 @@ struct TimerView: View {
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         .contentShape(Rectangle())
         .onTapGesture {
-            timerViewModel.onTapGesture()
+            viewModel.onTapGesture()
         }
         .gesture(
             DragGesture(minimumDistance: 0)
                 .onChanged { value in
-                    timerViewModel.onDragGestureChange()
+                    viewModel.onDragGestureChange()
                 }
                 .onEnded { _ in
-                    timerViewModel.onTouchUpGesture()
+                    viewModel.onTouchUpGesture()
                 }
         )
     }
     
     var time: some View {
-        Text(timerViewModel.lastSolve.formattedTime)
+        Text(viewModel.lastSolve.formattedTime)
             .font(.system(size: 44, design: .monospaced))
-            .foregroundColor(timerViewModel.holdingScreen ? .red : .primary)
+            .foregroundColor(viewModel.holdingScreen ? .red : .primary)
     }
     
     // delete, DNF, +2 buttons
@@ -57,11 +57,11 @@ struct TimerView: View {
             }
             // did not finished
             FullwidthButton(label: "DNF", tint: .orange) {
-                timerViewModel.setDnfToLastSolve()
+                viewModel.setDnfToLastSolve()
             }
             // +2 seconds
             FullwidthButton(label: "+2", tint: .blue) {
-                timerViewModel.setPlus2toLastSolve()
+                viewModel.setPlus2toLastSolve()
             }
         }
     }
@@ -69,6 +69,6 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(timerViewModel: .init())
+        TimerView(viewModel: .init())
     }
 }

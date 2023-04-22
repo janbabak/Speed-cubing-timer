@@ -15,7 +15,7 @@ final class TimerViewModel: ObservableObject {
     
     var lastSolve: Solve {
         get {
-            solves.last ?? Solve() // solves won't be ever empty
+            solves.last ?? Solve(scramble: scramble)
         }
         set {
             guard solves.count > 0 else { return }
@@ -26,6 +26,8 @@ final class TimerViewModel: ObservableObject {
     private var timer = Timer()
     private var timerIsRunning = false
     private let timerInterval = 0.01
+    
+    // MARK: - public functions
     
     init() {
         //TODO: remove after testing
@@ -60,7 +62,7 @@ final class TimerViewModel: ObservableObject {
         ]
     }
     
-    //on tab gesture - stop the timer based on its state (running or not)
+    // on tab gesture - stop the timer based on its state (running or not)
     func onTapGesture() -> Void {
         guard timerIsRunning else { return }
         
@@ -70,7 +72,7 @@ final class TimerViewModel: ObservableObject {
         print(lastSolve)
     }
     
-    //when drag (hold) gesture starts
+    // when drag (hold) gesture starts
     func onDragGestureChange() {
         if !holdingScreen {
             holdingScreen = true
@@ -84,26 +86,33 @@ final class TimerViewModel: ObservableObject {
         startTimer()
     }
     
-    // create new solve - add new solve to solves array
-    func createSolve() {
-        solves.append(Solve(scramble: scramble))
-    }
-    
-    //set last solve penalty to dnf
+    // set last solve penalty to dnf
     func setDnfToLastSolve() {
         setPenaltyBySolveId(penalty: .DNF, solveId: solves.last?.id ?? "")
     }
     
-    //add penalty of 2 seconds to last solve
+    // add penalty of 2 seconds to last solve
     func setPlus2toLastSolve() {
         setPenaltyBySolveId(penalty: .plus2, solveId: solves.last?.id ?? "")
     }
     
-    //set penalty of solve by its id
+    // set penalty of solve by its id
     func setPenaltyBySolveId(penalty: SolvePenalty, solveId: String) {
         guard let solveIndex = solves.firstIndex(where: { $0.id == solveId }) else { return }
         
         solves[solveIndex].penalty = penalty
+    }
+    
+    // remove solve
+    func removeSolve(at offset: IndexSet) {
+        solves.remove(atOffsets: offset)
+    }
+    
+    // MARK: - private functions
+    
+    // create new solve - add new solve to solves array
+    private func createSolve() {
+        solves.append(Solve(scramble: scramble))
     }
     
     // start timer

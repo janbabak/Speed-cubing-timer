@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct SolvesView: View {
-    @ObservedObject var timerViewModel: TimerViewModel
+    @ObservedObject var viewModel: TimerViewModel
     
     var body: some View {
-        List(timerViewModel.solves) { solve in
-            listItem(solve: solve)
+        if (viewModel.solves.isEmpty) {
+            Text("You don't have any solves yet!")
+            
+        } else {
+            solvesList
+                .padding(.top, 16)
         }
-        .padding(.top, 16)
+    }
+    
+    var solvesList: some View {
+        List {
+            ForEach(viewModel.solves, id: \.id) { solve in
+                listItem(solve: solve)
+            }
+            .onDelete(perform: viewModel.removeSolve)
+        }
     }
     
     @ViewBuilder
@@ -39,6 +51,6 @@ struct SolvesView: View {
 
 struct SolvesView_Previews: PreviewProvider {
     static var previews: some View {
-        SolvesView(timerViewModel: .init())
+        SolvesView(viewModel: .init())
     }
 }
