@@ -22,7 +22,7 @@ struct SolvesView: View {
     
     var solvesList: some View {
         List {
-            ForEach(viewModel.solves, id: \.id) { solve in
+            ForEach(viewModel.solves.reversed(), id: \.id) { solve in
                 listItem(solve: solve)
             }
             .onDelete(perform: viewModel.removeSolve)

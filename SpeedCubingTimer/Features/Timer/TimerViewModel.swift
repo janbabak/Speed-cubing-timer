@@ -23,6 +23,10 @@ final class TimerViewModel: ObservableObject {
         }
     }
     
+    var solvesReversed: [Solve] {
+        solves.reversed()
+    }
+    
     private var timer = Timer()
     private var timerIsRunning = false
     private let timerInterval = 0.01
