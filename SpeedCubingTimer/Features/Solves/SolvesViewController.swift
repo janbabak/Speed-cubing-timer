@@ -24,7 +24,9 @@ final class SolvesViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let rootView = SolvesView(viewModel: timerViewModel) 
+        let rootView = SolvesView(viewModel: timerViewModel) { [weak self] solve in
+            self?.onSolveTapped(solve: solve)
+        }
         let vc = UIHostingController(rootView: rootView)
         embedController(vc)
     }
@@ -35,5 +37,11 @@ final class SolvesViewController: UIViewController {
         navigationItem.title = "Solves"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func onSolveTapped(solve: Solve) {
+        let vc = SolveDetailViewController(timerViewModel: timerViewModel, solve: solve)
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -10,6 +10,8 @@ import SwiftUI
 struct SolvesView: View {
     @ObservedObject var viewModel: TimerViewModel
     
+    let onSolveTapped: (Solve) -> Void
+    
     var body: some View {
         if (viewModel.solves.isEmpty) {
             Text("You don't have any solves yet!")
@@ -31,26 +33,30 @@ struct SolvesView: View {
     
     @ViewBuilder
     func listItem(solve: Solve) -> some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text(solve.formattedTime)
-                    .padding(.bottom, 4)
-                
-                Spacer()
-                
-                if (solve.penalty != .noPenalty) {
-                    Text(solve.penalty.rawValue)
-                        .foregroundColor(.red)
+        Button {
+            onSolveTapped(solve)
+        } label: {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(solve.formattedTime)
+                        .padding(.bottom, 4)
+
+                    Spacer()
+
+                    if (solve.penalty != .noPenalty) {
+                        Text(solve.penalty.rawValue)
+                            .foregroundColor(.red)
+                    }
                 }
+                Text(solve.scramble).font(.caption)
             }
-            Text(solve.scramble).font(.caption)
-            //TODO: add links to detail
+            .foregroundColor(Color.primary)
         }
     }
 }
 
 struct SolvesView_Previews: PreviewProvider {
     static var previews: some View {
-        SolvesView(viewModel: .init())
+        SolvesView(viewModel: .init(), onSolveTapped: { _ in })
     }
 }

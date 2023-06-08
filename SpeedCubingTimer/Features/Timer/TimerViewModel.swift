@@ -101,10 +101,17 @@ final class TimerViewModel: ObservableObject {
     }
     
     // set penalty of solve by its id
-    func setPenaltyBySolveId(penalty: Solve.Penalty, solveId: String) {
-        guard let solveIndex = solves.firstIndex(where: { $0.id == solveId }) else { return }
+    func setPenaltyBySolveId(penalty: Solve.Penalty, solveId: String) -> Solve? {
+        guard let solveIndex = solves.firstIndex(where: { $0.id == solveId }) else { return nil }
         
         solves[solveIndex].penalty = penalty
+        
+        return solves[solveIndex]
+    }
+    
+    // delete solve by id
+    func deleteSolveById(solveId: String) {
+        solves.removeAll(where: { $0.id == solveId })
     }
     
     // delete solve
@@ -119,6 +126,15 @@ final class TimerViewModel: ObservableObject {
     // delete last solve
     func deleteLastSolve() {
         solves.removeLast()
+    }
+    
+    // set note to solve selected by its id
+    func setNoteBySolveId(note: String, solveId: String) -> Solve? {
+        guard let solveIndex = solves.firstIndex(where: { $0.id == solveId }) else { return nil }
+        
+        solves[solveIndex].note = note
+        
+        return solves[solveIndex]
     }
     
     // MARK: - private functions

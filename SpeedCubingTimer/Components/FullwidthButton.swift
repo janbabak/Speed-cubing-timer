@@ -9,14 +9,23 @@ import SwiftUI
 
 struct FullwidthButton: View {
     var label: String = ""
-    var tint: Color = .gray
+    var tint: Color = .blue
     var buttonStyle: BorderedButtonStyle = .bordered
     var controlSize: ControlSize = .large
     var font: Font = .title2
     var fullHeight = false
+    var borderedProminent = true
     var action: () -> Void = {}
     
     var body: some View {
+        if borderedProminent {
+            button.buttonStyle(.borderedProminent)
+        } else {
+            button.buttonStyle(.bordered)
+        }
+    }
+    
+    var button: some View {
         Button {
             action()
         } label: {
@@ -24,7 +33,6 @@ struct FullwidthButton: View {
                 .font(font)
                 .frame(maxWidth: .infinity, maxHeight: (fullHeight ? .infinity : nil))
         }
-        .buttonStyle(.borderedProminent)
         .tint(tint)
         .controlSize(controlSize)
     }
@@ -32,6 +40,6 @@ struct FullwidthButton: View {
 
 struct FullwidthButton_Previews: PreviewProvider {
     static var previews: some View {
-        FullwidthButton()
+        FullwidthButton(label: "Button")
     }
 }

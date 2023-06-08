@@ -1,22 +1,24 @@
 //
-//  TimerViewController.swift
+//  SolvesDetailController.swift
 //  SpeedCubingTimer
 //
-//  Created by Jan Babák on 16.03.2023.
+//  Created by Jan Babák on 08.06.2023.
 //
 
 import UIKit
 import SwiftUI
 
-final class TimerViewController: UIViewController {
-    
+final class SolveDetailViewController: UIViewController {
     private let timerViewModel: TimerViewModel
+    private let solve: Solve
     
-    required init(timerViewModel: TimerViewModel) {
+    init(timerViewModel: TimerViewModel, solve: Solve) {
         self.timerViewModel = timerViewModel
+        self.solve = solve
+        
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -24,7 +26,7 @@ final class TimerViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let rootView = TimerView(viewModel: timerViewModel)
+        let rootView = SolveDetailView(viewModel: timerViewModel, solve: solve)
         let vc = UIHostingController(rootView: rootView)
         embedController(vc)
     }
@@ -32,20 +34,20 @@ final class TimerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Timer"
+        navigationItem.title = "Solve detail"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "gearshape"),
+            image: UIImage(systemName: "trash"),
             style: .plain,
             target: self,
-            action: #selector(openSettings)
+            action: #selector(deleteSolve)
         )
     }
     
     @objc
-    private func openSettings() {
-        let vc = SettingsViewController()
-        show(vc, sender: self)
+    private func deleteSolve() {
+        timerViewModel.deleteSolveById(solveId: solve.id)
+        navigationController?.popViewController(animated: true)
     }
 }

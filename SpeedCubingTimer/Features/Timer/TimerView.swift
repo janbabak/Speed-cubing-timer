@@ -55,15 +55,29 @@ struct TimerView: View {
     var buttons: some View {
         HStack {
             //delete solve
-            FullwidthButton(label: "Delete", tint: .red) {
+            FullwidthButton(
+                label: "Delete",
+                tint: .red,
+                borderedProminent: true
+            ) {
                 viewModel.deleteLastSolve()
             }
+            
             // did not finished
-            FullwidthButton(label: "DNF", tint: .orange) {
+            FullwidthButton(
+                label: "DNF",
+                tint: .orange,
+                borderedProminent: viewModel.lastSolve.penalty == .DNF
+            ) {
                 viewModel.setDnfToLastSolve()
             }
+            
             // +2 seconds
-            FullwidthButton(label: "+2", tint: .blue) {
+            FullwidthButton(
+                label: "+2",
+                tint: .blue,
+                borderedProminent: viewModel.lastSolve.penalty == .plus2
+            ) {
                 viewModel.setPlus2toLastSolve()
             }
         }
