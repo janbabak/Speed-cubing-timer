@@ -79,7 +79,7 @@ struct SolveDetailView: View {
                     fullHeight: true,
                     borderedProminent: solve?.penalty == .noPenalty
                 ) {
-                    self.solve = viewModel.setPenaltyBySolveId(penalty: .noPenalty, solveId: solve!.id)
+                    self.solve = viewModel.togglePenalty(penalty: .noPenalty, solveId: solve!.id)
                 }
                 
                 // did not finished
@@ -89,7 +89,7 @@ struct SolveDetailView: View {
                     fullHeight: true,
                     borderedProminent: solve?.penalty == .DNF
                 ) {
-                    self.solve = viewModel.setPenaltyBySolveId(penalty: .DNF, solveId: solve!.id)
+                    self.solve = viewModel.togglePenalty(penalty: .DNF, solveId: solve!.id)
                 }
                 
                 // +2 seconds
@@ -99,7 +99,7 @@ struct SolveDetailView: View {
                     fullHeight: true,
                     borderedProminent: solve?.penalty == .plus2
                 ) {
-                    self.solve = viewModel.setPenaltyBySolveId(penalty: .plus2, solveId: solve!.id)
+                    self.solve = viewModel.togglePenalty(penalty: .plus2, solveId: solve!.id)
                 }
             }
             .frame(maxHeight: 75)

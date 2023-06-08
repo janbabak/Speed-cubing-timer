@@ -90,21 +90,20 @@ final class TimerViewModel: ObservableObject {
         startTimer()
     }
     
-    // set last solve penalty to dnf
-    func setDnfToLastSolve() {
-        setPenaltyBySolveId(penalty: .DNF, solveId: solves.last?.id ?? "")
+    // toggle penalty of last solve (toggle between penalty and no penalty)
+    func toggleLastSolvePenalty(penalty: Solve.Penalty) {
+        togglePenalty(penalty: penalty, solveId: solves.last?.id ?? "")
     }
     
-    // add penalty of 2 seconds to last solve
-    func setPlus2toLastSolve() {
-        setPenaltyBySolveId(penalty: .plus2, solveId: solves.last?.id ?? "")
-    }
-    
-    // set penalty of solve by its id
-    func setPenaltyBySolveId(penalty: Solve.Penalty, solveId: String) -> Solve? {
+    // toggle between penalty and nopenalty
+    func togglePenalty(penalty: Solve.Penalty, solveId: String) -> Solve? {
         guard let solveIndex = solves.firstIndex(where: { $0.id == solveId }) else { return nil }
         
-        solves[solveIndex].penalty = penalty
+        if solves[solveIndex].penalty == penalty {
+            solves[solveIndex].penalty = .noPenalty
+        } else {
+            solves[solveIndex].penalty = penalty
+        }
         
         return solves[solveIndex]
     }

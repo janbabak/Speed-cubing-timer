@@ -69,7 +69,7 @@ struct TimerView: View {
                 tint: .orange,
                 borderedProminent: viewModel.lastSolve.penalty == .DNF
             ) {
-                viewModel.setDnfToLastSolve()
+                viewModel.toggleLastSolvePenalty(penalty: .DNF)
             }
             
             // +2 seconds
@@ -78,7 +78,7 @@ struct TimerView: View {
                 tint: .blue,
                 borderedProminent: viewModel.lastSolve.penalty == .plus2
             ) {
-                viewModel.setPlus2toLastSolve()
+                viewModel.toggleLastSolvePenalty(penalty: .plus2)
             }
         }
     }
