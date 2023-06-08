@@ -27,7 +27,7 @@ class RootViewController: UIViewController {
         solvesNavigationController.tabBarItem.image = UIImage(systemName: "list.bullet")
         
         //statistics
-        let statisticsController = StatisticsViewController()
+        let statisticsController = StatisticsViewController(timerViewModel: timerViewModel)
         let statisticsNavigationController = UINavigationController(rootViewController: statisticsController)
         statisticsNavigationController.tabBarItem.title = "Statistics"
         statisticsNavigationController.tabBarItem.image = UIImage(systemName: "chart.xyaxis.line")

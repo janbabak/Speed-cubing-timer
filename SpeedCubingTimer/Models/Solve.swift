@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Solve: Identifiable {
+struct Solve: Identifiable, Hashable {
     var scramble = ""
     var date = Date()
     var hours = 0
@@ -17,6 +17,11 @@ struct Solve: Identifiable {
     var note = ""
     var penalty: Penalty = .noPenalty
     var id = UUID().uuidString
+    
+    // result time in seconds
+    var inSeconds: Double {
+        return Double(hours * 3600 + minutes * 60 + seconds + (penalty == .plus2 ? 2 : 0)) + Double(fractions) / 100.0
+    }
     
     // format time including the penalty
     var formattedTime: String {

@@ -27,6 +27,10 @@ final class TimerViewModel: ObservableObject {
         solves.reversed()
     }
     
+    var notDnfSolves: [Solve] {
+        solves.filter({ $0.penalty != .DNF })
+    }
+    
     private var timer = Timer()
     private var timerIsRunning = false
     private let timerInterval = 0.01
@@ -35,35 +39,7 @@ final class TimerViewModel: ObservableObject {
     
     init() {
         //TODO: remove after testing
-        self.solves = [
-            Solve(
-                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
-                date: Date(),
-                hours: 0,
-                minutes: 0,
-                seconds: 16,
-                fractions: 34,
-                penalty: .DNF
-            ),
-            Solve(
-                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
-                date: Date(),
-                hours: 0,
-                minutes: 0,
-                seconds: 12,
-                fractions: 59,
-                penalty: .plus2
-            ),
-            Solve(
-                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
-                date: Date(),
-                hours: 0,
-                minutes: 0,
-                seconds: 59,
-                fractions: 99,
-                penalty: .noPenalty
-            )
-        ]
+        addExampleData()
     }
     
     // on tab gesture - stop the timer based on its state (running or not)
@@ -177,5 +153,226 @@ final class TimerViewModel: ObservableObject {
         timer.invalidate()
         timerIsRunning = false
         print("⏱️ Timer stopped.")
+    }
+    
+    private func addExampleData() {
+        self.solves = [
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 16,
+                fractions: 34,
+                penalty: .DNF
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 12,
+                fractions: 59,
+                penalty: .plus2
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 35,
+                fractions: 99,
+                penalty: .noPenalty
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 16,
+                fractions: 34,
+                penalty: .noPenalty
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 15,
+                fractions: 59,
+                penalty: .plus2
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 23,
+                fractions: 99,
+                penalty: .noPenalty
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 16,
+                fractions: 34,
+                penalty: .DNF
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 12,
+                fractions: 59,
+                penalty: .plus2
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 15,
+                fractions: 99,
+                penalty: .noPenalty
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 20,
+                fractions: 34,
+                penalty: .noPenalty
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 16,
+                fractions: 59,
+                penalty: .plus2
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 19,
+                fractions: 99,
+                penalty: .noPenalty
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 16,
+                fractions: 34,
+                penalty: .DNF
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 12,
+                fractions: 59,
+                penalty: .plus2
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 59,
+                fractions: 99,
+                penalty: .noPenalty
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 16,
+                fractions: 34,
+                penalty: .noPenalty
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 1,
+                seconds: 23,
+                fractions: 59,
+                penalty: .plus2
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 23,
+                fractions: 99,
+                penalty: .noPenalty
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 16,
+                fractions: 34,
+                penalty: .DNF
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 12,
+                fractions: 59,
+                penalty: .plus2
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 15,
+                fractions: 99,
+                penalty: .noPenalty
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 20,
+                fractions: 34,
+                penalty: .noPenalty
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 16,
+                fractions: 59,
+                penalty: .plus2
+            ),
+            Solve(
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                date: Date(),
+                hours: 0,
+                minutes: 0,
+                seconds: 19,
+                fractions: 99,
+                penalty: .noPenalty
+            )
+        ]
     }
 }
