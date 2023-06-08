@@ -12,6 +12,8 @@ struct FullwidthButton: View {
     var tint: Color = .gray
     var buttonStyle: BorderedButtonStyle = .bordered
     var controlSize: ControlSize = .large
+    var font: Font = .title2
+    var fullHeight = false
     var action: () -> Void = {}
     
     var body: some View {
@@ -19,8 +21,8 @@ struct FullwidthButton: View {
             action()
         } label: {
             Text(label)
-                .font(.title2)
-                .frame(maxWidth: .infinity)
+                .font(font)
+                .frame(maxWidth: .infinity, maxHeight: (fullHeight ? .infinity : nil))
         }
         .buttonStyle(.borderedProminent)
         .tint(tint)

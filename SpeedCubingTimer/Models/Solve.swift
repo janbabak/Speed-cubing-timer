@@ -14,7 +14,8 @@ struct Solve: Identifiable {
     var minutes = 0
     var seconds = 0
     var fractions = 0
-    var penalty: SolvePenalty = .noPenalty
+    var note = ""
+    var penalty: Penalty = .noPenalty
     var id = UUID().uuidString
     
     // format time including the penalty
@@ -50,10 +51,15 @@ struct Solve: Identifiable {
         }
         return String(format: "%02d:%02d:%02d.%02d", hoursOut, minutesOut, secondsOut, fractions)
     }
+    
+    enum Penalty: String, CaseIterable, Identifiable {
+        case noPenalty = "no penalty"
+        case plus2 = "+2" //+ 2 seconds
+        case DNF = "DNF" //Did Not Finished
+        
+        var id: String {
+            self.rawValue
+        }
+    }
 }
 
-enum SolvePenalty: String {
-    case noPenalty = "no penalty"
-    case plus2 = "+2" //+ 2 seconds
-    case DNF = "DNF" //Did Not Finished
-}

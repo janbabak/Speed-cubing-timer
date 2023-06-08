@@ -101,7 +101,7 @@ final class TimerViewModel: ObservableObject {
     }
     
     // set penalty of solve by its id
-    func setPenaltyBySolveId(penalty: SolvePenalty, solveId: String) {
+    func setPenaltyBySolveId(penalty: Solve.Penalty, solveId: String) {
         guard let solveIndex = solves.firstIndex(where: { $0.id == solveId }) else { return }
         
         solves[solveIndex].penalty = penalty
