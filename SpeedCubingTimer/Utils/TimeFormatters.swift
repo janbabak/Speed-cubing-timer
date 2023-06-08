@@ -11,7 +11,7 @@ import Foundation
 enum DateFormatters {
     static let joinedFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.setLocalizedDateFormatFromTemplate("ddMMYYYY")
+        formatter.setLocalizedDateFormatFromTemplate("ddMMYYYY hhmm")
         
         return formatter
     }()
