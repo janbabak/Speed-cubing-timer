@@ -13,8 +13,7 @@ struct TimerView: View {
     
     var body: some View {
         VStack {
-            Text(viewModel.scramble)
-                .font(.title2)
+            scramble
             
             Spacer()
             
@@ -24,8 +23,7 @@ struct TimerView: View {
             
             buttons
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 16)
+        .padding(.all, 16)
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         .contentShape(Rectangle())
         .onTapGesture {
@@ -40,6 +38,11 @@ struct TimerView: View {
                     viewModel.onTouchUpGesture()
                 }
         )
+    }
+    
+    var scramble: some View {
+        Text(viewModel.scramble)
+            .font(.title2)
     }
     
     var time: some View {

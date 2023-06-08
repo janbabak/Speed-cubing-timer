@@ -108,8 +108,12 @@ final class TimerViewModel: ObservableObject {
     }
     
     // delete solve
-    func deleteSolve(at offset: IndexSet) {
-        solves.remove(atOffsets: offset)
+    func deleteSolve(at offsets: IndexSet) {
+        var inOrderOffsets = IndexSet()
+        for offset in offsets {
+            inOrderOffsets.insert(solves.count - offset - 1)
+        }
+        solves.remove(atOffsets: inOrderOffsets)
     }
     
     // delete last solve
@@ -137,20 +141,19 @@ final class TimerViewModel: ObservableObject {
     
     // carray fractions or seconds or minutes overflow to higher order
     private func carryToHigherOrder() {
-        guard var solve = solves.last else { return }
-        if solve.fractions > 99 {
-            solve.seconds += 1
-            solve.fractions = 0
+        if lastSolve.fractions > 99 {
+            lastSolve.seconds += 1
+            lastSolve.fractions = 0
         }
         
-        if solve.seconds > 59 {
-            solve.minutes += 1
-            solve.seconds = 0
+        if lastSolve.seconds > 59 {
+            lastSolve.minutes += 1
+            lastSolve.seconds = 0
         }
         
-        if solve.minutes > 59 {
-            solve.hours += 1
-            solve.minutes = 0
+        if lastSolve.minutes > 59 {
+            lastSolve.hours += 1
+            lastSolve.minutes = 0
         }
     }
     
