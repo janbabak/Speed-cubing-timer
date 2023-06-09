@@ -18,6 +18,7 @@ struct Cube {
     static let yRotation = SCNVector3(x: 0, y: Cube.rotation90deg, z: 0)
     static let noRotation = SCNVector3(x: 0, y: 0, z: 0)
     
+    // initialize the tile property by empty arrays
     private static func initTiles() -> [[[Block]]] {
         var tilesLocal: [[[Block]]] = []
         for _ in 0..<3 {
@@ -94,12 +95,11 @@ struct Cube {
         }
     }
     
-
+    // Tile is on squeare of color
     struct Tile {
         var node = SCNNode()
+        var color: UIColor
         
-        
-        // MARK: - Tile constants
         static let size: CGFloat = 1.0
         static let length: CGFloat = size / 10.0
         static let chamferRadius = 0.05
@@ -117,6 +117,7 @@ struct Cube {
                     duration: 0.0
                 )
             )
+            self.color = color
         }
     }
     
