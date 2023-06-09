@@ -33,6 +33,7 @@
 		DF2654BE2A3253F800D0E211 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2654BD2A3253F800D0E211 /* Color.swift */; };
 		DF2654C02A3266B300D0E211 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */; };
 		DF3359F629DE0288000490D2 /* FullwidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3359F529DE0288000490D2 /* FullwidthButton.swift */; };
+		DF5810862A332E3000E2638D /* LabelPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5810852A332E3000E2638D /* LabelPropertyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		DF2654BD2A3253F800D0E211 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		DF3359F529DE0288000490D2 /* FullwidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullwidthButton.swift; sourceTree = "<group>"; };
+		DF5810852A332E3000E2638D /* LabelPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPropertyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				DF2654B52A31E5AC00D0E211 /* SolveDetail */,
 				DF0D6F2329C3584C0031DB04 /* Statistics */,
 				DF0D6F2829C363220031DB04 /* Settings */,
+				DF5810852A332E3000E2638D /* LabelPropertyView.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				DF0D6F2A29C363410031DB04 /* SettingsView.swift in Sources */,
 				DF2654BC2A323A2E00D0E211 /* ChartView.swift in Sources */,
 				DF0D6F2529C358720031DB04 /* StatisticsView.swift in Sources */,
+				DF5810862A332E3000E2638D /* LabelPropertyView.swift in Sources */,
 				DF0D6F2729C359C70031DB04 /* StatisticsViewController.swift in Sources */,
 				DF2654BE2A3253F800D0E211 /* Color.swift in Sources */,
 				DF0D6F3029C386BE0031DB04 /* ScrambleGenerator.swift in Sources */,

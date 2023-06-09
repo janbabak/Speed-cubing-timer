@@ -15,7 +15,7 @@ struct StatisticsView: View {
         VStack {
             ChartView(viewModel: viewModel)
                 .padding(.top, 32)
-                .frame(height: 400)
+                .frame(height: 384)
             
             numberStats
 
@@ -28,33 +28,33 @@ struct StatisticsView: View {
         HStack(alignment: .top) {
             //left column
             VStack(alignment: .leading, spacing: 8) {
-                labelPropertyView(
+                LabelPropertyView(
                     label: "curr mean 3:",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.currentMeanOf3)
+                    property: viewModel.timerViewModel.currentMeanOf3
                 )
-                labelPropertyView(
+                LabelPropertyView(
                     label: "curr avg 5:",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.currentAverageOf5)
+                    property: viewModel.timerViewModel.currentAverageOf5
                 )
-                labelPropertyView(
+                LabelPropertyView(
                     label: "curr avg 12:",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.currentAverageOf12)
+                    property: viewModel.timerViewModel.currentAverageOf12
                 )
-                labelPropertyView(
+                LabelPropertyView(
                     label: "curr avg 50:",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.currentAverageOf50)
+                    property: viewModel.timerViewModel.currentAverageOf50
                 )
-                labelPropertyView(
+                LabelPropertyView(
                     label: "curr avg 100:",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.currentAverageOf100)
+                    property: viewModel.timerViewModel.currentAverageOf100
                 )
-                labelPropertyView(
+                LabelPropertyView(
                     label: "curr avg all:",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.currentAverageOfAll)
+                    property: viewModel.timerViewModel.currentAverageOfAll
                 )
-                labelPropertyView(
+                LabelPropertyView(
                     label: "best time:",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.bestTime)
+                    property: viewModel.timerViewModel.bestTime
                 )
                 
             }
@@ -63,47 +63,37 @@ struct StatisticsView: View {
             
             //right column
             VStack(alignment: .leading, spacing: 8) {
-                labelPropertyView(
+                LabelPropertyView(
                     label: "best mean 3:",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.bestMeanOf3)
+                    property: viewModel.timerViewModel.bestMeanOf3
                 )
-                labelPropertyView(
+                LabelPropertyView(
                     label: "best avg 5:",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.bestAverageOf5)
+                    property: viewModel.timerViewModel.bestAverageOf5
                 )
-                labelPropertyView(
+                LabelPropertyView(
                     label: "best avg 12:",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.bestAverageOf12)
+                    property: viewModel.timerViewModel.bestAverageOf12
                 )
-                labelPropertyView(
+                LabelPropertyView(
                     label: "best avg 50:",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.bestAverageOf50)
+                    property: viewModel.timerViewModel.bestAverageOf50
                 )
-                labelPropertyView(
+                LabelPropertyView(
                     label: "best avg 100:",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.bestAverageOf100)
+                    property: viewModel.timerViewModel.bestAverageOf100
                 )
-                labelPropertyView(
+                LabelPropertyView(
                     label: "solves:",
                     property: "\(viewModel.timerViewModel.solves.count)"
                 )
-                labelPropertyView(
+                LabelPropertyView(
                     label: "worst time",
-                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.worstTime)
+                    property: viewModel.timerViewModel.worstTime
                 )
             }
         }
     }
-    
-    private func labelPropertyView(label: String, property: String) -> some View {
-            HStack() {
-                Text(LocalizedStringKey(label))
-                    .foregroundColor(Color.theme.secondaryText)
-                
-                Text(property)
-                    .fontWeight(.semibold)
-            }
-        }
 }
 
 struct StatisticsView_Previews: PreviewProvider {

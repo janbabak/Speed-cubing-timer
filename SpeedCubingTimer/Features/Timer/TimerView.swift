@@ -18,7 +18,10 @@ struct TimerView: View {
             Spacer()
             
             time
+                .padding(.bottom, 16)
             
+            stats
+                
             Spacer()
             
             buttons
@@ -49,6 +52,16 @@ struct TimerView: View {
         Text(viewModel.lastSolve.formattedTime)
             .font(.system(size: 44, design: .monospaced))
             .foregroundColor(viewModel.holdingScreen ? .red : .primary)
+    }
+    
+    var stats: some View {
+        VStack(spacing: 8) {
+            LabelPropertyView(label: "mean 5:", property: viewModel.currentMeanOf3)
+            LabelPropertyView(label: "avg 5:", property: viewModel.currentAverageOf5)
+            LabelPropertyView(label: "avg 12:", property: viewModel.currentAverageOf5)
+            LabelPropertyView(label: "avg 50:", property: viewModel.currentAverageOf50)
+        }
+        .opacity(viewModel.timerIsRunning ? 0 : 1) // stats are not visible, when timer si running
     }
     
     // delete, DNF, +2 buttons

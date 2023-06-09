@@ -12,6 +12,7 @@ final class TimerViewModel: ObservableObject {
     @Published private(set) var solves: [Solve] = []
     @Published private(set) var scramble = ScrambleGenerator.generate()
     @Published private(set) var holdingScreen = false
+    @Published private(set) var timerIsRunning = false
     @Published var deleteConfirmationDialogPresent = false
     
     // MARK: - computed props
@@ -34,62 +35,61 @@ final class TimerViewModel: ObservableObject {
         solves.filter({ $0.penalty != .DNF })
     }
     
-    var currentMeanOf3: Double? {
+    var currentMeanOf3: String {
         currentAverage(of: 3)
     }
     
-    var bestMeanOf3: Double? {
+    var bestMeanOf3: String {
         bestAverage(of: 3)
     }
     
-    var currentAverageOf5: Double? {
+    var currentAverageOf5: String {
         currentAverage(of: 5)
     }
     
-    var bestAverageOf5: Double? {
+    var bestAverageOf5: String {
         bestAverage(of: 5)
     }
     
-    var currentAverageOf12: Double? {
+    var currentAverageOf12: String {
         currentAverage(of: 12)
     }
     
-    var bestAverageOf12: Double? {
+    var bestAverageOf12: String {
         bestAverage(of: 12)
     }
     
-    var currentAverageOf50: Double? {
+    var currentAverageOf50: String {
         currentAverage(of: 50)
     }
     
-    var bestAverageOf50: Double? {
+    var bestAverageOf50: String {
         bestAverage(of: 50)
     }
     
-    var currentAverageOf100: Double? {
+    var currentAverageOf100: String {
         currentAverage(of: 100)
     }
     
-    var bestAverageOf100: Double? {
+    var bestAverageOf100: String {
         bestAverage(of: 100)
     }
     
-    var currentAverageOfAll: Double? {
+    var currentAverageOfAll: String {
         currentAverage()
     }
     
-    var bestTime: Double? {
-        return notDnfSolves.min(by: { $0.inSeconds < $1.inSeconds })?.inSeconds
+    var bestTime: String {
+        return TimeFormatters.formatTime(seconds: notDnfSolves.min(by: { $0.inSeconds < $1.inSeconds })?.inSeconds)
     }
     
-    var worstTime: Double? {
-        return notDnfSolves.max(by: { $0.inSeconds < $1.inSeconds })?.inSeconds
+    var worstTime: String {
+        return TimeFormatters.formatTime(seconds:notDnfSolves.max(by: { $0.inSeconds < $1.inSeconds })?.inSeconds)
     }
     
     // MARK: - private props
     
     private var timer = Timer()
-    private var timerIsRunning = false
     private let timerInterval = 0.01
     
     // MARK: - public functions
@@ -213,21 +213,21 @@ final class TimerViewModel: ObservableObject {
     }
     
     /// computes average of last `numberOfSolves` solves
-    private func currentAverage(of numberOfSolves: Int = -1) -> Double? {
+    private func currentAverage(of numberOfSolves: Int = -1) -> String {
         let numberOfSolves = (numberOfSolves == -1 ? solves.count : numberOfSolves)
 
         // e. g. can compute average of 12, when there are only 5 solves
         if (solves.count < numberOfSolves) {
-            return nil
+            return "-"
         }
         
-        return average(fromIdx: solves.count - numberOfSolves, numberOfSolves: numberOfSolves)
+        return TimeFormatters.formatTime(seconds: average(fromIdx: solves.count - numberOfSolves, numberOfSolves: numberOfSolves))
     }
     
     /// computes best average of `numberOfSolves`
-    private func bestAverage(of numberOfSolves: Int) -> Double? {
+    private func bestAverage(of numberOfSolves: Int) -> String {
         if (numberOfSolves > solves.count) {
-            return nil
+            return "-"
         }
         
         var bestAverage: Double? = nil
@@ -239,7 +239,7 @@ final class TimerViewModel: ObservableObject {
             }
         }
         
-        return bestAverage
+        return TimeFormatters.formatTime(seconds: bestAverage)
     }
     
     private func average(fromIdx: Int, numberOfSolves: Int) -> Double? {
@@ -475,7 +475,7 @@ final class TimerViewModel: ObservableObject {
                 scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
                 date: Date(),
                 hours: 0,
-                minutes: 2,
+                minutes: 1,
                 seconds: 20,
                 fractions: 34,
                 penalty: .noPenalty
