@@ -34,6 +34,8 @@
 		DF2654C02A3266B300D0E211 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */; };
 		DF3359F629DE0288000490D2 /* FullwidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3359F529DE0288000490D2 /* FullwidthButton.swift */; };
 		DF5810862A332E3000E2638D /* LabelPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5810852A332E3000E2638D /* LabelPropertyView.swift */; };
+		DFD621BF2A336A8D00A32831 /* Cube3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD621BE2A336A8D00A32831 /* Cube3DView.swift */; };
+		DFD621C12A33718B00A32831 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD621C02A33718B00A32831 /* Cube.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		DF3359F529DE0288000490D2 /* FullwidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullwidthButton.swift; sourceTree = "<group>"; };
 		DF5810852A332E3000E2638D /* LabelPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPropertyView.swift; sourceTree = "<group>"; };
+		DFD621BE2A336A8D00A32831 /* Cube3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube3DView.swift; sourceTree = "<group>"; };
+		DFD621C02A33718B00A32831 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +228,7 @@
 			children = (
 				DF0D6F2929C363410031DB04 /* SettingsView.swift */,
 				DF0D6F2B29C364380031DB04 /* SettingsViewController.swift */,
+				DFD621BE2A336A8D00A32831 /* Cube3DView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				DF0D6F3229C38F070031DB04 /* Solve.swift */,
+				DFD621C02A33718B00A32831 /* Cube.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -408,8 +414,10 @@
 				DF2654BE2A3253F800D0E211 /* Color.swift in Sources */,
 				DF0D6F3029C386BE0031DB04 /* ScrambleGenerator.swift in Sources */,
 				DF0D6F2229C353E80031DB04 /* SolvesViewController.swift in Sources */,
+				DFD621BF2A336A8D00A32831 /* Cube3DView.swift in Sources */,
 				DF0D6EE629C329AD0031DB04 /* AppDelegate.swift in Sources */,
 				DF2654C02A3266B300D0E211 /* StatisticsViewModel.swift in Sources */,
+				DFD621C12A33718B00A32831 /* Cube.swift in Sources */,
 				DF2654B42A31B71F00D0E211 /* TimeFormatters.swift in Sources */,
 				DF0D6F3329C38F070031DB04 /* Solve.swift in Sources */,
 				DF3359F629DE0288000490D2 /* FullwidthButton.swift in Sources */,

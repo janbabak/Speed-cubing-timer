@@ -10,7 +10,12 @@ import SwiftUI
 struct SettingsView: View {
     
     var body: some View {
-        Text("Settings")
+        VStack {
+            Text("Settings")
+            Cube3DView()
+                .frame(height: 350)
+        }
+        .padding()
     }
 }
 
