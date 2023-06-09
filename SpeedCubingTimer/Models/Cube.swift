@@ -7,7 +7,7 @@
 
 import SceneKit
 
-struct Cube {
+class Cube {
     var tiles: [[[Block]]]
     var scene = SCNScene()
     
@@ -18,23 +18,14 @@ struct Cube {
     static let yRotation = SCNVector3(x: 0, y: Cube.rotation90deg, z: 0)
     static let noRotation = SCNVector3(x: 0, y: 0, z: 0)
     
-    // initialize the tile property by empty arrays
-    private static func initTiles() -> [[[Block]]] {
-        var tilesLocal: [[[Block]]] = []
-        for _ in 0..<3 {
-            var tmp: [[Block]] = []
-            for _ in 0..<3 {
-                tmp.append([])
-            }
-            tilesLocal.append(tmp)
-        }
-        return tilesLocal
-    }
-    
     // MARK: - structs
     
     // center tile in each side of the cube (there are 6 centers)
     struct Center: Block {
+        func updateColor() {
+            
+        }
+        
         var tile: Tile
 
         init(tile: Tile, scene: SCNScene) {
@@ -46,10 +37,29 @@ struct Cube {
         func addToScene(scene: SCNScene) {
             scene.rootNode.addChildNode(tile.node)
         }
+        
+        func rotate(by worldRotation: SCNVector4, aroundTarget worldTarget: SCNVector3) {
+            tile.node.rotate(by: worldRotation, aroundTarget: worldTarget)
+            
+//            let action = SCNAction.rotate(
+//                by: 90 * CGFloat(Double.pi / 180.0),
+//                around: .init(x: 2, y: -2 * Cube.offset, z: 0),
+//                duration: 2
+//            )
+//            tile.node.runAction(action)
+//            let rotateAction = SCNAction.repeatForever(
+//                SCNAction.rotate(by: .pi * 2, around: SCNVector3(0, 1, 0), duration: rotationDuration)
+//            )
+//            centerNode.runAction(rotateAction)
+        }
     }
     
     // edge of the cube (there are 12 edges)
     struct Edge: Block {
+        func rotate(by worldRotation: SCNVector4, aroundTarget worldTarget: SCNVector3) {
+            
+        }
+        
         
         var xTile: Tile
         var yTile: Tile
@@ -65,10 +75,19 @@ struct Cube {
             scene.rootNode.addChildNode(xTile.node)
             scene.rootNode.addChildNode(yTile.node)
         }
+        
+        func updateColor() {
+            xTile.updateColor()
+            yTile.updateColor()
+        }
     }
     
     // corner of the cube (there are 8 corners)
     struct Corner: Block {
+        func rotate(by worldRotation: SCNVector4, aroundTarget worldTarget: SCNVector3) {
+            
+        }
+        
         var xTile: Tile
         var yTile: Tile
         var zTile: Tile
@@ -86,10 +105,24 @@ struct Cube {
             scene.rootNode.addChildNode(yTile.node)
             scene.rootNode.addChildNode(zTile.node)
         }
+        
+        func updateColor() {
+            xTile.updateColor()
+            yTile.updateColor()
+            zTile.updateColor()
+        }
     }
     
     // middle piece of the cube - core (there is only 1 core) not rendered
     struct Core: Block {
+        func updateColor() {
+            
+        }
+        
+        func rotate(by worldRotation: SCNVector4, aroundTarget worldTarget: SCNVector3) {
+            
+        }
+        
         func addToScene(scene: SCNScene) {
             return
         }
@@ -119,6 +152,85 @@ struct Cube {
             )
             self.color = color
         }
+        
+        func updateColor() {
+            node.geometry?.firstMaterial?.diffuse.contents = color
+        }
+    }
+    
+    func scramble() {
+        
+    }
+    
+    // makes the R move
+    func turnL() {
+        // corners
+        var corner1 = tiles[0][0][0] as! Corner // white, green, orange
+        var corner2 = tiles[0][0][2] as! Corner // white, blue, orange
+        var corner3 = tiles[2][0][2] as! Corner // yellow, blue, orange
+        var corner4 = tiles[2][0][0] as! Corner // yellow, green, orange
+        
+        let corner1xTileColor = corner1.xTile.color
+        let corner1yTileColor = corner1.yTile.color
+        
+        corner1.xTile.color = corner2.yTile.color
+        corner1.yTile.color = corner2.xTile.color
+        
+        corner2.xTile.color = corner3.yTile.color
+        corner2.yTile.color = corner3.xTile.color
+        
+        corner3.xTile.color = corner4.yTile.color
+        corner3.yTile.color = corner4.xTile.color
+        
+        corner4.xTile.color = corner1yTileColor
+        corner4.yTile.color = corner1xTileColor
+        
+        tiles[0][0][0] = corner1
+        tiles[0][0][2] = corner2
+        tiles[2][0][2] = corner3
+        tiles[2][0][0] = corner4
+        
+        // edges
+        var edge1 = tiles[0][0][1] as! Edge // white, orange
+        var edge2 = tiles[1][0][2] as! Edge // blue, orange
+        var edge3 = tiles[2][0][1] as! Edge // yellow, orange
+        var edge4 = tiles[1][0][0] as! Edge // green, orange
+        
+        let edge1xTileColor = edge1.xTile.color
+        
+        edge1.xTile.color = edge2.yTile.color
+        edge2.yTile.color = edge3.xTile.color
+        edge3.xTile.color = edge4.yTile.color
+        edge4.yTile.color = edge1xTileColor
+        
+        tiles[0][0][1] = edge1
+        tiles[1][0][2] = edge2
+        tiles[2][0][1] = edge3
+        tiles[1][0][0] = edge4
+        
+        // TODO: remove
+        corner1.updateColor()
+        corner2.updateColor()
+        corner4.updateColor()
+        corner3.updateColor()
+        
+        edge1.updateColor()
+        edge2.updateColor()
+        edge3.updateColor()
+        edge4.updateColor()
+    }
+    
+    // initialize the tile property by empty arrays
+    private static func initTiles() -> [[[Block]]] {
+        var tilesLocal: [[[Block]]] = []
+        for _ in 0..<3 {
+            var tmp: [[Block]] = []
+            for _ in 0..<3 {
+                tmp.append([])
+            }
+            tilesLocal.append(tmp)
+        }
+        return tilesLocal
     }
     
     // MARK: - init 😬
@@ -645,5 +757,9 @@ struct Cube {
 }
 
 protocol Block {
-    func addToScene(scene: SCNScene) -> Void
+    func addToScene(scene: SCNScene)
+    
+    func rotate(by worldRotation: SCNVector4, aroundTarget worldTarget: SCNVector3)
+    
+    func updateColor()
 }
