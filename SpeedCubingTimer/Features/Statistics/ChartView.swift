@@ -9,12 +9,11 @@ import SwiftUI
 import Charts
 
 struct ChartView: View {
-    @ObservedObject var viewModel: TimerViewModel
-    @State var selectedItemIdx: Int? = nil
+    @ObservedObject var viewModel: StatisticsViewModel
     
     var body: some View {
         Chart {
-            ForEach(Array(viewModel.notDnfSolves.enumerated()), id: \.element) { idx, solve in
+            ForEach(Array(viewModel.timerViewModel.notDnfSolves.enumerated()), id: \.element) { idx, solve in
                 LineMark(
                     x: .value("Order", idx),
                     y: .value("Time", solve.inSeconds)
@@ -25,13 +24,13 @@ struct ChartView: View {
                 .symbol(Circle())
                     
                 // rule mark with annotation
-                if let selectedItemIdx = self.selectedItemIdx {
+                if let selectedItemIdx = viewModel.selectedItemIdx {
                     RuleMark(x: .value("Order", selectedItemIdx))
                         .lineStyle(.init(lineWidth: 2, miterLimit: 2, dash: [2], dashPhase: 5))
                         .foregroundStyle(.gray)
                         .annotation(position: .top) {
                             VStack(alignment: .leading, spacing: 0) {
-                                Text(viewModel.notDnfSolves[selectedItemIdx].formattedTime)
+                                Text(viewModel.timerViewModel.notDnfSolves[selectedItemIdx].formattedTime)
                             }
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
@@ -43,8 +42,15 @@ struct ChartView: View {
                 }
             }
         }
-        .chartXScale(domain: 0...viewModel.notDnfSolves.count - 1)
-        .chartYScale(domain: 0...(Int(1.1 * Double(viewModel.notDnfSolves.max(by: { $0.inSeconds < $1.inSeconds })?.inSeconds ?? 10))))
+        .chartXScale(domain: 0...viewModel.timerViewModel.notDnfSolves.count - 1)
+        .chartYScale(domain: 0...(Int(1.1 * Double(viewModel.maxTime ?? 10))))
+        .chartYAxis {
+            AxisMarks(values: viewModel.xAxisMarks) { axis in
+                AxisValueLabel {
+                    Text(TimeFormatters.formatTime(seconds: viewModel.xAxisMarks[axis.index]))
+                }
+            }
+        }
         .chartOverlay { proxy in
             // marker
             GeometryReader { innerProxy in
@@ -56,15 +62,15 @@ struct ChartView: View {
                                 //getting current location
                                 let location = value.location
                                 if let order: Int = proxy.value(atX: location.x, as: Int.self) {
-                                    if order >= 0 && order < viewModel.notDnfSolves.count {
-                                        self.selectedItemIdx = order
+                                    if order >= 0 && order < viewModel.timerViewModel.notDnfSolves.count {
+                                        self.viewModel.selectedItemIdx = order
                                     } else {
-                                        self.selectedItemIdx = nil
+                                        self.viewModel.selectedItemIdx = nil
                                     }
                                 }
                             }
                             .onEnded { value in
-                                self.selectedItemIdx = nil
+                                self.viewModel.selectedItemIdx = nil
                             }
                     )
             }
@@ -74,6 +80,6 @@ struct ChartView: View {
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartView(viewModel: .init())
+        ChartView(viewModel: .init(timerViewModel: .init()))
     }
 }

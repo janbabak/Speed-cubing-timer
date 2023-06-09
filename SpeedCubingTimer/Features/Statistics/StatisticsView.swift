@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StatisticsView: View {
     
-    @ObservedObject var viewModel: TimerViewModel
+    @ObservedObject var viewModel: StatisticsViewModel
     
     var body: some View {
         ChartView(viewModel: viewModel)
@@ -23,6 +23,6 @@ struct StatisticsView: View {
 
 struct StatisticsView_Previews: PreviewProvider {
     static var previews: some View {
-        StatisticsView(viewModel: .init())
+        StatisticsView(viewModel: .init(timerViewModel: .init()))
     }
 }

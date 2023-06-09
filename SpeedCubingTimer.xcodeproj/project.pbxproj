@@ -31,6 +31,7 @@
 		DF2654B92A32020300D0E211 /* SolveDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2654B82A32020300D0E211 /* SolveDetailViewController.swift */; };
 		DF2654BC2A323A2E00D0E211 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2654BB2A323A2E00D0E211 /* ChartView.swift */; };
 		DF2654BE2A3253F800D0E211 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2654BD2A3253F800D0E211 /* Color.swift */; };
+		DF2654C02A3266B300D0E211 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */; };
 		DF3359F629DE0288000490D2 /* FullwidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3359F529DE0288000490D2 /* FullwidthButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		DF2654B82A32020300D0E211 /* SolveDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveDetailViewController.swift; sourceTree = "<group>"; };
 		DF2654BB2A323A2E00D0E211 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		DF2654BD2A3253F800D0E211 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		DF3359F529DE0288000490D2 /* FullwidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullwidthButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,6 +211,7 @@
 				DF0D6F2429C358720031DB04 /* StatisticsView.swift */,
 				DF0D6F2629C359C70031DB04 /* StatisticsViewController.swift */,
 				DF2654BB2A323A2E00D0E211 /* ChartView.swift */,
+				DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				DF0D6F3029C386BE0031DB04 /* ScrambleGenerator.swift in Sources */,
 				DF0D6F2229C353E80031DB04 /* SolvesViewController.swift in Sources */,
 				DF0D6EE629C329AD0031DB04 /* AppDelegate.swift in Sources */,
+				DF2654C02A3266B300D0E211 /* StatisticsViewModel.swift in Sources */,
 				DF2654B42A31B71F00D0E211 /* TimeFormatters.swift in Sources */,
 				DF0D6F3329C38F070031DB04 /* Solve.swift in Sources */,
 				DF3359F629DE0288000490D2 /* FullwidthButton.swift in Sources */,

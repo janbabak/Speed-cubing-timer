@@ -35,7 +35,7 @@ struct SolveDetailView: View {
     
     @ViewBuilder
     func date() -> some View {
-        Text(DateFormatters.joinedFormatter.string(from: solve!.date))
+        Text(TimeFormatters.joinedFormatter.string(from: solve!.date))
             .foregroundColor(.gray)
             .font(.title3)
     }

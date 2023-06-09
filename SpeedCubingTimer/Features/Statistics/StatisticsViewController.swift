@@ -24,7 +24,7 @@ final class StatisticsViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let rootView = StatisticsView(viewModel: timerViewModel)
+        let rootView = StatisticsView(viewModel: StatisticsViewModel(timerViewModel: timerViewModel))
         let vc = UIHostingController(rootView: rootView)
         embedController(vc)
     }
