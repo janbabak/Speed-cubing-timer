@@ -29,6 +29,10 @@ struct StatisticsView: View {
             //left column
             VStack(alignment: .leading, spacing: 8) {
                 labelPropertyView(
+                    label: "curr mean 3:",
+                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.currentMeanOf3)
+                )
+                labelPropertyView(
                     label: "curr avg 5:",
                     property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.currentAverageOf5)
                 )
@@ -59,6 +63,10 @@ struct StatisticsView: View {
             
             //right column
             VStack(alignment: .leading, spacing: 8) {
+                labelPropertyView(
+                    label: "best mean 3:",
+                    property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.bestMeanOf3)
+                )
                 labelPropertyView(
                     label: "best avg 5:",
                     property: TimeFormatters.formatTime(seconds: viewModel.timerViewModel.bestAverageOf5)

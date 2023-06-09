@@ -33,6 +33,14 @@ final class TimerViewModel: ObservableObject {
         solves.filter({ $0.penalty != .DNF })
     }
     
+    var currentMeanOf3: Double? {
+        currentAverage(of: 3)
+    }
+    
+    var bestMeanOf3: Double? {
+        bestAverage(of: 3)
+    }
+    
     var currentAverageOf5: Double? {
         currentAverage(of: 5)
     }
@@ -205,32 +213,14 @@ final class TimerViewModel: ObservableObject {
     
     /// computes average of last `numberOfSolves` solves
     private func currentAverage(of numberOfSolves: Int = -1) -> Double? {
-        var numberOfSolves = numberOfSolves == -1 ? solves.count : numberOfSolves
+        let numberOfSolves = (numberOfSolves == -1 ? solves.count : numberOfSolves)
 
         // e. g. can compute average of 12, when there are only 5 solves
         if (solves.count < numberOfSolves) {
             return nil
         }
         
-        var numberOfRemovedSolves: Int
-        
-        if numberOfSolves < 5 {
-            numberOfRemovedSolves = 0
-        } else if numberOfSolves < 12 {
-            numberOfRemovedSolves = 1
-        } else if numberOfSolves < 40 {
-            numberOfRemovedSolves = Int(floor(Double(numberOfSolves) / 12.0))
-        } else {
-            numberOfRemovedSolves = Int(floor(Double(numberOfSolves) / 20.0))
-        }
-        
-        // takes last numberOfSolves times, sort them, remove the first and last numberOfRemovedSolves
-        var currentTimes = solves[(solves.count - numberOfSolves)...]
-            .map({ $0.inSeconds })
-            .sorted()[numberOfRemovedSolves...(numberOfSolves - numberOfRemovedSolves - 1)]
-        
-        // computes the average
-        return currentTimes.reduce(0, +) / Double(currentTimes.count)
+        return average(fromIdx: solves.count - numberOfSolves, numberOfSolves: numberOfSolves)
     }
     
     /// computes best average of `numberOfSolves`
@@ -242,7 +232,7 @@ final class TimerViewModel: ObservableObject {
         var bestAverage: Double? = nil
         
         for i in 0...(solves.count - numberOfSolves) {
-            var nextAverage = average(fromIdx: i, numberOfSolves: numberOfSolves)
+            let nextAverage = average(fromIdx: i, numberOfSolves: numberOfSolves)
             if nextAverage != nil && (bestAverage ==  nil || nextAverage! < bestAverage!) {
                     bestAverage = nextAverage
             }
@@ -252,7 +242,7 @@ final class TimerViewModel: ObservableObject {
     }
     
     private func average(fromIdx: Int, numberOfSolves: Int) -> Double? {
-        if fromIdx + numberOfSolves >= solves.count || numberOfSolves > solves.count || fromIdx < 0 || numberOfSolves < 0 {
+        if fromIdx + numberOfSolves > solves.count || numberOfSolves > solves.count || fromIdx < 0 || numberOfSolves < 0 {
             return nil
         }
         var numberOfRemovedSolves: Int
@@ -406,7 +396,7 @@ final class TimerViewModel: ObservableObject {
                 minutes: 0,
                 seconds: 16,
                 fractions: 34,
-                penalty: .DNF
+                penalty: .plus2
             ),
             Solve(
                 scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
