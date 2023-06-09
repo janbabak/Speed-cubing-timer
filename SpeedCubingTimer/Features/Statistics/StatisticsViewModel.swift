@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class StatisticsViewModel: ObservableObject {
-    @Published var timerViewModel: TimerViewModel
+    @ObservedObject var timerViewModel: TimerViewModel = .init()
     @Published var selectedItemIdx: Int? = nil
     
     init(timerViewModel: TimerViewModel) {
@@ -18,7 +18,7 @@ final class StatisticsViewModel: ObservableObject {
     lazy var maxTime: Double? = {
         self.timerViewModel.notDnfSolves.max(by: { $0.inSeconds < $1.inSeconds })?.inSeconds
     }()
-    
+
     lazy var xAxisMarks: [Int] = {
         let gap = Int(ceil((self.maxTime ?? 0) / 5))
         var marks: [Int] = []

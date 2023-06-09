@@ -13,6 +13,8 @@ final class TimerViewModel: ObservableObject {
     @Published private(set) var scramble = ScrambleGenerator.generate()
     @Published private(set) var holdingScreen = false
     
+    // MARK: - computed props
+    
     var lastSolve: Solve {
         get {
             solves.last ?? Solve(scramble: scramble)
@@ -30,6 +32,52 @@ final class TimerViewModel: ObservableObject {
     var notDnfSolves: [Solve] {
         solves.filter({ $0.penalty != .DNF })
     }
+    
+    var currentAverageOf5: Double? {
+        currentAverage(of: 5)
+    }
+    
+    var bestAverageOf5: Double? {
+        bestAverage(of: 5)
+    }
+    
+    var currentAverageOf12: Double? {
+        currentAverage(of: 12)
+    }
+    
+    var bestAverageOf12: Double? {
+        bestAverage(of: 12)
+    }
+    
+    var currentAverageOf50: Double? {
+        currentAverage(of: 50)
+    }
+    
+    var bestAverageOf50: Double? {
+        bestAverage(of: 50)
+    }
+    
+    var currentAverageOf100: Double? {
+        currentAverage(of: 100)
+    }
+    
+    var bestAverageOf100: Double? {
+        bestAverage(of: 100)
+    }
+    
+    var currentAverageOfAll: Double? {
+        currentAverage()
+    }
+    
+    var bestTime: Double? {
+        return notDnfSolves.min(by: { $0.inSeconds < $1.inSeconds })?.inSeconds
+    }
+    
+    var worstTime: Double? {
+        return notDnfSolves.max(by: { $0.inSeconds < $1.inSeconds })?.inSeconds
+    }
+    
+    // MARK: - private props
     
     private var timer = Timer()
     private var timerIsRunning = false
@@ -153,6 +201,92 @@ final class TimerViewModel: ObservableObject {
         timer.invalidate()
         timerIsRunning = false
         print("⏱️ Timer stopped.")
+    }
+    
+    /// computes average of last `numberOfSolves` solves
+    private func currentAverage(of numberOfSolves: Int = -1) -> Double? {
+        var numberOfSolves = numberOfSolves == -1 ? solves.count : numberOfSolves
+
+        // e. g. can compute average of 12, when there are only 5 solves
+        if (solves.count < numberOfSolves) {
+            return nil
+        }
+        
+        var numberOfRemovedSolves: Int
+        
+        if numberOfSolves < 5 {
+            numberOfRemovedSolves = 0
+        } else if numberOfSolves < 12 {
+            numberOfRemovedSolves = 1
+        } else if numberOfSolves < 40 {
+            numberOfRemovedSolves = Int(floor(Double(numberOfSolves) / 12.0))
+        } else {
+            numberOfRemovedSolves = Int(floor(Double(numberOfSolves) / 20.0))
+        }
+        
+        // takes last numberOfSolves times, sort them, remove the first and last numberOfRemovedSolves
+        var currentTimes = solves[(solves.count - numberOfSolves)...]
+            .map({ $0.inSeconds })
+            .sorted()[numberOfRemovedSolves...(numberOfSolves - numberOfRemovedSolves - 1)]
+        
+        // computes the average
+        return currentTimes.reduce(0, +) / Double(currentTimes.count)
+    }
+    
+    /// computes best average of `numberOfSolves`
+    private func bestAverage(of numberOfSolves: Int) -> Double? {
+        if (numberOfSolves > solves.count) {
+            return nil
+        }
+        
+        var bestAverage: Double? = nil
+        
+        for i in 0...(solves.count - numberOfSolves) {
+            var nextAverage = average(fromIdx: i, numberOfSolves: numberOfSolves)
+            if nextAverage != nil && (bestAverage ==  nil || nextAverage! < bestAverage!) {
+                    bestAverage = nextAverage
+            }
+        }
+        
+        return bestAverage
+    }
+    
+    private func average(fromIdx: Int, numberOfSolves: Int) -> Double? {
+        if fromIdx + numberOfSolves >= solves.count || numberOfSolves > solves.count || fromIdx < 0 || numberOfSolves < 0 {
+            return nil
+        }
+        var numberOfRemovedSolves: Int
+        
+        if numberOfSolves < 5 {
+            numberOfRemovedSolves = 0
+        } else if numberOfSolves < 12 {
+            numberOfRemovedSolves = 1
+        } else if numberOfSolves < 40 {
+            numberOfRemovedSolves = Int(floor(Double(numberOfSolves) / 12.0))
+        } else {
+            numberOfRemovedSolves = Int(floor(Double(numberOfSolves) / 20.0))
+        }
+        
+        let currentTimes = solves[fromIdx...(fromIdx + numberOfSolves - 1)]
+            .sorted(by: { a, b in
+                // sort by times (from best to worst), DNF is the worst time regardless the inSeconds prop
+                if a.penalty == .DNF {
+                    return false
+                } else if b.penalty == .DNF {
+                    return true
+                }
+                return a.inSeconds < b.inSeconds
+            })[numberOfRemovedSolves...(numberOfSolves - numberOfRemovedSolves - 1)]
+        
+        // check if there left any solve with DNF penalty - if so, average is undefined
+        if currentTimes.first(where: { $0.penalty == .DNF }) != nil {
+            return nil
+        }
+        
+        // compute the average
+        return currentTimes.reduce(0) { partialResult, solve in
+            partialResult + solve.inSeconds
+        } / Double(currentTimes.count)
     }
     
     private func addExampleData() {
@@ -350,7 +484,7 @@ final class TimerViewModel: ObservableObject {
                 scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
                 date: Date(),
                 hours: 0,
-                minutes: 0,
+                minutes: 2,
                 seconds: 20,
                 fractions: 34,
                 penalty: .noPenalty
@@ -359,7 +493,7 @@ final class TimerViewModel: ObservableObject {
                 scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
                 date: Date(),
                 hours: 0,
-                minutes: 0,
+                minutes: 2,
                 seconds: 16,
                 fractions: 59,
                 penalty: .plus2
@@ -368,7 +502,7 @@ final class TimerViewModel: ObservableObject {
                 scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
                 date: Date(),
                 hours: 0,
-                minutes: 0,
+                minutes: 1,
                 seconds: 19,
                 fractions: 99,
                 penalty: .noPenalty

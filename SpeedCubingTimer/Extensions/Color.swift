@@ -13,4 +13,5 @@ extension Color {
 
 struct ColorTheme {
     let light = Color("Light")
+    let secondaryText = Color("SecondaryText")
 }

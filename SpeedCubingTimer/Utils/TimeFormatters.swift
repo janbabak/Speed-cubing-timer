@@ -17,9 +17,13 @@ enum TimeFormatters {
     }()
     
     // format time
-    static func formatTime(seconds: Double) -> String {
+    static func formatTime(seconds: Double?) -> String {
+        guard let seconds = seconds else {
+            return "-"
+        }
+        
         var secondsOut = Int(floor(seconds))
-        var fractionsOut = Int((seconds - Double(secondsOut) * 100))
+        var fractionsOut = Int((seconds - Double(secondsOut)) * 100)
         var minutesOut = 0
         var hoursOut = 0
         
@@ -44,7 +48,11 @@ enum TimeFormatters {
     }
     
     // format time (for example for chart axis)
-    static func formatTime(seconds: Int) -> String {
+    static func formatTime(seconds: Int?) -> String {
+        guard let seconds = seconds else {
+            return "-"
+        }
+        
         var secondsOut = seconds
         var minutesOut = 0
         var hoursOut = 0
