@@ -29,6 +29,7 @@ struct SolvesView: View {
             }
             .onDelete(perform: viewModel.deleteSolve)
         }
+        .listStyle(.inset)
     }
     
     @ViewBuilder
