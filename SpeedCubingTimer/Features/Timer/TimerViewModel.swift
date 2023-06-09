@@ -12,6 +12,7 @@ final class TimerViewModel: ObservableObject {
     @Published private(set) var solves: [Solve] = []
     @Published private(set) var scramble = ScrambleGenerator.generate()
     @Published private(set) var holdingScreen = false
+    @Published var deleteConfirmationDialogPresent = false
     
     // MARK: - computed props
     

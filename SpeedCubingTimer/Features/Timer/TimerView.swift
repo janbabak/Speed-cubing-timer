@@ -60,7 +60,14 @@ struct TimerView: View {
                 tint: .red,
                 borderedProminent: true
             ) {
-                viewModel.deleteLastSolve()
+                viewModel.deleteConfirmationDialogPresent = true
+            }
+            .confirmationDialog(
+                "Delete last solve?",
+                isPresented: $viewModel.deleteConfirmationDialogPresent,
+                titleVisibility: .visible
+            ) {
+                Button("Delete", role: .destructive, action: viewModel.deleteLastSolve)
             }
             
             // did not finished
