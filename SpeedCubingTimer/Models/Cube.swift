@@ -132,19 +132,19 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .white,
-                        position: SCNVector3(x: 0, y: Cube.offset, z: -Cube.offset),
+                        position: SCNVector3(x: -2 * Cube.offset, y: Cube.offset, z: -Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .green,
-                        position: SCNVector3(x: 0, y: 0, z: 0),
+                        position: SCNVector3(x: -2 * Cube.offset, y: 0, z: 0),
                         rotation: Cube.noRotation
                     ),
                 zTile:
                     Tile(
                         color: .orange,
-                        position: SCNVector3(x: -Cube.offset, y: 0, z: -Cube.offset),
+                        position: SCNVector3(x: -3 * Cube.offset, y: 0, z: -Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -157,13 +157,13 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .white,
-                        position: SCNVector3(x: 0, y: Cube.offset, z: -3 * Cube.offset),
+                        position: SCNVector3(x: -2 * Cube.offset, y: Cube.offset, z: -3 * Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .orange,
-                        position: SCNVector3(x: -Cube.offset, y: 0, z: -3 * Cube.offset),
+                        position: SCNVector3(x: -3 * Cube.offset, y: 0, z: -3 * Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -176,19 +176,19 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .white,
-                        position: SCNVector3(x: 0, y: Cube.offset, z: -5 * Cube.offset),
+                        position: SCNVector3(x: -2 * Cube.offset, y: Cube.offset, z: -5 * Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .blue,
-                        position: SCNVector3(x: 0, y: 0, z: -6 * Cube.offset),
+                        position: SCNVector3(x: -2 * Cube.offset, y: 0, z: -6 * Cube.offset),
                         rotation: Cube.noRotation
                     ),
                 zTile:
                     Tile(
                         color: .orange,
-                        position: SCNVector3(x: -Cube.offset, y: 0, z: -5 * Cube.offset),
+                        position: SCNVector3(x: -3 * Cube.offset, y: 0, z: -5 * Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -201,13 +201,13 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .white,
-                        position: SCNVector3(x: 2 * Cube.offset, y: Cube.offset, z: -Cube.offset),
+                        position: SCNVector3(x: 0, y: Cube.offset, z: -Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .green,
-                        position: SCNVector3(x: 2 * Cube.offset, y: 0, z: 0),
+                        position: SCNVector3(x: 0, y: 0, z: 0),
                         rotation: Cube.noRotation
                     ),
                 scene: scene
@@ -220,7 +220,7 @@ struct Cube {
                 tile:
                     Tile(
                         color: .white,
-                        position: SCNVector3(x: 2 * Cube.offset, y: Cube.offset, z: -3 * Cube.offset),
+                        position: SCNVector3(x: 0, y: Cube.offset, z: -3 * Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 scene: scene
@@ -233,13 +233,13 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .white,
-                        position: SCNVector3(x: 2 * Cube.offset, y: Cube.offset, z: -5 * Cube.offset),
+                        position: SCNVector3(x: 0, y: Cube.offset, z: -5 * Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .blue,
-                        position: SCNVector3(x: 2 * Cube.offset, y: 0, z: -6 * Cube.offset),
+                        position: SCNVector3(x: 0, y: 0, z: -6 * Cube.offset),
                         rotation: Cube.noRotation
                     ),
                 scene: scene
@@ -252,19 +252,19 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .white,
-                        position: SCNVector3(x: 4 * Cube.offset, y: Cube.offset, z: -Cube.offset),
+                        position: SCNVector3(x: 2 * Cube.offset, y: Cube.offset, z: -Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .green,
-                        position: SCNVector3(x: 4 * Cube.offset, y: 0, z: 0),
+                        position: SCNVector3(x: 2 * Cube.offset, y: 0, z: 0),
                         rotation: Cube.noRotation
                     ),
                 zTile:
                     Tile(
                         color: .red,
-                        position: SCNVector3(x: 5 * Cube.offset, y: 0, z: -Cube.offset),
+                        position: SCNVector3(x: 3 * Cube.offset, y: 0, z: -Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -277,13 +277,13 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .white,
-                        position: SCNVector3(x: 4 * Cube.offset, y: Cube.offset, z: -3 * Cube.offset),
+                        position: SCNVector3(x: 2 * Cube.offset, y: Cube.offset, z: -3 * Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .red,
-                        position: SCNVector3(x: 5 * Cube.offset, y: 0, z: -3 * Cube.offset),
+                        position: SCNVector3(x: 3 * Cube.offset, y: 0, z: -3 * Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -296,19 +296,19 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .white,
-                        position: SCNVector3(x: 4 * Cube.offset, y: Cube.offset, z: -5 * Cube.offset),
+                        position: SCNVector3(x: 2 * Cube.offset, y: Cube.offset, z: -5 * Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .blue,
-                        position: SCNVector3(x: 4 * Cube.offset, y: 0, z: -6 * Cube.offset),
+                        position: SCNVector3(x: 2 * Cube.offset, y: 0, z: -6 * Cube.offset),
                         rotation: Cube.noRotation
                     ),
                 zTile:
                     Tile(
                         color: .red,
-                        position: SCNVector3(x: 5 * Cube.offset, y: 0, z: -5 * Cube.offset),
+                        position: SCNVector3(x: 3 * Cube.offset, y: 0, z: -5 * Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -323,13 +323,13 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .orange,
-                        position: SCNVector3(x: -Cube.offset, y: -2 * Cube.offset, z: -Cube.offset),
+                        position: SCNVector3(x: -3 * Cube.offset, y: -2 * Cube.offset, z: -Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 yTile:
                     Tile(
                         color: .green,
-                        position: SCNVector3(x: 0, y: -2 * Cube.offset, z: 0),
+                        position: SCNVector3(x: -2 * Cube.offset, y: -2 * Cube.offset, z: 0),
                         rotation: Cube.noRotation
                     ),
                 scene: scene
@@ -342,7 +342,7 @@ struct Cube {
                 tile:
                     Tile(
                         color: .orange,
-                        position: SCNVector3(x: -Cube.offset, y: -2 * Cube.offset, z: -3 * Cube.offset),
+                        position: SCNVector3(x: -3 * Cube.offset, y: -2 * Cube.offset, z: -3 * Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -355,13 +355,13 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .orange,
-                        position: SCNVector3(x: -Cube.offset, y: -2 * Cube.offset, z: -5 * Cube.offset),
+                        position: SCNVector3(x: -3 * Cube.offset, y: -2 * Cube.offset, z: -5 * Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 yTile:
                     Tile(
                         color: .blue,
-                        position: SCNVector3(x: 0, y: -2 * Cube.offset, z: -6 * Cube.offset),
+                        position: SCNVector3(x: -2 * Cube.offset, y: -2 * Cube.offset, z: -6 * Cube.offset),
                         rotation: Cube.noRotation
                     ),
                 scene: scene
@@ -374,7 +374,7 @@ struct Cube {
                 tile:
                     Tile(
                         color: .green,
-                        position: SCNVector3(x: 2 * Cube.offset, y: -2 * Cube.offset, z: 0),
+                        position: SCNVector3(x: 0, y: -2 * Cube.offset, z: 0),
                         rotation: Cube.noRotation
                     ),
                 scene: scene
@@ -392,7 +392,7 @@ struct Cube {
                 tile:
                     Tile(
                         color: .blue,
-                        position: SCNVector3(x: 2 * Cube.offset, y: -2 * Cube.offset, z: -6 * Cube.offset),
+                        position: SCNVector3(x: 0, y: -2 * Cube.offset, z: -6 * Cube.offset),
                         rotation: Cube.noRotation
                     ),
                 scene: scene
@@ -405,13 +405,13 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .red,
-                        position: SCNVector3(x: 5 * Cube.offset, y: -2 * Cube.offset, z: -Cube.offset),
+                        position: SCNVector3(x: 3 * Cube.offset, y: -2 * Cube.offset, z: -Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 yTile:
                     Tile(
                         color: .green,
-                        position: SCNVector3(x: 4 * Cube.offset, y: -2 * Cube.offset, z: 0),
+                        position: SCNVector3(x: 2 * Cube.offset, y: -2 * Cube.offset, z: 0),
                         rotation: Cube.noRotation
                     ),
                 scene: scene
@@ -424,7 +424,7 @@ struct Cube {
                 tile:
                     Tile(
                         color: .red,
-                        position: SCNVector3(x: 5 * Cube.offset, y: -2 * Cube.offset, z: -3 * Cube.offset),
+                        position: SCNVector3(x: 3 * Cube.offset, y: -2 * Cube.offset, z: -3 * Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -437,13 +437,13 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .red,
-                        position: SCNVector3(x: 5 * Cube.offset, y: -2 * Cube.offset, z: -5 * Cube.offset),
+                        position: SCNVector3(x: 3 * Cube.offset, y: -2 * Cube.offset, z: -5 * Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 yTile:
                     Tile(
                         color: .blue,
-                        position: SCNVector3(x: 4 * Cube.offset, y: -2 * Cube.offset, z: -6 * Cube.offset),
+                        position: SCNVector3(x: 2 * Cube.offset, y: -2 * Cube.offset, z: -6 * Cube.offset),
                         rotation: Cube.noRotation
                     ),
                 scene: scene
@@ -458,19 +458,19 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .yellow,
-                        position: SCNVector3(x: 0, y: -5 * Cube.offset, z: -Cube.offset),
+                        position: SCNVector3(x: -2 * Cube.offset, y: -5 * Cube.offset, z: -Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .green,
-                        position: SCNVector3(x: 0, y: -4 * Cube.offset, z: 0),
+                        position: SCNVector3(x: -2 * Cube.offset, y: -4 * Cube.offset, z: 0),
                         rotation: Cube.noRotation
                     ),
                 zTile:
                     Tile(
                         color: .orange,
-                        position: SCNVector3(x: -Cube.offset, y: -4 * Cube.offset, z: -Cube.offset),
+                        position: SCNVector3(x: -3 * Cube.offset, y: -4 * Cube.offset, z: -Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -483,13 +483,13 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .yellow,
-                        position: SCNVector3(x: 0, y: -5 * Cube.offset, z: -3 * Cube.offset),
+                        position: SCNVector3(x: -2 * Cube.offset, y: -5 * Cube.offset, z: -3 * Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .orange,
-                        position: SCNVector3(x: -Cube.offset, y: -4 * Cube.offset, z: -3 * Cube.offset),
+                        position: SCNVector3(x: -3 * Cube.offset, y: -4 * Cube.offset, z: -3 * Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -502,19 +502,19 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .yellow,
-                        position: SCNVector3(x: 0, y: -5 * Cube.offset, z: -5 * Cube.offset),
+                        position: SCNVector3(x: -2 * Cube.offset, y: -5 * Cube.offset, z: -5 * Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .blue,
-                        position: SCNVector3(x: 0, y: -4 * Cube.offset, z: -6 * Cube.offset),
+                        position: SCNVector3(x: -2 * Cube.offset, y: -4 * Cube.offset, z: -6 * Cube.offset),
                         rotation: Cube.noRotation
                     ),
                 zTile:
                     Tile(
                         color: .orange,
-                        position: SCNVector3(x: -Cube.offset, y: -4 * Cube.offset, z: -5 * Cube.offset),
+                        position: SCNVector3(x: -3 * Cube.offset, y: -4 * Cube.offset, z: -5 * Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -527,13 +527,13 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .yellow,
-                        position: SCNVector3(x: 2 * Cube.offset, y: -5 * Cube.offset, z: -Cube.offset),
+                        position: SCNVector3(x: 0, y: -5 * Cube.offset, z: -Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .green,
-                        position: SCNVector3(x: 2 * Cube.offset, y: -4 * Cube.offset, z: 0),
+                        position: SCNVector3(x: 0, y: -4 * Cube.offset, z: 0),
                         rotation: Cube.noRotation
                     ),
                 scene: scene
@@ -546,7 +546,7 @@ struct Cube {
                 tile:
                     Tile(
                         color: .yellow,
-                        position: SCNVector3(x: 2 * Cube.offset, y: -5 * Cube.offset, z: -3 * Cube.offset),
+                        position: SCNVector3(x: 0, y: -5 * Cube.offset, z: -3 * Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 scene: scene
@@ -559,13 +559,13 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .yellow,
-                        position: SCNVector3(x: 2 * Cube.offset, y: -5 * Cube.offset, z: -5 * Cube.offset),
+                        position: SCNVector3(x: 0, y: -5 * Cube.offset, z: -5 * Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .blue,
-                        position: SCNVector3(x: 2 * Cube.offset, y: -4 * Cube.offset, z: -6 * Cube.offset),
+                        position: SCNVector3(x: 0, y: -4 * Cube.offset, z: -6 * Cube.offset),
                         rotation: Cube.noRotation
                     ),
                 scene: scene
@@ -578,19 +578,19 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .yellow,
-                        position: SCNVector3(x: 4 * Cube.offset, y: -5 * Cube.offset, z: -Cube.offset),
+                        position: SCNVector3(x: 2 * Cube.offset, y: -5 * Cube.offset, z: -Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .green,
-                        position: SCNVector3(x: 4 * Cube.offset, y: -4 * Cube.offset, z: 0),
+                        position: SCNVector3(x: 2 * Cube.offset, y: -4 * Cube.offset, z: 0),
                         rotation: Cube.noRotation
                     ),
                 zTile:
                     Tile(
                         color: .red,
-                        position: SCNVector3(x: 5 * Cube.offset, y: -4 * Cube.offset, z: -Cube.offset),
+                        position: SCNVector3(x: 3 * Cube.offset, y: -4 * Cube.offset, z: -Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -603,13 +603,13 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .yellow,
-                        position: SCNVector3(x: 4 * Cube.offset, y: -5 * Cube.offset, z: -3 * Cube.offset),
+                        position: SCNVector3(x: 2 * Cube.offset, y: -5 * Cube.offset, z: -3 * Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .red,
-                        position: SCNVector3(x: 5 * Cube.offset, y: -4 * Cube.offset, z: -3 * Cube.offset),
+                        position: SCNVector3(x: 3 * Cube.offset, y: -4 * Cube.offset, z: -3 * Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
@@ -622,19 +622,19 @@ struct Cube {
                 xTile:
                     Tile(
                         color: .yellow,
-                        position: SCNVector3(x: 4 * Cube.offset, y: -5 * Cube.offset, z: -5 * Cube.offset),
+                        position: SCNVector3(x: 2 * Cube.offset, y: -5 * Cube.offset, z: -5 * Cube.offset),
                         rotation: Cube.xRotation
                     ),
                 yTile:
                     Tile(
                         color: .blue,
-                        position: SCNVector3(x: 4 * Cube.offset, y: -4 * Cube.offset, z: -6 * Cube.offset),
+                        position: SCNVector3(x: 2 * Cube.offset, y: -4 * Cube.offset, z: -6 * Cube.offset),
                         rotation: Cube.noRotation
                     ),
                 zTile:
                     Tile(
                         color: .red,
-                        position: SCNVector3(x: 5 * Cube.offset, y: -4 * Cube.offset, z: -5 * Cube.offset),
+                        position: SCNVector3(x: 3 * Cube.offset, y: -4 * Cube.offset, z: -5 * Cube.offset),
                         rotation: Cube.yRotation
                     ),
                 scene: scene
