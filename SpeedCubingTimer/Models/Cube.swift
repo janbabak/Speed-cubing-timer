@@ -396,6 +396,64 @@ class Cube {
         edge4.updateColor()
     }
     
+    // make the U (up) move
+    func turnU() {
+        // corners
+        var corner1 = tiles[0][2][0] as! Corner // white, red, green
+        var corner2 = tiles[0][0][0] as! Corner // white, orange, green
+        var corner3 = tiles[0][0][2] as! Corner // white, orange, blue
+        var corner4 = tiles[0][2][2] as! Corner // white, red, blue
+        
+        let corner4zTileColor = corner4.zTile.color
+        let corner4yTileColor = corner4.yTile.color
+        
+        corner4.zTile.color = corner3.yTile.color
+        corner4.yTile.color = corner3.zTile.color
+        
+        corner3.zTile.color = corner2.yTile.color
+        corner3.yTile.color = corner2.zTile.color
+        
+        corner2.zTile.color = corner1.yTile.color
+        corner2.yTile.color = corner1.zTile.color
+        
+        corner1.zTile.color = corner4yTileColor
+        corner1.yTile.color = corner4zTileColor
+        
+        tiles[0][2][0] = corner1
+        tiles[0][0][0] = corner2
+        tiles[0][0][2] = corner3
+        tiles[0][2][2] = corner4
+        
+        // edges
+        var edge1 = tiles[0][1][0] as! Edge // white, green
+        var edge2 = tiles[0][0][1] as! Edge // white, orange
+        var edge3 = tiles[0][1][2] as! Edge // white, blue
+        var edge4 = tiles[0][2][1] as! Edge // white, red
+
+        let edge4yTileColor = edge4.yTile.color
+
+        edge4.yTile.color = edge3.yTile.color
+        edge3.yTile.color = edge2.yTile.color
+        edge2.yTile.color = edge1.yTile.color
+        edge1.yTile.color = edge4yTileColor
+
+        tiles[0][1][0] = edge1
+        tiles[0][0][1] = edge2
+        tiles[0][1][2] = edge3
+        tiles[0][2][1] = edge4
+        
+        // TODO: remove
+        corner1.updateColor()
+        corner2.updateColor()
+        corner4.updateColor()
+        corner3.updateColor()
+        
+        edge1.updateColor()
+        edge2.updateColor()
+        edge3.updateColor()
+        edge4.updateColor()
+    }
+    
     // initialize the tile property by empty arrays
     private static func initTiles() -> [[[Block]]] {
         var tilesLocal: [[[Block]]] = []

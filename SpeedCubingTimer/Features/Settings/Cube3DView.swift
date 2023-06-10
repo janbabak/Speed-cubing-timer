@@ -27,8 +27,10 @@ struct Cube3DView: UIViewRepresentable {
 //        cube.turnR()
 //        cube.turnF()
 //        cube.turnF()
-        cube.turnB()
-        cube.turnB()
+//        cube.turnB()
+//        cube.turnB()
+        cube.turnU()
+        cube.turnU()
         
         return view
     }
