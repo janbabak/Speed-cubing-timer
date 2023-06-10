@@ -23,9 +23,16 @@ struct SolveDetailView: View {
             
             note
             
+            cube
+            
             penaltyButtons
         }
         .padding(.all, 16)
+        .onAppear {
+            if let solve = solve {
+                viewModel.visualizeScramble(scramble: solve.scramble)
+            }
+        }
     }
     
     var time: some View {
@@ -69,40 +76,45 @@ struct SolveDetailView: View {
         }
     }
     
+    var cube: some View {
+        Cube3DView(cube: viewModel.cube)
+            .frame(minHeight: 200, maxHeight: .infinity)
+    }
+    
     // penalty buttons
     var penaltyButtons: some View {
-            HStack {
-                //no penalty
-                FullwidthButton(
-                    label: "no penalty",
-                    tint: .green, font: .headline,
-                    fullHeight: true,
-                    borderedProminent: solve?.penalty == .noPenalty
-                ) {
-                    self.solve = viewModel.togglePenalty(penalty: .noPenalty, solveId: solve!.id)
-                }
-                
-                // did not finished
-                FullwidthButton(
-                    label: "DNF",
-                    tint: .orange,
-                    fullHeight: true,
-                    borderedProminent: solve?.penalty == .DNF
-                ) {
-                    self.solve = viewModel.togglePenalty(penalty: .DNF, solveId: solve!.id)
-                }
-                
-                // +2 seconds
-                FullwidthButton(
-                    label: "+2",
-                    tint: .blue,
-                    fullHeight: true,
-                    borderedProminent: solve?.penalty == .plus2
-                ) {
-                    self.solve = viewModel.togglePenalty(penalty: .plus2, solveId: solve!.id)
-                }
+        HStack {
+            //no penalty
+            FullwidthButton(
+                label: "no penalty",
+                tint: .green, font: .headline,
+                fullHeight: true,
+                borderedProminent: solve?.penalty == .noPenalty
+            ) {
+                self.solve = viewModel.togglePenalty(penalty: .noPenalty, solveId: solve!.id)
             }
-            .frame(maxHeight: 75)
+            
+            // did not finished
+            FullwidthButton(
+                label: "DNF",
+                tint: .orange,
+                fullHeight: true,
+                borderedProminent: solve?.penalty == .DNF
+            ) {
+                self.solve = viewModel.togglePenalty(penalty: .DNF, solveId: solve!.id)
+            }
+            
+            // +2 seconds
+            FullwidthButton(
+                label: "+2",
+                tint: .blue,
+                fullHeight: true,
+                borderedProminent: solve?.penalty == .plus2
+            ) {
+                self.solve = viewModel.togglePenalty(penalty: .plus2, solveId: solve!.id)
+            }
+        }
+        .frame(maxHeight: 75)
     }
 }
 

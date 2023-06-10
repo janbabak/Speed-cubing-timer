@@ -93,7 +93,7 @@ final class TimerViewModel: ObservableObject {
     private var timer = Timer()
     private let timerInterval = 0.01
     
-    // MARK: - public functions
+    // MARK: - public methods
     
     init() {
         //TODO: remove after testing
@@ -171,7 +171,17 @@ final class TimerViewModel: ObservableObject {
         return solves[solveIndex]
     }
     
-    // MARK: - private functions
+    // visualize scramble on the cube
+    func visualizeScramble(scramble: String) {
+        cube.scramble(scramble)
+    }
+    
+    // visualize current scramble (scramble which will be solved next)
+    func visualizeCurrentScramble() {
+        visualizeScramble(scramble: scramble)
+    }
+    
+    // MARK: - private methods
     
     // create new solve - add new solve to solves array
     private func createSolve() {
@@ -285,7 +295,7 @@ final class TimerViewModel: ObservableObject {
     private func addExampleData() {
         self.solves = [
             Solve(
-                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
+                scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F2 B' R' L U' L",
                 date: Date(),
                 hours: 0,
                 minutes: 0,

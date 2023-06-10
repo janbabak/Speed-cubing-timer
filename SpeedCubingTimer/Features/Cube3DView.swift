@@ -24,9 +24,7 @@ struct Cube3DView: UIViewRepresentable {
         return view
     }
     
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        
-    }
+    func updateUIView(_ uiView: UIViewType, context: Context) {}
 }
 
 struct Cube3DView_Previews: PreviewProvider {

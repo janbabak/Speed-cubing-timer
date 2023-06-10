@@ -40,6 +40,9 @@ struct TimerView: View {
                     viewModel.onTouchUpGesture()
                 }
         )
+        .onAppear {
+            viewModel.visualizeCurrentScramble()
+        }
     }
     
     var scramble: some View {
