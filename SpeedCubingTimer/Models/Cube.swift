@@ -18,6 +18,10 @@ class Cube {
     static let yRotation = SCNVector3(x: 0, y: Cube.rotation90deg, z: 0)
     static let noRotation = SCNVector3(x: 0, y: 0, z: 0)
     
+    init() {
+        self.tiles = Cube.createCube(scene: self.scene)
+    }
+    
     // MARK: - structs
     
     // center tile in each side of the cube (there are 6 centers)
@@ -136,6 +140,8 @@ class Cube {
     
     // scramble the cube
     func scramble(_ scramble: String) {
+        resetToSolvedState() // scrambling always starts from solve state
+        
         let moves = scramble.components(separatedBy: " ")
         
         for move in moves {
@@ -193,7 +199,7 @@ class Cube {
                 print("move not found")
             }
         }
-        
+
         flushColor()
     }
     
@@ -205,6 +211,145 @@ class Cube {
                     tiles[i][j][k].flushColor()
                 }
             }
+        }
+    }
+    
+    // reset colors to solved state
+    func resetToSolvedState(flushColors: Bool = false) {
+        // corners
+        
+        // white, green, orange
+        var corner1 = tiles[0][0][0] as! Corner
+        corner1.xTile.color = .white
+        corner1.yTile.color = .green
+        corner1.zTile.color = .orange
+        tiles[0][0][0] = corner1
+        
+        // white, blue, orange
+        corner1 = tiles[0][0][2] as! Corner
+        corner1.xTile.color = .white
+        corner1.yTile.color = .blue
+        corner1.zTile.color = .orange
+        tiles[0][0][2] = corner1
+        
+        // white, blue, red
+        corner1 = tiles[0][2][2] as! Corner
+        corner1.xTile.color = .white
+        corner1.yTile.color = .blue
+        corner1.zTile.color = .red
+        tiles[0][2][2] = corner1
+        
+        // white, green, orange
+        corner1 = tiles[0][2][0] as! Corner
+        corner1.xTile.color = .white
+        corner1.yTile.color = .green
+        corner1.zTile.color = .red
+        tiles[0][2][0] = corner1
+        
+        // yellow, green, orange
+        corner1 = tiles[2][0][0] as! Corner
+        corner1.xTile.color = .yellow
+        corner1.yTile.color = .green
+        corner1.zTile.color = .orange
+        tiles[2][0][0] = corner1
+        
+        // yellow, blue, orange
+        corner1 = tiles[2][0][2] as! Corner
+        corner1.xTile.color = .yellow
+        corner1.yTile.color = .blue
+        corner1.zTile.color = .orange
+        tiles[2][0][2] = corner1
+        
+        // yellow, blue, red
+        corner1 = tiles[2][2][2] as! Corner
+        corner1.xTile.color = .yellow
+        corner1.yTile.color = .blue
+        corner1.zTile.color = .red
+        tiles[2][2][2] = corner1
+        
+        // yellow, green, orange
+        corner1 = tiles[2][2][0] as! Corner
+        corner1.xTile.color = .yellow
+        corner1.yTile.color = .green
+        corner1.zTile.color = .red
+        tiles[2][2][0] = corner1
+        
+        // edges
+        
+        // white, green
+        var edge = tiles[0][1][0] as! Edge
+        edge.xTile.color = .white
+        edge.yTile.color = .green
+        tiles[0][1][0] = edge
+        
+        // white, orange
+        edge = tiles[0][0][1] as! Edge
+        edge.xTile.color = .white
+        edge.yTile.color = .orange
+        tiles[0][0][1] = edge
+        
+        // white, blue
+        edge = tiles[0][1][2] as! Edge
+        edge.xTile.color = .white
+        edge.yTile.color = .blue
+        tiles[0][1][2] = edge
+        
+        // white, red
+        edge = tiles[0][2][1] as! Edge
+        edge.xTile.color = .white
+        edge.yTile.color = .red
+        tiles[0][2][1] = edge
+        
+        // green, orange
+        edge = tiles[1][0][0] as! Edge
+        edge.xTile.color = .orange
+        edge.yTile.color = .green
+        tiles[1][0][0] = edge
+        
+        // blue, orange
+        edge = tiles[1][0][2] as! Edge
+        edge.xTile.color = .orange
+        edge.yTile.color = .blue
+        tiles[1][0][2] = edge
+        
+        // blue, red
+        edge = tiles[1][2][2] as! Edge
+        edge.xTile.color = .red
+        edge.yTile.color = .blue
+        tiles[1][2][2] = edge
+        
+        // green, red
+        edge = tiles[1][2][0] as! Edge
+        edge.xTile.color = .red
+        edge.yTile.color = .green
+        tiles[1][2][0] = edge
+        
+        // yellow, green
+        edge = tiles[2][1][0] as! Edge
+        edge.xTile.color = .yellow
+        edge.yTile.color = .green
+        tiles[2][1][0] = edge
+        
+        // yellow, orange
+        edge = tiles[2][0][1] as! Edge
+        edge.xTile.color = .yellow
+        edge.yTile.color = .orange
+        tiles[2][0][1] = edge
+        
+        // yellow, blue
+        edge = tiles[2][1][2] as! Edge
+        edge.xTile.color = .yellow
+        edge.yTile.color = .blue
+        tiles[2][1][2] = edge
+        
+        // yellow, red
+        edge = tiles[2][2][1] as! Edge
+        edge.xTile.color = .yellow
+        edge.yTile.color = .red
+        tiles[2][2][1] = edge
+        
+        if flushColors {
+            flushColor()
         }
     }
     
@@ -661,9 +806,10 @@ class Cube {
         return tilesLocal
     }
     
-    // MARK: - init 😬
-    init() {
-        tiles = Cube.initTiles()
+    // MARK: - create cube 😬
+    
+    static func createCube(scene: SCNScene) -> [[[Block]]] {
+        var tiles = Cube.initTiles()
         
         // MARK: - first layer
         
@@ -1181,6 +1327,8 @@ class Cube {
                 scene: scene
             )
         )
+        
+        return tiles
     }
 }
 
