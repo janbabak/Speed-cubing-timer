@@ -23,8 +23,6 @@ struct TimerView: View {
             stats
 
             cube
-    
-            Spacer()
             
             buttons
         }
@@ -68,7 +66,7 @@ struct TimerView: View {
     
     var cube: some View {
         Cube3DView(cube: viewModel.cube)
-            .frame(height: 160)
+            .frame(height: 200)
     }
     
     // delete, DNF, +2 buttons

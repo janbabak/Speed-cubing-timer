@@ -19,6 +19,7 @@ struct Cube3DView: UIViewRepresentable {
         view.allowsCameraControl = true
         view.antialiasingMode = .multisampling2X
         view.backgroundColor = .clear
+        view.pointOfView = cube.cameraNode
         
         return view
     }
@@ -30,7 +31,6 @@ struct Cube3DView: UIViewRepresentable {
 
 struct Cube3DView_Previews: PreviewProvider {
     static var previews: some View {
-//        Cube3DView()
-        SettingsView()
+        Cube3DView()
     }
 }

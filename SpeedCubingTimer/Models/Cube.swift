@@ -10,6 +10,7 @@ import SceneKit
 class Cube {
     private var tiles: [[[Block]]]
     private(set) var scene = SCNScene()
+    private(set) var cameraNode = SCNNode()
     
     // MARK: - Cube constatnts
     static let rotation90deg = 90.0 * Float.pi / 180.0
@@ -20,6 +21,7 @@ class Cube {
     
     init() {
         self.tiles = Cube.createCube(scene: self.scene)
+        setUpCamera()
     }
     
     // MARK: - structs
@@ -796,6 +798,18 @@ class Cube {
     }
     
     // MARK: - private methods
+    
+    // look at the cube from 35 and 45 degree X and Y axis angles
+    private func setUpCamera() {
+        cameraNode.camera = SCNCamera()
+        cameraNode.position = SCNVector3(x: -3.5, y: 2.0, z: 2) // -3.5 3.5 2
+        scene.rootNode.addChildNode(cameraNode)
+        cameraNode.eulerAngles = SCNVector3(
+            x: -35.0 * Float.pi / 180.0, //45
+            y: -45.0 * Float.pi / 180.0,
+            z: 0
+        )
+    }
     
     // initialize the tile property by empty arrays
     private static func initTiles() -> [[[Block]]] {
