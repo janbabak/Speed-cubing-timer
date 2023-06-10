@@ -454,6 +454,64 @@ class Cube {
         edge4.updateColor()
     }
     
+    // make the D (down) move
+    func turnD() {
+        // corners
+        var corner1 = tiles[2][2][0] as! Corner // yellow, red, green
+        var corner2 = tiles[2][0][0] as! Corner // yellow, orange, green
+        var corner3 = tiles[2][0][2] as! Corner // yellow, orange, blue
+        var corner4 = tiles[2][2][2] as! Corner // yellow, red, blue
+        
+        let corner1zTileColor = corner1.zTile.color
+        let corner1yTileColor = corner1.yTile.color
+        
+        corner1.zTile.color = corner2.yTile.color
+        corner1.yTile.color = corner2.zTile.color
+        
+        corner2.zTile.color = corner3.yTile.color
+        corner2.yTile.color = corner3.zTile.color
+        
+        corner3.zTile.color = corner4.yTile.color
+        corner3.yTile.color = corner4.zTile.color
+        
+        corner4.zTile.color = corner1yTileColor
+        corner4.yTile.color = corner1zTileColor
+        
+        tiles[2][2][0] = corner1
+        tiles[2][0][0] = corner2
+        tiles[2][0][2] = corner3
+        tiles[2][2][2] = corner4
+        
+        // edges
+        var edge1 = tiles[2][1][0] as! Edge // yellow, green
+        var edge2 = tiles[2][0][1] as! Edge // yellow, orange
+        var edge3 = tiles[2][1][2] as! Edge // yellow, blue
+        var edge4 = tiles[2][2][1] as! Edge // yellow, red
+
+        let edge1yTileColor = edge1.yTile.color
+
+        edge1.yTile.color = edge2.yTile.color
+        edge2.yTile.color = edge3.yTile.color
+        edge3.yTile.color = edge4.yTile.color
+        edge4.yTile.color = edge1yTileColor
+
+        tiles[2][1][0] = edge1
+        tiles[2][0][1] = edge2
+        tiles[2][1][2] = edge3
+        tiles[2][2][1] = edge4
+        
+        // TODO: remove
+        corner1.updateColor()
+        corner2.updateColor()
+        corner4.updateColor()
+        corner3.updateColor()
+        
+        edge1.updateColor()
+        edge2.updateColor()
+        edge3.updateColor()
+        edge4.updateColor()
+    }
+    
     // initialize the tile property by empty arrays
     private static func initTiles() -> [[[Block]]] {
         var tilesLocal: [[[Block]]] = []
