@@ -43,5 +43,14 @@ class RootViewController: UIViewController {
         embedController(tabBarController)
         self.tabBar = tabBarController
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // fix transparent tabbar
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithDefaultBackground()
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+    }
 }
 

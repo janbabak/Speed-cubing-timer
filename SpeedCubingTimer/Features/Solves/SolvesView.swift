@@ -15,10 +15,14 @@ struct SolvesView: View {
     var body: some View {
         if (viewModel.solves.isEmpty) {
             Text("You don't have any solves yet!")
-            
         } else {
-            solvesList
-                .padding(.top, 16)
+            VStack(alignment: .leading) {
+                Text("Number of solves: \(viewModel.solves.count)")
+                    .padding(.horizontal, 16)
+                    .foregroundColor(Color.theme.secondaryText)
+                
+                solvesList
+            }
         }
     }
     
