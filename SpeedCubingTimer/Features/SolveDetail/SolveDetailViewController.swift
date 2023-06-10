@@ -47,7 +47,6 @@ final class SolveDetailViewController: UIViewController {
     
     @objc
     private func deleteSolve() {
-        timerViewModel.deleteSolveById(solveId: solve.id)
-        navigationController?.popViewController(animated: true)
+        timerViewModel.deleteConfirmationDialogPresent = true
     }
 }

@@ -173,13 +173,13 @@
 		DF0D6F1929C34AD20031DB04 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				DF5810852A332E3000E2638D /* LabelPropertyView.swift */,
+				DFD621BE2A336A8D00A32831 /* Cube3DView.swift */,
 				DF0D6F1A29C34B480031DB04 /* Timer */,
 				DF0D6F1B29C34B560031DB04 /* Solves */,
 				DF2654B52A31E5AC00D0E211 /* SolveDetail */,
 				DF0D6F2329C3584C0031DB04 /* Statistics */,
 				DF0D6F2829C363220031DB04 /* Settings */,
-				DF5810852A332E3000E2638D /* LabelPropertyView.swift */,
-				DFD621BE2A336A8D00A32831 /* Cube3DView.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
