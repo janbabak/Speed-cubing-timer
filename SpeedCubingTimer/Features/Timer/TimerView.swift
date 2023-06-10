@@ -14,8 +14,7 @@ struct TimerView: View {
     var body: some View {
         VStack {
             scramble
-            
-            Spacer()
+                .padding(.bottom, 16)
             
             time
                 .padding(.bottom, 16)
@@ -66,7 +65,7 @@ struct TimerView: View {
     
     var cube: some View {
         Cube3DView(cube: viewModel.cube)
-            .frame(height: 200)
+            .frame(minHeight: 200, maxHeight: .infinity)
     }
     
     // delete, DNF, +2 buttons
