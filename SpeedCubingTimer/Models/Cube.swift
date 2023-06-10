@@ -22,12 +22,8 @@ class Cube {
     
     // center tile in each side of the cube (there are 6 centers)
     struct Center: Block {
-        func updateColor() {
-            
-        }
-        
         var tile: Tile
-
+        
         init(tile: Tile, scene: SCNScene) {
             self.tile = tile
             
@@ -38,29 +34,14 @@ class Cube {
             scene.rootNode.addChildNode(tile.node)
         }
         
-        func rotate(by worldRotation: SCNVector4, aroundTarget worldTarget: SCNVector3) {
-            tile.node.rotate(by: worldRotation, aroundTarget: worldTarget)
-            
-//            let action = SCNAction.rotate(
-//                by: 90 * CGFloat(Double.pi / 180.0),
-//                around: .init(x: 2, y: -2 * Cube.offset, z: 0),
-//                duration: 2
-//            )
-//            tile.node.runAction(action)
-//            let rotateAction = SCNAction.repeatForever(
-//                SCNAction.rotate(by: .pi * 2, around: SCNVector3(0, 1, 0), duration: rotationDuration)
-//            )
-//            centerNode.runAction(rotateAction)
+        // flush the color properties of tile to scene
+        func flushColor() {
+            tile.flushColor()
         }
     }
     
     // edge of the cube (there are 12 edges)
     struct Edge: Block {
-        func rotate(by worldRotation: SCNVector4, aroundTarget worldTarget: SCNVector3) {
-            
-        }
-        
-        
         var xTile: Tile
         var yTile: Tile
         
@@ -76,18 +57,15 @@ class Cube {
             scene.rootNode.addChildNode(yTile.node)
         }
         
-        func updateColor() {
-            xTile.updateColor()
-            yTile.updateColor()
+        // flush the color properties of tiles to scene
+        func flushColor() {
+            xTile.flushColor()
+            yTile.flushColor()
         }
     }
     
     // corner of the cube (there are 8 corners)
     struct Corner: Block {
-        func rotate(by worldRotation: SCNVector4, aroundTarget worldTarget: SCNVector3) {
-            
-        }
-        
         var xTile: Tile
         var yTile: Tile
         var zTile: Tile
@@ -106,21 +84,18 @@ class Cube {
             scene.rootNode.addChildNode(zTile.node)
         }
         
-        func updateColor() {
-            xTile.updateColor()
-            yTile.updateColor()
-            zTile.updateColor()
+        // flush the color properties of tiles to scene
+        func flushColor() {
+            xTile.flushColor()
+            yTile.flushColor()
+            zTile.flushColor()
         }
     }
     
     // middle piece of the cube - core (there is only 1 core) not rendered
     struct Core: Block {
-        func updateColor() {
-            
-        }
-        
-        func rotate(by worldRotation: SCNVector4, aroundTarget worldTarget: SCNVector3) {
-            
+        func flushColor() {
+            return
         }
         
         func addToScene(scene: SCNScene) {
@@ -136,7 +111,7 @@ class Cube {
         static let size: CGFloat = 1.0
         static let length: CGFloat = size / 10.0
         static let chamferRadius = 0.05
-
+        
         init(color: UIColor, position: SCNVector3, rotation: SCNVector3) {
             node.geometry = SCNBox(width: Tile.size, height: Tile.size, length: Tile.length, chamferRadius: Tile.chamferRadius)
             node.geometry?.firstMaterial?.diffuse.contents = color
@@ -153,18 +128,20 @@ class Cube {
             self.color = color
         }
         
-        func updateColor() {
+        // flush the color property to scene
+        func flushColor() {
             node.geometry?.firstMaterial?.diffuse.contents = color
         }
     }
     
+    // scramble the cube
     func scramble(_ scramble: String) {
         let moves = scramble.components(separatedBy: " ")
         
         for move in moves {
             switch move {
                 
-            //right cube face
+                //right cube face
             case "R":
                 turnR()
             case "R2":
@@ -172,31 +149,31 @@ class Cube {
             case "R\'":
                 turnRPrime()
                 
-            //left cube face
+                //left cube face
             case "L":
                 turnL()
             case "L2":
                 turnL2()
             case "L\'":
                 turnLPrime()
-            
-            //front cube face
+                
+                //front cube face
             case "F":
                 turnF()
             case "F2":
                 turnF2()
             case "F\'":
                 turnFPrime()
-            
-            //back cube face
+                
+                //back cube face
             case "B":
                 turnB()
             case "B2":
                 turnB2()
             case "B\'":
                 turnBPrime()
-             
-            //upper cube face
+                
+                //upper cube face
             case "U":
                 turnU()
             case "U2":
@@ -204,7 +181,7 @@ class Cube {
             case "U\'":
                 turnUPrime()
                 
-            //down cube face
+                //down cube face
             case "D":
                 turnD()
             case "D2":
@@ -214,6 +191,19 @@ class Cube {
                 
             default:
                 print("move not found")
+            }
+        }
+        
+        flushColor()
+    }
+    
+    // flush the colors of blocks of tiles to scene
+    func flushColor() {
+        for i in 0..<3 {
+            for j in 0..<3 {
+                for k in 0..<3 {
+                    tiles[i][j][k].flushColor()
+                }
             }
         }
     }
@@ -278,17 +268,6 @@ class Cube {
         tiles[1][0][2] = edge2
         tiles[2][0][1] = edge3
         tiles[1][0][0] = edge4
-        
-        // TODO: remove
-        corner1.updateColor()
-        corner2.updateColor()
-        corner4.updateColor()
-        corner3.updateColor()
-        
-        edge1.updateColor()
-        edge2.updateColor()
-        edge3.updateColor()
-        edge4.updateColor()
     }
     
     // make L' (left counter-clockwise) move
@@ -327,7 +306,7 @@ class Cube {
         corner2.xTile.color = corner1.yTile.color
         corner2.yTile.color = corner1.xTile.color
         corner2.zTile.color = corner1.zTile.color
-
+        
         corner1.xTile.color = corner4yTileColor
         corner1.yTile.color = corner4xTileColor
         corner1.zTile.color = corner4zTileColor
@@ -342,10 +321,10 @@ class Cube {
         var edge2 = tiles[1][2][2] as! Edge // red, blue
         var edge3 = tiles[2][2][1] as! Edge // red, yellow
         var edge4 = tiles[1][2][0] as! Edge // red, green
-
+        
         let edge4yTileColor = edge4.yTile.color
         let edge4xTileColor = edge4.xTile.color
-
+        
         edge4.yTile.color = edge3.xTile.color
         edge4.xTile.color = edge3.yTile.color
         
@@ -357,22 +336,11 @@ class Cube {
         
         edge1.xTile.color = edge4yTileColor
         edge1.yTile.color = edge4xTileColor
-
+        
         tiles[0][2][1] = edge1
         tiles[1][2][2] = edge2
         tiles[2][2][1] = edge3
         tiles[1][2][0] = edge4
-        
-        // TODO: remove
-        corner1.updateColor()
-        corner2.updateColor()
-        corner4.updateColor()
-        corner3.updateColor()
-        
-        edge1.updateColor()
-        edge2.updateColor()
-        edge3.updateColor()
-        edge4.updateColor()
     }
     
     // make R' (right counter-clockwise) move
@@ -411,7 +379,7 @@ class Cube {
         corner2.xTile.color = corner1.zTile.color
         corner2.zTile.color = corner1.xTile.color
         corner2.yTile.color = corner1.yTile.color
-
+        
         corner1.xTile.color = corner4zTileColor
         corner1.zTile.color = corner4xTileColor
         corner1.yTile.color = corner4yTileColor
@@ -426,10 +394,10 @@ class Cube {
         var edge2 = tiles[1][2][0] as! Edge // green, red
         var edge3 = tiles[2][1][0] as! Edge // green, yellow
         var edge4 = tiles[1][0][0] as! Edge // green, orange
-
+        
         let edge4xTileColor = edge4.xTile.color
         let edge4yTileColor = edge4.yTile.color
-
+        
         edge4.xTile.color = edge3.xTile.color
         edge4.yTile.color = edge3.yTile.color
         
@@ -441,22 +409,11 @@ class Cube {
         
         edge1.xTile.color = edge4xTileColor
         edge1.yTile.color = edge4yTileColor
-
+        
         tiles[0][1][0] = edge1
         tiles[1][2][0] = edge2
         tiles[2][1][0] = edge3
         tiles[1][0][0] = edge4
-        
-        // TODO: remove
-        corner1.updateColor()
-        corner2.updateColor()
-        corner4.updateColor()
-        corner3.updateColor()
-        
-        edge1.updateColor()
-        edge2.updateColor()
-        edge3.updateColor()
-        edge4.updateColor()
     }
     
     // make F' (front counter-clockwise) move
@@ -510,10 +467,10 @@ class Cube {
         var edge2 = tiles[1][2][2] as! Edge // blue, red
         var edge3 = tiles[2][1][2] as! Edge // blue, yellow
         var edge4 = tiles[1][0][2] as! Edge // blue, orange
-
+        
         let edge1xTileColor = edge1.xTile.color
         let edge1yTileColor = edge1.yTile.color
-
+        
         edge1.xTile.color = edge2.xTile.color
         edge1.yTile.color = edge2.yTile.color
         
@@ -525,22 +482,11 @@ class Cube {
         
         edge4.xTile.color = edge1xTileColor
         edge4.yTile.color = edge1yTileColor
-
+        
         tiles[0][1][2] = edge1
         tiles[1][2][2] = edge2
         tiles[2][1][2] = edge3
         tiles[1][0][2] = edge4
-        
-        // TODO: remove
-        corner1.updateColor()
-        corner2.updateColor()
-        corner4.updateColor()
-        corner3.updateColor()
-        
-        edge1.updateColor()
-        edge2.updateColor()
-        edge3.updateColor()
-        edge4.updateColor()
     }
     
     // make B' (back counter-clockwise) move
@@ -594,10 +540,10 @@ class Cube {
         var edge2 = tiles[0][0][1] as! Edge // white, orange
         var edge3 = tiles[0][1][2] as! Edge // white, blue
         var edge4 = tiles[0][2][1] as! Edge // white, red
-
+        
         let edge4yTileColor = edge4.yTile.color
         let edge4xTileColor = edge4.xTile.color
-
+        
         edge4.yTile.color = edge3.yTile.color
         edge4.xTile.color = edge3.xTile.color
         
@@ -609,22 +555,11 @@ class Cube {
         
         edge1.yTile.color = edge4yTileColor
         edge1.xTile.color = edge4xTileColor
-
+        
         tiles[0][1][0] = edge1
         tiles[0][0][1] = edge2
         tiles[0][1][2] = edge3
         tiles[0][2][1] = edge4
-        
-        // TODO: remove
-        corner1.updateColor()
-        corner2.updateColor()
-        corner4.updateColor()
-        corner3.updateColor()
-        
-        edge1.updateColor()
-        edge2.updateColor()
-        edge3.updateColor()
-        edge4.updateColor()
     }
     
     // make U' (up counter-clockwise) move
@@ -678,10 +613,10 @@ class Cube {
         var edge2 = tiles[2][0][1] as! Edge // yellow, orange
         var edge3 = tiles[2][1][2] as! Edge // yellow, blue
         var edge4 = tiles[2][2][1] as! Edge // yellow, red
-
+        
         let edge1yTileColor = edge1.yTile.color
         let edge1xTileColor = edge1.xTile.color
-
+        
         edge1.yTile.color = edge2.yTile.color
         edge1.xTile.color = edge2.xTile.color
         
@@ -693,22 +628,11 @@ class Cube {
         
         edge4.yTile.color = edge1yTileColor
         edge4.xTile.color = edge1xTileColor
-
+        
         tiles[2][1][0] = edge1
         tiles[2][0][1] = edge2
         tiles[2][1][2] = edge3
         tiles[2][2][1] = edge4
-        
-        // TODO: remove
-        corner1.updateColor()
-        corner2.updateColor()
-        corner4.updateColor()
-        corner3.updateColor()
-        
-        edge1.updateColor()
-        edge2.updateColor()
-        edge3.updateColor()
-        edge4.updateColor()
     }
     
     // make D' (down counter-clockwise) move
@@ -1263,7 +1187,5 @@ class Cube {
 protocol Block {
     func addToScene(scene: SCNScene)
     
-    func rotate(by worldRotation: SCNVector4, aroundTarget worldTarget: SCNVector3)
-    
-    func updateColor()
+    func flushColor()
 }
