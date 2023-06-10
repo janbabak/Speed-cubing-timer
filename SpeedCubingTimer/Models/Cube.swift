@@ -162,7 +162,9 @@ class Cube {
         
     }
     
-    // makes the L move
+    // MARK: - moves
+    
+    // make the L (left) move
     func turnL() {
         // corners
         var corner1 = tiles[0][0][0] as! Corner // white, green, orange
@@ -220,7 +222,7 @@ class Cube {
         edge4.updateColor()
     }
     
-    // makes the R move
+    // make the R (right) move
     func turnR() {
         // corners
         var corner1 = tiles[0][2][0] as! Corner // white, green, red
@@ -259,6 +261,64 @@ class Cube {
         edge4.yTile.color = edge3.xTile.color
         edge3.xTile.color = edge2.yTile.color
         edge2.yTile.color = edge1.xTile.color
+        edge1.xTile.color = edge4xTileColor
+
+        tiles[0][2][1] = edge1
+        tiles[1][2][2] = edge2
+        tiles[2][2][1] = edge3
+        tiles[1][2][0] = edge4
+        
+        // TODO: remove
+        corner1.updateColor()
+        corner2.updateColor()
+        corner4.updateColor()
+        corner3.updateColor()
+        
+        edge1.updateColor()
+        edge2.updateColor()
+        edge3.updateColor()
+        edge4.updateColor()
+    }
+    
+    // make the F (front) move
+    func turnF() {
+        // corners
+        var corner1 = tiles[0][0][0] as! Corner // white, green, orange
+        var corner2 = tiles[0][2][0] as! Corner // white, green, red
+        var corner3 = tiles[2][2][0] as! Corner // yellow, green, red
+        var corner4 = tiles[2][0][0] as! Corner // yellow, green, orange
+        
+        let corner4xTileColor = corner4.xTile.color
+        let corner4zTileColor = corner4.zTile.color
+        
+        corner4.xTile.color = corner3.zTile.color
+        corner4.zTile.color = corner3.xTile.color
+        
+        corner3.xTile.color = corner2.zTile.color
+        corner3.zTile.color = corner2.xTile.color
+        
+        corner2.xTile.color = corner1.zTile.color
+        corner2.zTile.color = corner1.xTile.color
+
+        corner1.xTile.color = corner4zTileColor
+        corner1.zTile.color = corner4xTileColor
+        
+        tiles[0][2][0] = corner1
+        tiles[0][2][2] = corner2
+        tiles[2][2][2] = corner3
+        tiles[2][2][0] = corner4
+        
+        // edges
+        var edge1 = tiles[0][1][0] as! Edge // green, white
+        var edge2 = tiles[1][2][0] as! Edge // green, red
+        var edge3 = tiles[2][1][0] as! Edge // green, yellow
+        var edge4 = tiles[1][0][0] as! Edge // green, orange
+
+        let edge4xTileColor = edge4.xTile.color
+
+        edge4.xTile.color = edge3.xTile.color
+        edge3.xTile.color = edge2.xTile.color
+        edge2.xTile.color = edge1.xTile.color
         edge1.xTile.color = edge4xTileColor
 
         tiles[0][2][1] = edge1
