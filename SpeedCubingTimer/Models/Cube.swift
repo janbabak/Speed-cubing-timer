@@ -222,6 +222,19 @@ class Cube {
         edge4.updateColor()
     }
     
+    // make L' (left counter-clockwise) move
+    func turnLPrime() {
+        turnL()
+        turnL()
+        turnL()
+    }
+    
+    // make L2 (left by twice) move
+    func turnL2() {
+        turnL()
+        turnL()
+    }
+    
     // make the R (right) move
     func turnR() {
         // corners
@@ -278,6 +291,19 @@ class Cube {
         edge2.updateColor()
         edge3.updateColor()
         edge4.updateColor()
+    }
+    
+    // make R' (right counter-clockwise) move
+    func turnRPrime() {
+        turnR()
+        turnR()
+        turnR()
+    }
+    
+    // make R2 (right by twice) move
+    func turnR2() {
+        turnR()
+        turnR()
     }
     
     // make the F (front) move
@@ -338,6 +364,19 @@ class Cube {
         edge4.updateColor()
     }
     
+    // make F' (front counter-clockwise) move
+    func turnFPrime() {
+        turnF()
+        turnF()
+        turnF()
+    }
+    
+    // make F2 (front by twice) move
+    func turnF2() {
+        turnF()
+        turnF()
+    }
+    
     // make the B (back) move
     func turnB() {
         // corners
@@ -394,6 +433,19 @@ class Cube {
         edge2.updateColor()
         edge3.updateColor()
         edge4.updateColor()
+    }
+    
+    // make B' (back counter-clockwise) move
+    func turnBPrime() {
+        turnB()
+        turnB()
+        turnB()
+    }
+    
+    // make B2 (back by twice) move
+    func turnB2() {
+        turnB()
+        turnB()
     }
     
     // make the U (up) move
@@ -454,6 +506,19 @@ class Cube {
         edge4.updateColor()
     }
     
+    // make U' (up counter-clockwise) move
+    func turnUPrime() {
+        turnU()
+        turnU()
+        turnU()
+    }
+    
+    // make U2 (up by twice) move
+    func turnU2() {
+        turnU()
+        turnU()
+    }
+    
     // make the D (down) move
     func turnD() {
         // corners
@@ -510,6 +575,19 @@ class Cube {
         edge2.updateColor()
         edge3.updateColor()
         edge4.updateColor()
+    }
+    
+    // make D' (down counter-clockwise) move
+    func turnDPrime() {
+        turnD()
+        turnD()
+        turnD()
+    }
+    
+    // make D2 (down by twice) move
+    func turnD2() {
+        turnD()
+        turnD()
     }
     
     // initialize the tile property by empty arrays
