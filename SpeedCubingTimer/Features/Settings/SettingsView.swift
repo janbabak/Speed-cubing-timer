@@ -12,8 +12,6 @@ struct SettingsView: View {
     var body: some View {
         VStack {
             Text("Settings")
-            Cube3DView()
-                .frame(height: 350)
         }
         .padding()
     }
