@@ -162,7 +162,7 @@ class Cube {
         
     }
     
-    // makes the R move
+    // makes the L move
     func turnL() {
         // corners
         var corner1 = tiles[0][0][0] as! Corner // white, green, orange
@@ -207,6 +207,64 @@ class Cube {
         tiles[1][0][2] = edge2
         tiles[2][0][1] = edge3
         tiles[1][0][0] = edge4
+        
+        // TODO: remove
+        corner1.updateColor()
+        corner2.updateColor()
+        corner4.updateColor()
+        corner3.updateColor()
+        
+        edge1.updateColor()
+        edge2.updateColor()
+        edge3.updateColor()
+        edge4.updateColor()
+    }
+    
+    // makes the R move
+    func turnR() {
+        // corners
+        var corner1 = tiles[0][2][0] as! Corner // white, green, red
+        var corner2 = tiles[0][2][2] as! Corner // white, blue, red
+        var corner3 = tiles[2][2][2] as! Corner // yellow, blue, red
+        var corner4 = tiles[2][2][0] as! Corner // yellow, green, red
+        
+        let corner4xTileColor = corner4.xTile.color
+        let corner4yTileColor = corner4.yTile.color
+        
+        corner4.xTile.color = corner3.yTile.color
+        corner4.yTile.color = corner3.xTile.color
+        
+        corner3.xTile.color = corner2.yTile.color
+        corner3.yTile.color = corner2.xTile.color
+        
+        corner2.xTile.color = corner1.yTile.color
+        corner2.yTile.color = corner1.xTile.color
+
+        corner1.xTile.color = corner4yTileColor
+        corner1.yTile.color = corner4xTileColor
+        
+        tiles[0][2][0] = corner1
+        tiles[0][2][2] = corner2
+        tiles[2][2][2] = corner3
+        tiles[2][2][0] = corner4
+        
+        // edges
+        var edge1 = tiles[0][2][1] as! Edge // white, red
+        var edge2 = tiles[1][2][2] as! Edge // blue, red
+        var edge3 = tiles[2][2][1] as! Edge // yellow, red
+        var edge4 = tiles[1][2][0] as! Edge // green, red
+
+        let edge4xTileColor = edge4.yTile.color
+
+        edge4.yTile.color = edge3.xTile.color
+        edge3.xTile.color = edge2.yTile.color
+        edge2.yTile.color = edge1.xTile.color
+        edge1.xTile.color = edge4xTileColor
+
+        tiles[0][2][1] = edge1
+        tiles[1][2][2] = edge2
+        tiles[2][2][1] = edge3
+        tiles[1][2][0] = edge4
         
         // TODO: remove
         corner1.updateColor()
@@ -730,7 +788,7 @@ class Cube {
         )
         
         // yellow, blue, red corner
-        tiles[0][2].append(
+        tiles[2][2].append(
             Corner(
                 xTile:
                     Tile(

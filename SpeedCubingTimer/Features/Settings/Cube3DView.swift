@@ -20,9 +20,11 @@ struct Cube3DView: UIViewRepresentable {
         view.antialiasingMode = .multisampling2X
         view.backgroundColor = .clear
         
-        cube.turnL()
-        cube.turnL()
-        cube.turnL()
+//        cube.turnL()
+//        cube.turnL()
+//        cube.turnL()
+//        cube.turnR()
+        
         
         return view
     }
