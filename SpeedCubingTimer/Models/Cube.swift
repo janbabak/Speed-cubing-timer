@@ -8,8 +8,8 @@
 import SceneKit
 
 class Cube {
-    var tiles: [[[Block]]]
-    var scene = SCNScene()
+    private var tiles: [[[Block]]]
+    private(set) var scene = SCNScene()
     
     // MARK: - Cube constatnts
     static let rotation90deg = 90.0 * Float.pi / 180.0
@@ -113,8 +113,8 @@ class Cube {
         var color: UIColor
         
         static let size: CGFloat = 1.0
-        static let length: CGFloat = size / 10.0
-        static let chamferRadius = 0.05
+        static let length: CGFloat = size / 7.5
+        static let chamferRadius = 0.1
         
         init(color: UIColor, position: SCNVector3, rotation: SCNVector3) {
             node.geometry = SCNBox(width: Tile.size, height: Tile.size, length: Tile.length, chamferRadius: Tile.chamferRadius)
@@ -137,6 +137,8 @@ class Cube {
             node.geometry?.firstMaterial?.diffuse.contents = color
         }
     }
+    
+    // MARK: - public methods
     
     // scramble the cube
     func scramble(_ scramble: String) {
@@ -793,6 +795,8 @@ class Cube {
         turnD()
     }
     
+    // MARK: - private methods
+    
     // initialize the tile property by empty arrays
     private static func initTiles() -> [[[Block]]] {
         var tilesLocal: [[[Block]]] = []
@@ -806,9 +810,8 @@ class Cube {
         return tilesLocal
     }
     
-    // MARK: - create cube 😬
-    
-    static func createCube(scene: SCNScene) -> [[[Block]]] {
+    // create tiles
+    private static func createCube(scene: SCNScene) -> [[[Block]]] {
         var tiles = Cube.initTiles()
         
         // MARK: - first layer
@@ -1332,8 +1335,11 @@ class Cube {
     }
 }
 
+// block can be ether Corner or Edge or Center or Core
 protocol Block {
+    // add block the the scene
     func addToScene(scene: SCNScene)
     
+    // flush colors from tiles properties to the scene
     func flushColor()
 }
