@@ -158,8 +158,64 @@ class Cube {
         }
     }
     
-    func scramble() {
+    func scramble(_ scramble: String) {
+        let moves = scramble.components(separatedBy: " ")
         
+        for move in moves {
+            switch move {
+                
+            //right cube face
+            case "R":
+                turnR()
+            case "R2":
+                turnR2()
+            case "R\'":
+                turnRPrime()
+                
+            //left cube face
+            case "L":
+                turnL()
+            case "L2":
+                turnL2()
+            case "L\'":
+                turnLPrime()
+            
+            //front cube face
+            case "F":
+                turnF()
+            case "F2":
+                turnF2()
+            case "F\'":
+                turnFPrime()
+            
+            //back cube face
+            case "B":
+                turnB()
+            case "B2":
+                turnB2()
+            case "B\'":
+                turnBPrime()
+             
+            //upper cube face
+            case "U":
+                turnU()
+            case "U2":
+                turnU2()
+            case "U\'":
+                turnUPrime()
+                
+            //down cube face
+            case "D":
+                turnD()
+            case "D2":
+                turnD2()
+            case "D\'":
+                turnDPrime()
+                
+            default:
+                print("move not found")
+            }
+        }
     }
     
     // MARK: - moves
@@ -174,18 +230,23 @@ class Cube {
         
         let corner1xTileColor = corner1.xTile.color
         let corner1yTileColor = corner1.yTile.color
+        let corner1zTileColor = corner1.zTile.color
         
         corner1.xTile.color = corner2.yTile.color
         corner1.yTile.color = corner2.xTile.color
+        corner1.zTile.color = corner2.zTile.color
         
         corner2.xTile.color = corner3.yTile.color
         corner2.yTile.color = corner3.xTile.color
+        corner2.zTile.color = corner3.zTile.color
         
         corner3.xTile.color = corner4.yTile.color
         corner3.yTile.color = corner4.xTile.color
+        corner3.zTile.color = corner4.zTile.color
         
         corner4.xTile.color = corner1yTileColor
         corner4.yTile.color = corner1xTileColor
+        corner4.zTile.color = corner1zTileColor
         
         tiles[0][0][0] = corner1
         tiles[0][0][2] = corner2
@@ -199,11 +260,19 @@ class Cube {
         var edge4 = tiles[1][0][0] as! Edge // orange, green
         
         let edge1xTileColor = edge1.xTile.color
+        let edge1yTileColor = edge1.yTile.color
         
         edge1.xTile.color = edge2.yTile.color
+        edge1.yTile.color = edge2.xTile.color
+        
         edge2.yTile.color = edge3.xTile.color
+        edge2.xTile.color = edge3.yTile.color
+        
         edge3.xTile.color = edge4.yTile.color
+        edge3.yTile.color = edge4.xTile.color
+        
         edge4.yTile.color = edge1xTileColor
+        edge4.xTile.color = edge1yTileColor
         
         tiles[0][0][1] = edge1
         tiles[1][0][2] = edge2
@@ -245,18 +314,23 @@ class Cube {
         
         let corner4xTileColor = corner4.xTile.color
         let corner4yTileColor = corner4.yTile.color
+        let corner4zTileColor = corner4.zTile.color
         
         corner4.xTile.color = corner3.yTile.color
         corner4.yTile.color = corner3.xTile.color
+        corner4.zTile.color = corner3.zTile.color
         
         corner3.xTile.color = corner2.yTile.color
         corner3.yTile.color = corner2.xTile.color
+        corner3.zTile.color = corner2.zTile.color
         
         corner2.xTile.color = corner1.yTile.color
         corner2.yTile.color = corner1.xTile.color
+        corner2.zTile.color = corner1.zTile.color
 
         corner1.xTile.color = corner4yTileColor
         corner1.yTile.color = corner4xTileColor
+        corner1.zTile.color = corner4zTileColor
         
         tiles[0][2][0] = corner1
         tiles[0][2][2] = corner2
@@ -269,12 +343,20 @@ class Cube {
         var edge3 = tiles[2][2][1] as! Edge // red, yellow
         var edge4 = tiles[1][2][0] as! Edge // red, green
 
-        let edge4xTileColor = edge4.yTile.color
+        let edge4yTileColor = edge4.yTile.color
+        let edge4xTileColor = edge4.xTile.color
 
         edge4.yTile.color = edge3.xTile.color
+        edge4.xTile.color = edge3.yTile.color
+        
         edge3.xTile.color = edge2.yTile.color
+        edge3.yTile.color = edge2.xTile.color
+        
         edge2.yTile.color = edge1.xTile.color
-        edge1.xTile.color = edge4xTileColor
+        edge2.xTile.color = edge1.yTile.color
+        
+        edge1.xTile.color = edge4yTileColor
+        edge1.yTile.color = edge4xTileColor
 
         tiles[0][2][1] = edge1
         tiles[1][2][2] = edge2
@@ -316,18 +398,23 @@ class Cube {
         
         let corner4xTileColor = corner4.xTile.color
         let corner4zTileColor = corner4.zTile.color
+        let corner4yTileColor = corner4.yTile.color
         
         corner4.xTile.color = corner3.zTile.color
         corner4.zTile.color = corner3.xTile.color
+        corner4.yTile.color = corner3.yTile.color
         
         corner3.xTile.color = corner2.zTile.color
         corner3.zTile.color = corner2.xTile.color
+        corner3.yTile.color = corner2.yTile.color
         
         corner2.xTile.color = corner1.zTile.color
         corner2.zTile.color = corner1.xTile.color
+        corner2.yTile.color = corner1.yTile.color
 
         corner1.xTile.color = corner4zTileColor
         corner1.zTile.color = corner4xTileColor
+        corner1.yTile.color = corner4yTileColor
         
         tiles[0][0][0] = corner1
         tiles[0][2][0] = corner2
@@ -341,11 +428,19 @@ class Cube {
         var edge4 = tiles[1][0][0] as! Edge // green, orange
 
         let edge4xTileColor = edge4.xTile.color
+        let edge4yTileColor = edge4.yTile.color
 
         edge4.xTile.color = edge3.xTile.color
+        edge4.yTile.color = edge3.yTile.color
+        
         edge3.xTile.color = edge2.xTile.color
+        edge3.yTile.color = edge2.yTile.color
+        
         edge2.xTile.color = edge1.xTile.color
+        edge2.yTile.color = edge1.yTile.color
+        
         edge1.xTile.color = edge4xTileColor
+        edge1.yTile.color = edge4yTileColor
 
         tiles[0][1][0] = edge1
         tiles[1][2][0] = edge2
@@ -387,18 +482,23 @@ class Cube {
         
         let corner1xTileColor = corner1.xTile.color
         let corner1zTileColor = corner1.zTile.color
+        let corner1yTileColor = corner1.yTile.color
         
         corner1.xTile.color = corner2.zTile.color
         corner1.zTile.color = corner2.xTile.color
+        corner1.yTile.color = corner2.yTile.color
         
         corner2.xTile.color = corner3.zTile.color
         corner2.zTile.color = corner3.xTile.color
+        corner2.yTile.color = corner3.yTile.color
         
         corner3.xTile.color = corner4.zTile.color
         corner3.zTile.color = corner4.xTile.color
+        corner3.yTile.color = corner4.yTile.color
         
         corner4.xTile.color = corner1zTileColor
         corner4.zTile.color = corner1xTileColor
+        corner4.yTile.color = corner1yTileColor
         
         tiles[0][0][2] = corner1
         tiles[0][2][2] = corner2
@@ -412,11 +512,19 @@ class Cube {
         var edge4 = tiles[1][0][2] as! Edge // blue, orange
 
         let edge1xTileColor = edge1.xTile.color
+        let edge1yTileColor = edge1.yTile.color
 
         edge1.xTile.color = edge2.xTile.color
+        edge1.yTile.color = edge2.yTile.color
+        
         edge2.xTile.color = edge3.xTile.color
+        edge2.yTile.color = edge3.yTile.color
+        
         edge3.xTile.color = edge4.xTile.color
+        edge3.yTile.color = edge4.yTile.color
+        
         edge4.xTile.color = edge1xTileColor
+        edge4.yTile.color = edge1yTileColor
 
         tiles[0][1][2] = edge1
         tiles[1][2][2] = edge2
@@ -458,18 +566,23 @@ class Cube {
         
         let corner4zTileColor = corner4.zTile.color
         let corner4yTileColor = corner4.yTile.color
+        let corner4xTileColor = corner4.xTile.color
         
         corner4.zTile.color = corner3.yTile.color
         corner4.yTile.color = corner3.zTile.color
+        corner4.xTile.color = corner3.xTile.color
         
         corner3.zTile.color = corner2.yTile.color
         corner3.yTile.color = corner2.zTile.color
+        corner3.xTile.color = corner2.xTile.color
         
         corner2.zTile.color = corner1.yTile.color
         corner2.yTile.color = corner1.zTile.color
+        corner2.xTile.color = corner1.xTile.color
         
         corner1.zTile.color = corner4yTileColor
         corner1.yTile.color = corner4zTileColor
+        corner1.xTile.color = corner4xTileColor
         
         tiles[0][2][0] = corner1
         tiles[0][0][0] = corner2
@@ -483,11 +596,19 @@ class Cube {
         var edge4 = tiles[0][2][1] as! Edge // white, red
 
         let edge4yTileColor = edge4.yTile.color
+        let edge4xTileColor = edge4.xTile.color
 
         edge4.yTile.color = edge3.yTile.color
+        edge4.xTile.color = edge3.xTile.color
+        
         edge3.yTile.color = edge2.yTile.color
+        edge3.xTile.color = edge2.xTile.color
+        
         edge2.yTile.color = edge1.yTile.color
+        edge2.xTile.color = edge1.xTile.color
+        
         edge1.yTile.color = edge4yTileColor
+        edge1.xTile.color = edge4xTileColor
 
         tiles[0][1][0] = edge1
         tiles[0][0][1] = edge2
@@ -529,18 +650,23 @@ class Cube {
         
         let corner1zTileColor = corner1.zTile.color
         let corner1yTileColor = corner1.yTile.color
+        let corner1xTileColor = corner1.xTile.color
         
         corner1.zTile.color = corner2.yTile.color
         corner1.yTile.color = corner2.zTile.color
+        corner1.xTile.color = corner2.xTile.color
         
         corner2.zTile.color = corner3.yTile.color
         corner2.yTile.color = corner3.zTile.color
+        corner2.xTile.color = corner3.xTile.color
         
         corner3.zTile.color = corner4.yTile.color
         corner3.yTile.color = corner4.zTile.color
+        corner3.xTile.color = corner4.xTile.color
         
         corner4.zTile.color = corner1yTileColor
         corner4.yTile.color = corner1zTileColor
+        corner4.xTile.color = corner1xTileColor
         
         tiles[2][2][0] = corner1
         tiles[2][0][0] = corner2
@@ -554,11 +680,19 @@ class Cube {
         var edge4 = tiles[2][2][1] as! Edge // yellow, red
 
         let edge1yTileColor = edge1.yTile.color
+        let edge1xTileColor = edge1.xTile.color
 
         edge1.yTile.color = edge2.yTile.color
+        edge1.xTile.color = edge2.xTile.color
+        
         edge2.yTile.color = edge3.yTile.color
+        edge2.xTile.color = edge3.xTile.color
+        
         edge3.yTile.color = edge4.yTile.color
+        edge3.xTile.color = edge4.xTile.color
+        
         edge4.yTile.color = edge1yTileColor
+        edge4.xTile.color = edge1xTileColor
 
         tiles[2][1][0] = edge1
         tiles[2][0][1] = edge2

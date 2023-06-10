@@ -13,6 +13,7 @@ final class TimerViewModel: ObservableObject {
     @Published private(set) var scramble = ScrambleGenerator.generate()
     @Published private(set) var holdingScreen = false
     @Published private(set) var timerIsRunning = false
+    @Published private(set) var cube = Cube()
     @Published var deleteConfirmationDialogPresent = false
     
     // MARK: - computed props
@@ -106,6 +107,7 @@ final class TimerViewModel: ObservableObject {
         stopTimer()
         lastSolve.date = Date()
         scramble = ScrambleGenerator.generate() // prepare next scramle
+        cube.scramble(scramble)
         print(lastSolve)
     }
     

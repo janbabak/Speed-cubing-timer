@@ -21,7 +21,9 @@ struct TimerView: View {
                 .padding(.bottom, 16)
             
             stats
-                
+
+            cube
+    
             Spacer()
             
             buttons
@@ -62,6 +64,11 @@ struct TimerView: View {
             LabelPropertyView(label: "avg 50:", property: viewModel.currentAverageOf50)
         }
         .opacity(viewModel.timerIsRunning ? 0 : 1) // stats are not visible, when timer si running
+    }
+    
+    var cube: some View {
+        Cube3DView(cube: viewModel.cube)
+            .frame(height: 160)
     }
     
     // delete, DNF, +2 buttons
