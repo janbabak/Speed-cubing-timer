@@ -7,11 +7,13 @@
 
 import Foundation
 
+// Core Data Solve entity extension
 extension CDSolve {
     
     // result time in seconds
     var inSeconds: Double {
-        return Double(hours * 3600 + minutes * 60 + seconds + (penalty == Solve.Penalty.plus2.rawValue ? 2 : 0)) + Double(fractions) / 100.0
+        return Double(hours * 3600 + minutes * 60 + seconds + (penalty == Solve.Penalty.plus2.rawValue ? 2 : 0))
+        + Double(fractions) / 100.0
     }
     
     // format time including the penalty
@@ -20,31 +22,6 @@ extension CDSolve {
             return "DNF"
         }
         
-        var secondsOut = seconds
-        var minutesOut = minutes
-        var hoursOut = hours
-        
-        if penalty == Solve.Penalty.plus2.rawValue {
-            secondsOut += 2
-        }
-        
-        if secondsOut > 59 {
-            minutesOut += secondsOut / 60
-            secondsOut %= 60
-        }
-        
-        if minutesOut > 59 {
-            hoursOut += minutesOut / 60
-            minutesOut %= 60
-        }
-        
-        if hoursOut == 0 {
-            if minutesOut == 0 {
-                return String(format: "%02d.%02d", secondsOut, fractions)
-            } else {
-                return String(format: "%02d:%02d.%02d", minutesOut, secondsOut, fractions)
-            }
-        }
-        return String(format: "%02d:%02d:%02d.%02d", hoursOut, minutesOut, secondsOut, fractions)
+        return TimeFormatters.formatTime(seconds: inSeconds)
     }
 }

@@ -18,7 +18,7 @@ struct StatisticsView: View {
                 .frame(height: 384)
             
             numberStats
-
+            
             Spacer()
         }
         .padding(.horizontal, 16)

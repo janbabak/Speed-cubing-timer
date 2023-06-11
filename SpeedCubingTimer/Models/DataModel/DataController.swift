@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import SwiftUI
 
 final class DataController: ObservableObject {
     static let shared = DataController() // shared singleton instance

@@ -61,9 +61,9 @@ struct SolvesView: View {
                 HStack {
                     Text(solve.formattedTime)
                         .padding(.bottom, 4)
-
+                    
                     Spacer()
-
+                    
                     if (solve.penalty != Solve.Penalty.noPenalty.rawValue) {
                         Text(solve.penalty ?? "")
                             .foregroundColor(.red)

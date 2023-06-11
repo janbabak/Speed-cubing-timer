@@ -16,7 +16,7 @@ final class TimerViewController: UIViewController {
         self.timerViewModel = timerViewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -42,7 +42,7 @@ final class TimerViewController: UIViewController {
             action: #selector(openSettings)
         )
     }
-        
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

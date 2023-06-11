@@ -5,12 +5,10 @@
 //  Created by Jan Babák on 11.06.2023.
 //
 
-import CoreData
+import Foundation
 
 final class SolvesViewModel: ObservableObject {
     @Published var deleteConfirmationDialogPresent = false
-    
-    // MARK: - private props
     
     private var solves: [CDSolve] = []
     

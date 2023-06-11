@@ -5,7 +5,7 @@
 //  Created by Jan Babák on 08.06.2023.
 //
 
-import SwiftUI
+import Foundation
 
 final class StatisticsViewModel: ObservableObject {
     @Published var solves: [CDSolve] = []
@@ -63,7 +63,7 @@ final class StatisticsViewModel: ObservableObject {
             seconds: notDnfSolves.min(by: { $0.inSeconds < $1.inSeconds })?.inSeconds
         )
     }
-
+    
     var formattedWorstTime: String {
         TimeFormatters.formatTime(
             seconds: worstTime
@@ -73,7 +73,7 @@ final class StatisticsViewModel: ObservableObject {
     var worstTime: Double? {
         notDnfSolves.max(by: { $0.inSeconds < $1.inSeconds })?.inSeconds
     }
-
+    
     static let numberOfMarks = 5
     
     var xAxisMarks: [Int] {
@@ -98,7 +98,7 @@ final class StatisticsViewModel: ObservableObject {
     /// computes average of last `numberOfSolves` solves
     static func currentAverage(of numberOfSolves: Int = -1, from solves: [CDSolve]) -> String {
         let numberOfSolves = (numberOfSolves == -1 ? solves.count : numberOfSolves)
-
+        
         // e.g. can compute average of 12, when there are only 5 solves
         if (solves.count < numberOfSolves) {
             return "-"
@@ -124,7 +124,7 @@ final class StatisticsViewModel: ObservableObject {
         for i in 0...(solves.count - numberOfSolves) {
             let nextAverage = average(fromIdx: i, numberOfSolves: numberOfSolves, from: solves)
             if nextAverage != nil && (bestAverage ==  nil || nextAverage! < bestAverage!) {
-                    bestAverage = nextAverage
+                bestAverage = nextAverage
             }
         }
         

@@ -20,7 +20,7 @@ struct TimerView: View {
                 .padding(.bottom, 16)
             
             stats
-
+            
             cube
             
             buttons
@@ -76,7 +76,7 @@ struct TimerView: View {
                 label: "Delete",
                 tint: .red,
                 borderedProminent: true,
-                disabled: viewModel.cdSolves.count == 0
+                disabled: viewModel.solves.count == 0
             ) {
                 viewModel.deleteConfirmationDialogPresent = true
             }
@@ -92,7 +92,7 @@ struct TimerView: View {
             FullwidthButton(
                 label: "DNF",
                 tint: .orange,
-                borderedProminent: viewModel.cdSolves.last?.penalty == Solve.Penalty.DNF.rawValue
+                borderedProminent: viewModel.solves.last?.penalty == Solve.Penalty.DNF.rawValue
             ) {
                 viewModel.toggleLastSolvePenalty(penalty: .DNF)
             }
@@ -101,7 +101,7 @@ struct TimerView: View {
             FullwidthButton(
                 label: "+2",
                 tint: .blue,
-                borderedProminent: viewModel.cdSolves.last?.penalty == Solve.Penalty.plus2.rawValue
+                borderedProminent: viewModel.solves.last?.penalty == Solve.Penalty.plus2.rawValue
             ) {
                 viewModel.toggleLastSolvePenalty(penalty: .plus2)
             }

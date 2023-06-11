@@ -5,12 +5,11 @@
 //  Created by Jan Babák on 16.03.2023.
 //
 
-import SwiftUI
-import CoreData
+import Foundation
 
 final class TimerViewModel: ObservableObject {
     @Published var activeSolve = Solve()
-    @Published var cdSolves: [CDSolve] = []
+    @Published var solves: [CDSolve] = []
     @Published var deleteConfirmationDialogPresent = false
     @Published private(set) var scramble = ScrambleGenerator.generate()
     @Published private(set) var holdingScreen = false
@@ -20,19 +19,19 @@ final class TimerViewModel: ObservableObject {
     // MARK: - computed props
     
     var currentMeanOf3: String {
-        StatisticsViewModel.currentAverage(of: 3, from: cdSolves)
+        StatisticsViewModel.currentAverage(of: 3, from: solves)
     }
     
     var currentAverageOf5: String {
-        StatisticsViewModel.currentAverage(of: 5, from: cdSolves)
+        StatisticsViewModel.currentAverage(of: 5, from: solves)
     }
     
     var currentAverageOf12: String {
-        StatisticsViewModel.currentAverage(of: 12, from: cdSolves)
+        StatisticsViewModel.currentAverage(of: 12, from: solves)
     }
     
     var currentAverageOf50: String {
-        StatisticsViewModel.currentAverage(of: 50, from: cdSolves)
+        StatisticsViewModel.currentAverage(of: 50, from: solves)
     }
     
     // MARK: - private props
@@ -49,7 +48,7 @@ final class TimerViewModel: ObservableObject {
     
     // fetch solves
     func fetchSolves() {
-        cdSolves = DataController.shared.fetchSolves()
+        solves = DataController.shared.fetchSolves()
     }
     
     // on tab gesture - stop the timer based on its state (running or not)
@@ -78,7 +77,7 @@ final class TimerViewModel: ObservableObject {
     
     // toggle penalty of last solve (toggle between penalty and no penalty)
     func toggleLastSolvePenalty(penalty: Solve.Penalty) {
-        if let lastSolve = cdSolves.last {
+        if let lastSolve = solves.last {
             if lastSolve.penalty == penalty.rawValue {
                 lastSolve.penalty = Solve.Penalty.noPenalty.rawValue
             } else {
@@ -92,7 +91,7 @@ final class TimerViewModel: ObservableObject {
     // delete last solve
     func deleteLastSolve() {
         // first is last, when solves are sorted in descending order
-        if let lastSolve = cdSolves.last {
+        if let lastSolve = solves.last {
             DataController.shared.deleteSolve(solve: lastSolve)
             fetchSolves()
         }

@@ -22,7 +22,7 @@ struct ChartView: View {
                 .foregroundStyle(Gradient(colors: [.pink, .orange, .yellow]))
                 .interpolationMethod(.catmullRom)
                 .symbol(Circle())
-                    
+                
                 // rule mark with annotation
                 if let selectedItemIdx = viewModel.selectedItemIdx {
                     RuleMark(x: .value("Order", selectedItemIdx))

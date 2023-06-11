@@ -23,7 +23,7 @@ enum TimeFormatters {
         }
         
         var secondsOut = Int(floor(seconds))
-        var fractionsOut = Int((seconds - Double(secondsOut)) * 100)
+        let fractionsOut = Int((seconds - Double(secondsOut)) * 100)
         var minutesOut = 0
         var hoursOut = 0
         

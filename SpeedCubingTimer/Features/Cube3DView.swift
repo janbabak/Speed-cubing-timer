@@ -8,6 +8,7 @@
 import SwiftUI
 import SceneKit
 
+// 3D Rubiks cube view
 struct Cube3DView: UIViewRepresentable {
     
     var cube = Cube()
