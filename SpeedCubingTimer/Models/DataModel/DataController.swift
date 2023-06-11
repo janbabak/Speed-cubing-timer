@@ -63,6 +63,19 @@ final class DataController: ObservableObject {
         save()
     }
     
+    func addSolve(solve: Solve) {
+        addSolve(
+            scramble: solve.scramble,
+            date: solve.date,
+            hours: Int16(solve.hours),
+            minutes: Int16(solve.minutes),
+            seconds: Int16(solve.seconds),
+            fractions: Int16(solve.fractions),
+            note: solve.note,
+            penalty: solve.penalty.rawValue
+        )
+    }
+    
     func addSolve(
         scramble: String,
         date: Date = Date(),

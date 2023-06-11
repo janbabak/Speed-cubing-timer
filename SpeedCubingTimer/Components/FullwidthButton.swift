@@ -15,6 +15,7 @@ struct FullwidthButton: View {
     var font: Font = .title2
     var fullHeight = false
     var borderedProminent = true
+    var disabled = false
     var action: () -> Void = {}
     
     var body: some View {
@@ -35,6 +36,7 @@ struct FullwidthButton: View {
         }
         .tint(tint)
         .controlSize(controlSize)
+        .disabled(disabled)
     }
 }
 

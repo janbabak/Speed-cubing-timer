@@ -40,9 +40,6 @@ struct TimerView: View {
                     viewModel.onTouchUpGesture()
                 }
         )
-        .onAppear {
-            viewModel.visualizeCurrentScramble()
-        }
     }
     
     var scramble: some View {
@@ -51,7 +48,7 @@ struct TimerView: View {
     }
     
     var time: some View {
-        Text(viewModel.lastSolve.formattedTime)
+        Text(viewModel.activeSolve.formattedTime)
             .font(.system(size: 44, design: .monospaced))
             .foregroundColor(viewModel.holdingScreen ? .red : .primary)
     }
@@ -78,7 +75,8 @@ struct TimerView: View {
             FullwidthButton(
                 label: "Delete",
                 tint: .red,
-                borderedProminent: true
+                borderedProminent: true,
+                disabled: viewModel.cdSolves.count == 0
             ) {
                 viewModel.deleteConfirmationDialogPresent = true
             }
@@ -94,7 +92,7 @@ struct TimerView: View {
             FullwidthButton(
                 label: "DNF",
                 tint: .orange,
-                borderedProminent: viewModel.lastSolve.penalty == .DNF
+                borderedProminent: viewModel.cdSolves.last?.penalty == Solve.Penalty.DNF.rawValue
             ) {
                 viewModel.toggleLastSolvePenalty(penalty: .DNF)
             }
@@ -103,7 +101,7 @@ struct TimerView: View {
             FullwidthButton(
                 label: "+2",
                 tint: .blue,
-                borderedProminent: viewModel.lastSolve.penalty == .plus2
+                borderedProminent: viewModel.cdSolves.last?.penalty == Solve.Penalty.plus2.rawValue
             ) {
                 viewModel.toggleLastSolvePenalty(penalty: .plus2)
             }
