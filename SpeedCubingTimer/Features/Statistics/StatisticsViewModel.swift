@@ -70,18 +70,20 @@ final class StatisticsViewModel: ObservableObject {
         )
     }
     
-    lazy var worstTime: Double? = {
-        self.notDnfSolves.max(by: { $0.inSeconds < $1.inSeconds })?.inSeconds
-    }()
+    var worstTime: Double? {
+        notDnfSolves.max(by: { $0.inSeconds < $1.inSeconds })?.inSeconds
+    }
 
-    lazy var xAxisMarks: [Int] = {
-        let gap = Int(ceil((self.worstTime ?? 0) / 5))
+    static let numberOfMarks = 5
+    
+    var xAxisMarks: [Int] {
+        let gap = max(1, Int(ceil((self.worstTime ?? 0) / Double(Self.numberOfMarks))))
         var marks: [Int] = []
-        for i in 0..<5 {
+        for i in 0..<Self.numberOfMarks {
             marks.append(i * gap)
         }
         return marks
-    }()
+    }
     
     // MARK: - public methods
     
@@ -130,7 +132,7 @@ final class StatisticsViewModel: ObservableObject {
     }
     
     private static func average(fromIdx: Int, numberOfSolves: Int, from solves: [CDSolve]) -> Double? {
-        if fromIdx + numberOfSolves > solves.count || numberOfSolves > solves.count || fromIdx < 0 || numberOfSolves < 0 {
+        if fromIdx + numberOfSolves > solves.count || numberOfSolves > solves.count || fromIdx < 0 || numberOfSolves < 0 || solves.count == 0 {
             return nil
         }
         var numberOfRemovedSolves: Int

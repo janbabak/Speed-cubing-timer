@@ -42,7 +42,7 @@ struct ChartView: View {
                 }
             }
         }
-        .chartXScale(domain: 0...viewModel.notDnfSolves.count - 1)
+        .chartXScale(domain: 0...(max(viewModel.notDnfSolves.count - 1, 1)))
         .chartYScale(domain: 0...(Int(1.1 * Double(viewModel.worstTime ?? 10))))
         .chartYAxis {
             AxisMarks(values: viewModel.xAxisMarks) { axis in
