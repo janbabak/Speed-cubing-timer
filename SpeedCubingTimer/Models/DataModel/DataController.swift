@@ -49,6 +49,8 @@ final class DataController: ObservableObject {
     
     func deleteSolve(solve: CDSolve) {
         container.viewContext.delete(solve)
+        
+        save()
     }
     
     func addSolve(
