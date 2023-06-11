@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct SolvesView: View {
-    @StateObject var viewModel = SolvesViewModel()
+    @ObservedObject var viewModel: SolvesViewModel
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors: [
         SortDescriptor(\.date, order: .reverse)
@@ -18,15 +18,26 @@ struct SolvesView: View {
     let onSolveTapped: (CDSolve) -> Void
     
     var body: some View {
-        if (solves.isEmpty) {
-            Text("You don't have any solves yet!")
-        } else {
-            VStack(alignment: .leading) {
-                Text("Number of solves: \(solves.count)")
-                    .padding(.horizontal, 16)
-                    .foregroundColor(Color.theme.secondaryText)
-                
-                solvesList
+        Group {
+            if (solves.isEmpty) {
+                Text("You don't have any solves yet!")
+            } else {
+                VStack(alignment: .leading) {
+                    Text("Number of solves: \(solves.count)")
+                        .padding(.horizontal, 16)
+                        .foregroundColor(Color.theme.secondaryText)
+                    
+                    solvesList
+                }
+            }
+        }
+        .confirmationDialog(
+            "Delete all solves?",
+            isPresented: $viewModel.deleteConfirmationDialogPresent,
+            titleVisibility: .visible
+        ) {
+            Button("Delete", role: .destructive) {
+                viewModel.deleteAllSolves()
             }
         }
     }

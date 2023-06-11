@@ -22,6 +22,7 @@ final class DataController: ObservableObject {
         }
     }
     
+    // save all changes in context
     func save() {
         do {
             try container.viewContext.save()
@@ -31,9 +32,12 @@ final class DataController: ObservableObject {
         }
     }
     
+    // return all solves, can specify the fetch request (sorting, predicate)
     func fetchSolves(fetchRequest: NSFetchRequest<CDSolve> = CDSolve.fetchRequest()) -> [CDSolve] {
         do {
-            return try container.viewContext.fetch(fetchRequest)
+            let solves = try container.viewContext.fetch(fetchRequest)
+            print("🚚 Fetch solves.")
+            return solves
         } catch {
             print("Fetch solves failded: \(error.localizedDescription)")
             return []
@@ -60,7 +64,42 @@ final class DataController: ObservableObject {
     func deleteSolve(solve: CDSolve) {
         container.viewContext.delete(solve)
         
+        print("🗑️ Delet solve.")
+        
         save()
+    }
+    
+    func deleteAllSolves() {
+        let deleteRequest = NSBatchDeleteRequest(
+            fetchRequest: CDSolve.fetchRequest()
+        )
+        // Specify the result of the NSBatchDeleteRequest
+        // should be the NSManagedObject IDs for the deleted objects
+        deleteRequest.resultType = .resultTypeObjectIDs
+        
+        var batchDelete: NSBatchDeleteResult? = nil
+        do {
+            batchDelete = try container.viewContext.execute(deleteRequest) as? NSBatchDeleteResult
+        } catch {
+            print("batch delete error: \(error.localizedDescription)")
+            return
+        }
+        
+        guard let deleteResult = batchDelete?.result as? [NSManagedObjectID] else {
+            return
+        }
+
+        let deletedObjects: [AnyHashable: Any] = [
+            NSDeletedObjectsKey: deleteResult
+        ]
+
+        // Merge the delete changes into the managed object context
+        NSManagedObjectContext.mergeChanges(
+            fromRemoteContextSave: deletedObjects,
+            into: [container.viewContext]
+        )
+        
+        print("🗑️ Delete all solves.")
     }
     
     func addSolve(solve: Solve) {
@@ -98,10 +137,11 @@ final class DataController: ObservableObject {
         solve.penalty = penalty
         solve.id = UUID()
         
+        print("➕ Add solve.")
+        
         save()
     }
     
-    // TODO: - change architecture / logic of parameters
     func editSolve(
         solve: CDSolve,
         scramble: String? = nil,
@@ -137,6 +177,7 @@ final class DataController: ObservableObject {
         if let penalty {
             solve.penalty = penalty
         }
+        print("✍️ Edit solve.")
         
         save()
     }

@@ -9,11 +9,12 @@ import UIKit
 import SwiftUI
 
 final class SolvesViewController: UIViewController {
+    private let viewModel = SolvesViewModel()
     
     override func loadView() {
         super.loadView()
         
-        let rootView = SolvesView { [weak self] solve in
+        let rootView = SolvesView(viewModel: viewModel) { [weak self] solve in
             self?.onSolveTapped(solve: solve)
         }
         // inject core data context
@@ -31,6 +32,17 @@ final class SolvesViewController: UIViewController {
         navigationItem.title = "Solves"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "trash"),
+            style: .plain,
+            target: self,
+            action: #selector(deleteAllSolves)
+        )
+    }
+    
+    @objc
+    private func deleteAllSolves() {
+        viewModel.deleteConfirmationDialogPresent = true
     }
     
     private func onSolveTapped(solve: CDSolve) {

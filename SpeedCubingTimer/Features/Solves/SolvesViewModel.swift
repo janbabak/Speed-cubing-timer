@@ -8,6 +8,8 @@
 import CoreData
 
 final class SolvesViewModel: ObservableObject {
+    @Published var deleteConfirmationDialogPresent = false
+    
     // MARK: - private props
     
     private var solves: [CDSolve] = []
@@ -22,6 +24,10 @@ final class SolvesViewModel: ObservableObject {
         for offset in offsets {
             DataController.shared.deleteSolve(solve: solves[offset])
         }
+    }
+    
+    func deleteAllSolves() {
+        DataController.shared.deleteAllSolves()
     }
     
     // MARK: - private methods
