@@ -21,7 +21,7 @@ class RootViewController: UIViewController {
         timerNavigationController.tabBarItem.image = UIImage(systemName: "timer")
         
         //solves
-        let solvesController = SolvesViewController(timerViewModel: timerViewModel)
+        let solvesController = SolvesViewController()
         let solvesNavigationController = UINavigationController(rootViewController: solvesController)
         solvesNavigationController.tabBarItem.title = "Solves"
         solvesNavigationController.tabBarItem.image = UIImage(systemName: "list.bullet")

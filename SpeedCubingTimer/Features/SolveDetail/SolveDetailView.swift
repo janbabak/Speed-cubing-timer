@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct SolveDetailView: View {
-    
-    @ObservedObject var viewModel: TimerViewModel
-    @State var solve: Solve
+    @ObservedObject var viewModel: SolveDetailViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -28,37 +26,33 @@ struct SolveDetailView: View {
             penaltyButtons
         }
         .padding(.all, 16)
-        .onAppear {
-            viewModel.visualizeScramble(scramble: solve.scramble)
-        }
         .confirmationDialog(
             "Delete solve?",
             isPresented: $viewModel.deleteConfirmationDialogPresent,
             titleVisibility: .visible
         ) {
             Button("Delete", role: .destructive) {
-                viewModel.deleteSolveById(solveId: solve.id)
+                viewModel.deleteSolve()
                 dismiss() // TODO: - Warning "Publishing changes from within view updates is not allowed, this will cause undefined behavior."
             }
         }
     }
     
     var time: some View {
-        Text(solve.formattedTime)
+        Text(viewModel.solve.formattedTime)
             .font(.system(size: 44, weight: .medium, design: .monospaced))
     }
     
     @ViewBuilder
     func date() -> some View {
-        Text(TimeFormatters.joinedFormatter.string(from: solve.date))
+        Text(TimeFormatters.joinedFormatter.string(from: viewModel.solve.date ?? Date()))
             .foregroundColor(.gray)
             .font(.title3)
     }
     
     var scramble: some View {
         GroupBox {
-            Text(solve.scramble)
-                .font(.title3)
+            Text(viewModel.solve.scramble ?? "")
         } label: {
             Text("Scramble:")
                 .padding(.bottom, 2)
@@ -70,15 +64,16 @@ struct SolveDetailView: View {
             TextEditor(text:
                         Binding(
                             get: {
-                                solve.note
+                                viewModel.solve.note ?? ""
                             },
                             set: { value in
-                                solve = viewModel.setNoteBySolveId(note: value, solveId: solve.id)!
+                                viewModel.setNote(note: value)
                             }
                         )
             )
             .scrollContentBackground(.hidden)
             .background(Color.clear)
+            .frame(height: 32)
         } label: {
             Text("Note:")
         }
@@ -86,7 +81,7 @@ struct SolveDetailView: View {
     
     var cube: some View {
         Cube3DView(cube: viewModel.cube)
-            .frame(minHeight: 200, maxHeight: .infinity)
+            .frame(minHeight: 80, maxHeight: .infinity)
     }
     
     // penalty buttons
@@ -97,9 +92,9 @@ struct SolveDetailView: View {
                 label: "no penalty",
                 tint: .green, font: .headline,
                 fullHeight: true,
-                borderedProminent: solve.penalty == .noPenalty
+                borderedProminent: viewModel.solve.penalty == Solve.Penalty.noPenalty.rawValue
             ) {
-                self.solve = viewModel.togglePenalty(penalty: .noPenalty, solveId: solve.id)!
+                viewModel.togglePenalty(penalty: .noPenalty)
             }
             
             // did not finished
@@ -107,9 +102,9 @@ struct SolveDetailView: View {
                 label: "DNF",
                 tint: .orange,
                 fullHeight: true,
-                borderedProminent: solve.penalty == .DNF
+                borderedProminent: viewModel.solve.penalty == Solve.Penalty.DNF.rawValue
             ) {
-                self.solve = viewModel.togglePenalty(penalty: .DNF, solveId: solve.id)!
+                viewModel.togglePenalty(penalty: .DNF)
             }
             
             // +2 seconds
@@ -117,9 +112,9 @@ struct SolveDetailView: View {
                 label: "+2",
                 tint: .blue,
                 fullHeight: true,
-                borderedProminent: solve.penalty == .plus2
+                borderedProminent: viewModel.solve.penalty == Solve.Penalty.plus2.rawValue
             ) {
-                self.solve = viewModel.togglePenalty(penalty: .plus2, solveId: solve.id)!
+                viewModel.togglePenalty(penalty: .plus2)
             }
         }
         .frame(maxHeight: 75)
@@ -128,14 +123,21 @@ struct SolveDetailView: View {
 
 struct SolveDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        SolveDetailView(viewModel: .init(), solve: Solve(
-            scramble: "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D",
-            date: Date(),
-            hours: 0,
-            minutes: 0,
-            seconds: 12,
-            fractions: 59,
-            penalty: .plus2
-        ))
+        SolveDetailView(
+            viewModel: SolveDetailViewModel(solve: Self.createSolve())
+        )
+    }
+    
+    static func createSolve() -> CDSolve {
+        let solve = CDSolve()
+        solve.scramble = "R U R2 F' B D2 L' F U2 R' D' R2 L' B2 F' R D L R D"
+        solve.date = Date()
+        solve.hours = 0
+        solve.minutes = 0
+        solve.seconds = 12
+        solve.fractions = 59
+        solve.penalty = Solve.Penalty.plus2.rawValue
+        
+        return solve
     }
 }

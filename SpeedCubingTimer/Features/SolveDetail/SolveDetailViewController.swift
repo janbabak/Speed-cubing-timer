@@ -9,12 +9,10 @@ import UIKit
 import SwiftUI
 
 final class SolveDetailViewController: UIViewController {
-    private let timerViewModel: TimerViewModel
-    private let solve: Solve
+    private let viewModel: SolveDetailViewModel
     
-    init(timerViewModel: TimerViewModel, solve: Solve) {
-        self.timerViewModel = timerViewModel
-        self.solve = solve
+    init(viewModel: SolveDetailViewModel) {
+        self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -26,7 +24,7 @@ final class SolveDetailViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let rootView = SolveDetailView(viewModel: timerViewModel, solve: solve)
+        let rootView = SolveDetailView(viewModel: viewModel)
         let vc = UIHostingController(rootView: rootView)
         embedController(vc)
     }
@@ -47,6 +45,6 @@ final class SolveDetailViewController: UIViewController {
     
     @objc
     private func deleteSolve() {
-        timerViewModel.deleteConfirmationDialogPresent = true
+        viewModel.deleteConfirmationDialogPresent = true
     }
 }

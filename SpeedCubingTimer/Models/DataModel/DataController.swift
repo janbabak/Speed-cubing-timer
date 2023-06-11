@@ -78,16 +78,17 @@ final class DataController: ObservableObject {
         save()
     }
     
+    // TODO: - change architecture / logic of parameters
     func editSolve(
         solve: CDSolve,
-        scramble: String?,
-        date: Date?,
-        hours: Int16?,
-        minutes: Int16?,
-        seconds: Int16?,
-        fractions: Int16?,
-        note: String?,
-        penalty: String?
+        scramble: String? = nil,
+        date: Date? = nil,
+        hours: Int16? = nil,
+        minutes: Int16? = nil,
+        seconds: Int16? = nil,
+        fractions: Int16? = nil,
+        note: String? = nil,
+        penalty: String? = nil
     ) {
         if let scramble {
             solve.scramble = scramble

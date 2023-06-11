@@ -15,7 +15,7 @@ struct SolvesView: View {
         SortDescriptor(\.date, order: .reverse)
     ]) var solves: FetchedResults<CDSolve>
     
-    let onSolveTapped: (Solve) -> Void
+    let onSolveTapped: (CDSolve) -> Void
     
     var body: some View {
         if (solves.isEmpty) {
@@ -44,8 +44,7 @@ struct SolvesView: View {
     @ViewBuilder
     func listItem(solve: CDSolve) -> some View {
         Button {
-//            onSolveTapped(solve)
-            print("implement on solve tapped")
+            onSolveTapped(solve)
         } label: {
             VStack(alignment: .leading) {
                 HStack {

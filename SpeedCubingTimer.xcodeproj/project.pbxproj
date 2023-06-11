@@ -38,6 +38,7 @@
 		DFA52E3D2A3598FF0014404C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA52E3C2A3598FF0014404C /* DataController.swift */; };
 		DFA52E3F2A35AD210014404C /* SolvesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA52E3E2A35AD210014404C /* SolvesViewModel.swift */; };
 		DFA52E412A35B7F70014404C /* CDSolve.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA52E402A35B7F70014404C /* CDSolve.swift */; };
+		DFA52E432A35BDE90014404C /* SolveDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA52E422A35BDE90014404C /* SolveDetailViewModel.swift */; };
 		DFD621BF2A336A8D00A32831 /* Cube3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD621BE2A336A8D00A32831 /* Cube3DView.swift */; };
 		DFD621C12A33718B00A32831 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD621C02A33718B00A32831 /* Cube.swift */; };
 /* End PBXBuildFile section */
@@ -95,6 +96,7 @@
 		DFA52E3C2A3598FF0014404C /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		DFA52E3E2A35AD210014404C /* SolvesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolvesViewModel.swift; sourceTree = "<group>"; };
 		DFA52E402A35B7F70014404C /* CDSolve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDSolve.swift; sourceTree = "<group>"; };
+		DFA52E422A35BDE90014404C /* SolveDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveDetailViewModel.swift; sourceTree = "<group>"; };
 		DFD621BE2A336A8D00A32831 /* Cube3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube3DView.swift; sourceTree = "<group>"; };
 		DFD621C02A33718B00A32831 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -266,6 +268,7 @@
 			children = (
 				DF2654B02A31B51300D0E211 /* SolveDetailView.swift */,
 				DF2654B82A32020300D0E211 /* SolveDetailViewController.swift */,
+				DFA52E422A35BDE90014404C /* SolveDetailViewModel.swift */,
 			);
 			path = SolveDetail;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				DF0D6F3029C386BE0031DB04 /* ScrambleGenerator.swift in Sources */,
 				DF0D6F2229C353E80031DB04 /* SolvesViewController.swift in Sources */,
 				DFD621BF2A336A8D00A32831 /* Cube3DView.swift in Sources */,
+				DFA52E432A35BDE90014404C /* SolveDetailViewModel.swift in Sources */,
 				DF0D6EE629C329AD0031DB04 /* AppDelegate.swift in Sources */,
 				DF2654C02A3266B300D0E211 /* StatisticsViewModel.swift in Sources */,
 				DFD621C12A33718B00A32831 /* Cube.swift in Sources */,
