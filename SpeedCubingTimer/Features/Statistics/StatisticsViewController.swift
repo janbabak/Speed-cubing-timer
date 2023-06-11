@@ -9,22 +9,12 @@ import UIKit
 import SwiftUI
 
 final class StatisticsViewController: UIViewController {
-    private let timerViewModel: TimerViewModel
-    
-    init(timerViewModel: TimerViewModel) {
-        self.timerViewModel = timerViewModel
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private let viewModel = StatisticsViewModel()
     
     override func loadView() {
         super.loadView()
         
-        let rootView = StatisticsView(viewModel: StatisticsViewModel(timerViewModel: timerViewModel))
+        let rootView = StatisticsView(viewModel: viewModel)
         let vc = UIHostingController(rootView: rootView)
         embedController(vc)
     }
@@ -35,5 +25,11 @@ final class StatisticsViewController: UIViewController {
         navigationItem.title = "Statistics"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.fetchSolves() // refresh the view (load solves from Core Data)
     }
 }

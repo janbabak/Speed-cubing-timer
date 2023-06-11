@@ -40,10 +40,20 @@ final class DataController: ObservableObject {
         }
     }
     
+    // return solves sorted by date from the newest to the oldest
     func fetchSolvesSortedByDateDesc() -> [CDSolve] {
         let fetchRequest = CDSolve.fetchRequest()
         let dateSort =  NSSortDescriptor(key: "date", ascending: false)
         fetchRequest.sortDescriptors = [dateSort]
+        return fetchSolves(fetchRequest: fetchRequest)
+    }
+    
+    // return solves that don't have DNF penalty
+    func fetchNotDNFSolves() -> [CDSolve] {
+        let fetchRequest = CDSolve.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "penalty != %@", "DNF"
+        )
         return fetchSolves(fetchRequest: fetchRequest)
     }
     

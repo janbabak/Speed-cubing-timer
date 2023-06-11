@@ -30,31 +30,31 @@ struct StatisticsView: View {
             VStack(alignment: .leading, spacing: 8) {
                 LabelPropertyView(
                     label: "curr mean 3:",
-                    property: viewModel.timerViewModel.currentMeanOf3
+                    property: viewModel.currentMeanOf3
                 )
                 LabelPropertyView(
                     label: "curr avg 5:",
-                    property: viewModel.timerViewModel.currentAverageOf5
+                    property: viewModel.currentAverageOf5
                 )
                 LabelPropertyView(
                     label: "curr avg 12:",
-                    property: viewModel.timerViewModel.currentAverageOf12
+                    property: viewModel.currentAverageOf12
                 )
                 LabelPropertyView(
                     label: "curr avg 50:",
-                    property: viewModel.timerViewModel.currentAverageOf50
+                    property: viewModel.currentAverageOf50
                 )
                 LabelPropertyView(
                     label: "curr avg 100:",
-                    property: viewModel.timerViewModel.currentAverageOf100
+                    property: viewModel.currentAverageOf100
                 )
                 LabelPropertyView(
                     label: "curr avg all:",
-                    property: viewModel.timerViewModel.currentAverageOfAll
+                    property: viewModel.currentAverageOfAll
                 )
                 LabelPropertyView(
                     label: "best time:",
-                    property: viewModel.timerViewModel.bestTime
+                    property: viewModel.formattedBestTime
                 )
                 
             }
@@ -65,31 +65,31 @@ struct StatisticsView: View {
             VStack(alignment: .leading, spacing: 8) {
                 LabelPropertyView(
                     label: "best mean 3:",
-                    property: viewModel.timerViewModel.bestMeanOf3
+                    property: viewModel.bestMeanOf3
                 )
                 LabelPropertyView(
                     label: "best avg 5:",
-                    property: viewModel.timerViewModel.bestAverageOf5
+                    property: viewModel.bestAverageOf5
                 )
                 LabelPropertyView(
                     label: "best avg 12:",
-                    property: viewModel.timerViewModel.bestAverageOf12
+                    property: viewModel.bestAverageOf12
                 )
                 LabelPropertyView(
                     label: "best avg 50:",
-                    property: viewModel.timerViewModel.bestAverageOf50
+                    property: viewModel.bestAverageOf50
                 )
                 LabelPropertyView(
                     label: "best avg 100:",
-                    property: viewModel.timerViewModel.bestAverageOf100
+                    property: viewModel.bestAverageOf100
                 )
                 LabelPropertyView(
                     label: "solves:",
-                    property: "\(viewModel.timerViewModel.solves.count)"
+                    property: "\(viewModel.solves.count)"
                 )
                 LabelPropertyView(
                     label: "worst time",
-                    property: viewModel.timerViewModel.worstTime
+                    property: viewModel.formattedWorstTime
                 )
             }
         }
@@ -98,6 +98,6 @@ struct StatisticsView: View {
 
 struct StatisticsView_Previews: PreviewProvider {
     static var previews: some View {
-        StatisticsView(viewModel: .init(timerViewModel: .init()))
+        StatisticsView(viewModel: .init())
     }
 }

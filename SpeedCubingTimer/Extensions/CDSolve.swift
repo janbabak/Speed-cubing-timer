@@ -9,6 +9,11 @@ import Foundation
 
 extension CDSolve {
     
+    // result time in seconds
+    var inSeconds: Double {
+        return Double(hours * 3600 + minutes * 60 + seconds + (penalty == Solve.Penalty.plus2.rawValue ? 2 : 0)) + Double(fractions) / 100.0
+    }
+    
     // format time including the penalty
     var formattedTime: String {
         if penalty == Solve.Penalty.DNF.rawValue {
