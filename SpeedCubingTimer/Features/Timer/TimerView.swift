@@ -58,9 +58,9 @@ struct TimerView: View {
     
     var stats: some View {
         VStack(spacing: 8) {
-            LabelPropertyView(label: "mean 5:", property: viewModel.currentMeanOf3)
+            LabelPropertyView(label: "mean 3:", property: viewModel.currentMeanOf3)
             LabelPropertyView(label: "avg 5:", property: viewModel.currentAverageOf5)
-            LabelPropertyView(label: "avg 12:", property: viewModel.currentAverageOf5)
+            LabelPropertyView(label: "avg 12:", property: viewModel.currentAverageOf12)
             LabelPropertyView(label: "avg 50:", property: viewModel.currentAverageOf50)
         }
         .opacity(viewModel.timerIsRunning ? 0 : 1) // stats are not visible, when timer si running

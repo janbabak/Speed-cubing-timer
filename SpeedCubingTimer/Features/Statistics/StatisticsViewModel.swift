@@ -91,10 +91,10 @@ final class StatisticsViewModel: ObservableObject {
         notDnfSolves = DataController.shared.fetchNotDNFSolves()
     }
     
-    // MARK: - static functions
+    // MARK: - static methods
     
     /// computes average of last `numberOfSolves` solves
-    private static func currentAverage(of numberOfSolves: Int = -1, from solves: [CDSolve]) -> String {
+    static func currentAverage(of numberOfSolves: Int = -1, from solves: [CDSolve]) -> String {
         let numberOfSolves = (numberOfSolves == -1 ? solves.count : numberOfSolves)
 
         // e.g. can compute average of 12, when there are only 5 solves
@@ -112,7 +112,7 @@ final class StatisticsViewModel: ObservableObject {
     }
     
     /// computes best average of `numberOfSolves`
-    private static func bestAverage(of numberOfSolves: Int, from solves: [CDSolve]) -> String {
+    static func bestAverage(of numberOfSolves: Int, from solves: [CDSolve]) -> String {
         if (numberOfSolves > solves.count) {
             return "-"
         }

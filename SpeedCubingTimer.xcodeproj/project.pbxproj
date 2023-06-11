@@ -230,8 +230,8 @@
 			children = (
 				DF0D6F2429C358720031DB04 /* StatisticsView.swift */,
 				DF0D6F2629C359C70031DB04 /* StatisticsViewController.swift */,
-				DF2654BB2A323A2E00D0E211 /* ChartView.swift */,
 				DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */,
+				DF2654BB2A323A2E00D0E211 /* ChartView.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";

@@ -42,6 +42,12 @@ final class TimerViewController: UIViewController {
             action: #selector(openSettings)
         )
     }
+        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        timerViewModel.fetchSolves() // refresh the view (load solves from Core Data)
+    }
     
     @objc
     private func openSettings() {
