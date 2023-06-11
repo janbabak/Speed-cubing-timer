@@ -33,7 +33,7 @@ struct SolveDetailView: View {
         ) {
             Button("Delete", role: .destructive) {
                 viewModel.deleteSolve()
-                dismiss() // TODO: - Warning "Publishing changes from within view updates is not allowed, this will cause undefined behavior."
+                dismiss()
             }
         }
     }
@@ -92,7 +92,7 @@ struct SolveDetailView: View {
                 label: "no penalty",
                 tint: .green, font: .headline,
                 fullHeight: true,
-                borderedProminent: viewModel.solve.penalty == Solve.Penalty.noPenalty.rawValue
+                borderedProminent: viewModel.solve.penalty == .noPenalty
             ) {
                 viewModel.togglePenalty(penalty: .noPenalty)
             }
@@ -102,7 +102,7 @@ struct SolveDetailView: View {
                 label: "DNF",
                 tint: .orange,
                 fullHeight: true,
-                borderedProminent: viewModel.solve.penalty == Solve.Penalty.DNF.rawValue
+                borderedProminent: viewModel.solve.penalty == .DNF
             ) {
                 viewModel.togglePenalty(penalty: .DNF)
             }
@@ -112,7 +112,7 @@ struct SolveDetailView: View {
                 label: "+2",
                 tint: .blue,
                 fullHeight: true,
-                borderedProminent: viewModel.solve.penalty == Solve.Penalty.plus2.rawValue
+                borderedProminent: viewModel.solve.penalty == .plus2
             ) {
                 viewModel.togglePenalty(penalty: .plus2)
             }
@@ -136,7 +136,7 @@ struct SolveDetailView_Previews: PreviewProvider {
         solve.minutes = 0
         solve.seconds = 12
         solve.fractions = 59
-        solve.penalty = Solve.Penalty.plus2.rawValue
+        solve.penalty = .plus2
         
         return solve
     }

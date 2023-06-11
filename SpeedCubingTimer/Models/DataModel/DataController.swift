@@ -55,7 +55,7 @@ final class DataController: ObservableObject {
     func fetchNotDNFSolves() -> [CDSolve] {
         let fetchRequest = CDSolve.fetchRequest()
         fetchRequest.predicate = NSPredicate(
-            format: "penalty != %@", "DNF"
+            format: "penaltyStr != %@", "DNF"
         )
         return fetchSolves(fetchRequest: fetchRequest)
     }
@@ -110,7 +110,7 @@ final class DataController: ObservableObject {
             seconds: Int16(solve.seconds),
             fractions: Int16(solve.fractions),
             note: solve.note,
-            penalty: solve.penalty.rawValue
+            penalty: solve.penalty
         )
     }
     
@@ -122,7 +122,7 @@ final class DataController: ObservableObject {
         seconds: Int16 = 0,
         fractions: Int16 = 0,
         note: String = "",
-        penalty: String = "no penalty" // TODO: - enum
+        penalty: Solve.Penalty = .noPenalty
     ) {
         
         let solve = CDSolve(context: container.viewContext)
@@ -150,7 +150,7 @@ final class DataController: ObservableObject {
         seconds: Int16? = nil,
         fractions: Int16? = nil,
         note: String? = nil,
-        penalty: String? = nil
+        penalty: Solve.Penalty? = nil
     ) {
         if let scramble {
             solve.scramble = scramble

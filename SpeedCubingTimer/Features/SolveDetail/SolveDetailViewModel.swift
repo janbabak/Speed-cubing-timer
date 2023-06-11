@@ -26,10 +26,10 @@ final class SolveDetailViewModel: ObservableObject {
     }
     
     func togglePenalty(penalty: Solve.Penalty) {
-        if solve.penalty == penalty.rawValue {
-            solve.penalty = Solve.Penalty.noPenalty.rawValue
+        if solve.penalty == penalty {
+            solve.penalty = .noPenalty
         } else {
-            solve.penalty = penalty.rawValue
+            solve.penalty = penalty
         }
         
         DataController.shared.editSolve(solve: solve)

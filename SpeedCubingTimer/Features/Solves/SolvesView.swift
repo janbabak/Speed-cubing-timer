@@ -64,8 +64,8 @@ struct SolvesView: View {
                     
                     Spacer()
                     
-                    if (solve.penalty != Solve.Penalty.noPenalty.rawValue) {
-                        Text(solve.penalty ?? "")
+                    if (solve.penalty != .noPenalty) {
+                        Text(solve.penalty.rawValue)
                             .foregroundColor(.red)
                     }
                 }

@@ -78,10 +78,10 @@ final class TimerViewModel: ObservableObject {
     // toggle penalty of last solve (toggle between penalty and no penalty)
     func toggleLastSolvePenalty(penalty: Solve.Penalty) {
         if let lastSolve = solves.last {
-            if lastSolve.penalty == penalty.rawValue {
-                lastSolve.penalty = Solve.Penalty.noPenalty.rawValue
+            if lastSolve.penalty == penalty {
+                lastSolve.penalty = .noPenalty
             } else {
-                lastSolve.penalty = penalty.rawValue
+                lastSolve.penalty = penalty
             }
             DataController.shared.save()
             fetchSolves()

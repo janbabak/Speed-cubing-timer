@@ -150,16 +150,16 @@ final class StatisticsViewModel: ObservableObject {
         let currentTimes = solves[fromIdx...(fromIdx + numberOfSolves - 1)]
             .sorted(by: { a, b in
                 // sort by times (from best to worst), DNF is the worst time regardless the inSeconds prop
-                if a.penalty == Solve.Penalty.DNF.rawValue {
+                if a.penalty == .DNF {
                     return false
-                } else if b.penalty == Solve.Penalty.DNF.rawValue {
+                } else if b.penalty == .DNF {
                     return true
                 }
                 return a.inSeconds < b.inSeconds
             })[numberOfRemovedSolves...(numberOfSolves - numberOfRemovedSolves - 1)]
         
         // check if there left any solve with DNF penalty - if so, average is undefined
-        if currentTimes.first(where: { $0.penalty == Solve.Penalty.DNF.rawValue }) != nil {
+        if currentTimes.first(where: { $0.penalty == .DNF }) != nil {
             return nil
         }
         

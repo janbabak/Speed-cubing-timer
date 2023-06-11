@@ -92,7 +92,7 @@ struct TimerView: View {
             FullwidthButton(
                 label: "DNF",
                 tint: .orange,
-                borderedProminent: viewModel.solves.last?.penalty == Solve.Penalty.DNF.rawValue
+                borderedProminent: viewModel.solves.last?.penalty == .DNF
             ) {
                 viewModel.toggleLastSolvePenalty(penalty: .DNF)
             }
@@ -101,7 +101,7 @@ struct TimerView: View {
             FullwidthButton(
                 label: "+2",
                 tint: .blue,
-                borderedProminent: viewModel.solves.last?.penalty == Solve.Penalty.plus2.rawValue
+                borderedProminent: viewModel.solves.last?.penalty == .plus2
             ) {
                 viewModel.toggleLastSolvePenalty(penalty: .plus2)
             }

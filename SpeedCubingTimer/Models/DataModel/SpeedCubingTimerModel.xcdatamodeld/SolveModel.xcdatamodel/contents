@@ -7,7 +7,7 @@
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="minutes" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="note" attributeType="String"/>
-        <attribute name="penalty" attributeType="String" defaultValueString="no penalty"/>
+        <attribute name="penaltyStr" attributeType="String" defaultValueString="no penalty"/>
         <attribute name="scramble" attributeType="String"/>
         <attribute name="seconds" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
