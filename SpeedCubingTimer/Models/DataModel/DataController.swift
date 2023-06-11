@@ -40,6 +40,13 @@ final class DataController: ObservableObject {
         }
     }
     
+    func fetchSolvesSortedByDateDesc() -> [CDSolve] {
+        let fetchRequest = CDSolve.fetchRequest()
+        let dateSort =  NSSortDescriptor(key: "date", ascending: false)
+        fetchRequest.sortDescriptors = [dateSort]
+        return fetchSolves(fetchRequest: fetchRequest)
+    }
+    
     func deleteSolve(solve: CDSolve) {
         container.viewContext.delete(solve)
     }

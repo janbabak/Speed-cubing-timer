@@ -28,10 +28,6 @@ final class SolvesViewModel: ObservableObject {
     
     // fetch solves from newest to oldest
     private func fetchSolvesReversed() {
-        let fetchRequest = CDSolve.fetchRequest()
-        let dateSort =  NSSortDescriptor(key: "date", ascending: false)
-        fetchRequest.sortDescriptors = [dateSort]
-        
-        solves = DataController.shared.fetchSolves(fetchRequest: fetchRequest)
+        solves = DataController.shared.fetchSolvesSortedByDateDesc()
     }
 }
