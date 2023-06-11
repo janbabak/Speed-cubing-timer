@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 final class TimerViewModel: ObservableObject {
     
@@ -90,6 +91,7 @@ final class TimerViewModel: ObservableObject {
     
     // MARK: - private props
     
+    @Environment(\.managedObjectContext) private var managedObjectContext: NSManagedObjectContext;
     private var timer = Timer()
     private let timerInterval = 0.01
     
@@ -185,7 +187,8 @@ final class TimerViewModel: ObservableObject {
     
     // create new solve - add new solve to solves array
     private func createSolve() {
-        solves.append(Solve(scramble: scramble))
+        let solve = Solve(scramble: scramble)
+        solves.append(solve)
     }
     
     // start timer
@@ -222,6 +225,17 @@ final class TimerViewModel: ObservableObject {
         timer.invalidate()
         timerIsRunning = false
         print("⏱️ Timer stopped.")
+        
+        // save solve to core data
+        DataController.shared.addSolve(
+            scramble: lastSolve.scramble,
+            date: lastSolve.date,
+            hours: Int16(lastSolve.hours),
+            minutes: Int16(lastSolve.minutes),
+            seconds: Int16(lastSolve.seconds),
+            fractions: Int16(lastSolve.fractions),
+            penalty: lastSolve.penalty.rawValue
+        )
     }
     
     /// computes average of last `numberOfSolves` solves

@@ -6,18 +6,23 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SolvesView: View {
-    @ObservedObject var viewModel: TimerViewModel
+    @StateObject var viewModel = SolvesViewModel()
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(sortDescriptors: [
+        SortDescriptor(\.date, order: .reverse)
+    ]) var solves: FetchedResults<CDSolve>
     
     let onSolveTapped: (Solve) -> Void
     
     var body: some View {
-        if (viewModel.solves.isEmpty) {
+        if (solves.isEmpty) {
             Text("You don't have any solves yet!")
         } else {
             VStack(alignment: .leading) {
-                Text("Number of solves: \(viewModel.solves.count)")
+                Text("Number of solves: \(solves.count)")
                     .padding(.horizontal, 16)
                     .foregroundColor(Color.theme.secondaryText)
                 
@@ -28,7 +33,7 @@ struct SolvesView: View {
     
     var solvesList: some View {
         List {
-            ForEach(viewModel.solvesReversed, id: \.id) { solve in
+            ForEach(solves, id: \.id) { solve in
                 listItem(solve: solve)
             }
             .onDelete(perform: viewModel.deleteSolve)
@@ -37,9 +42,10 @@ struct SolvesView: View {
     }
     
     @ViewBuilder
-    func listItem(solve: Solve) -> some View {
+    func listItem(solve: CDSolve) -> some View {
         Button {
-            onSolveTapped(solve)
+//            onSolveTapped(solve)
+            print("implement on solve tapped")
         } label: {
             VStack(alignment: .leading) {
                 HStack {
@@ -48,12 +54,12 @@ struct SolvesView: View {
 
                     Spacer()
 
-                    if (solve.penalty != .noPenalty) {
-                        Text(solve.penalty.rawValue)
+                    if (solve.penalty != Solve.Penalty.noPenalty.rawValue) {
+                        Text(solve.penalty ?? "")
                             .foregroundColor(.red)
                     }
                 }
-                Text(solve.scramble).font(.caption)
+                Text(solve.scramble ?? "").font(.caption)
             }
             .foregroundColor(Color.primary)
         }

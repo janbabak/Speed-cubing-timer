@@ -24,10 +24,15 @@ final class SolvesViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let rootView = SolvesView(viewModel: timerViewModel) { [weak self] solve in
+        let rootView = SolvesView() { [weak self] solve in
             self?.onSolveTapped(solve: solve)
         }
-        let vc = UIHostingController(rootView: rootView)
+        // inject core data context
+        let rootViewWithCoreDataContext = rootView.environment(
+            \.managedObjectContext,
+             DataController.shared.container.viewContext
+        )
+        let vc = UIHostingController(rootView: rootViewWithCoreDataContext)
         embedController(vc)
     }
     

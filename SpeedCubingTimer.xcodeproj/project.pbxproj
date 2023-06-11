@@ -34,6 +34,10 @@
 		DF2654C02A3266B300D0E211 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */; };
 		DF3359F629DE0288000490D2 /* FullwidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3359F529DE0288000490D2 /* FullwidthButton.swift */; };
 		DF5810862A332E3000E2638D /* LabelPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5810852A332E3000E2638D /* LabelPropertyView.swift */; };
+		DF66F6242A35104D00E81C22 /* SpeedCubingTimerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF66F6222A35104D00E81C22 /* SpeedCubingTimerModel.xcdatamodeld */; };
+		DFA52E3D2A3598FF0014404C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA52E3C2A3598FF0014404C /* DataController.swift */; };
+		DFA52E3F2A35AD210014404C /* SolvesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA52E3E2A35AD210014404C /* SolvesViewModel.swift */; };
+		DFA52E412A35B7F70014404C /* CDSolve.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA52E402A35B7F70014404C /* CDSolve.swift */; };
 		DFD621BF2A336A8D00A32831 /* Cube3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD621BE2A336A8D00A32831 /* Cube3DView.swift */; };
 		DFD621C12A33718B00A32831 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD621C02A33718B00A32831 /* Cube.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +91,10 @@
 		DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		DF3359F529DE0288000490D2 /* FullwidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullwidthButton.swift; sourceTree = "<group>"; };
 		DF5810852A332E3000E2638D /* LabelPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPropertyView.swift; sourceTree = "<group>"; };
+		DF66F6232A35104D00E81C22 /* SolveModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SolveModel.xcdatamodel; sourceTree = "<group>"; };
+		DFA52E3C2A3598FF0014404C /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		DFA52E3E2A35AD210014404C /* SolvesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolvesViewModel.swift; sourceTree = "<group>"; };
+		DFA52E402A35B7F70014404C /* CDSolve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDSolve.swift; sourceTree = "<group>"; };
 		DFD621BE2A336A8D00A32831 /* Cube3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube3DView.swift; sourceTree = "<group>"; };
 		DFD621C02A33718B00A32831 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +208,7 @@
 			children = (
 				DF0D6F1729C34A4A0031DB04 /* SolvesView.swift */,
 				DF0D6F2129C353E80031DB04 /* SolvesViewController.swift */,
+				DFA52E3E2A35AD210014404C /* SolvesViewModel.swift */,
 			);
 			path = Solves;
 			sourceTree = "<group>";
@@ -209,6 +218,7 @@
 			children = (
 				DF0D6F1F29C350450031DB04 /* UIViewController.swift */,
 				DF2654BD2A3253F800D0E211 /* Color.swift */,
+				DFA52E402A35B7F70014404C /* CDSolve.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -236,6 +246,7 @@
 		DF0D6F3129C38EE60031DB04 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DF66F61B2A350EEC00E81C22 /* DataModel */,
 				DF0D6F3229C38F070031DB04 /* Solve.swift */,
 				DFD621C02A33718B00A32831 /* Cube.swift */,
 			);
@@ -265,6 +276,15 @@
 				DF3359F529DE0288000490D2 /* FullwidthButton.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		DF66F61B2A350EEC00E81C22 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				DF66F6222A35104D00E81C22 /* SpeedCubingTimerModel.xcdatamodeld */,
+				DFA52E3C2A3598FF0014404C /* DataController.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,14 +419,17 @@
 			files = (
 				DF2654B92A32020300D0E211 /* SolveDetailViewController.swift in Sources */,
 				DF0D6F1D29C34BF40031DB04 /* TimerViewController.swift in Sources */,
+				DFA52E412A35B7F70014404C /* CDSolve.swift in Sources */,
 				DF2654B12A31B51300D0E211 /* SolveDetailView.swift in Sources */,
 				DF0D6F1629C349DA0031DB04 /* TimerView.swift in Sources */,
 				DF0D6F2C29C364380031DB04 /* SettingsViewController.swift in Sources */,
 				DF0D6F2029C350450031DB04 /* UIViewController.swift in Sources */,
 				DF0D6F2E29C368F10031DB04 /* TimerViewModel.swift in Sources */,
 				DF0D6EEA29C329AD0031DB04 /* RootViewController.swift in Sources */,
+				DF66F6242A35104D00E81C22 /* SpeedCubingTimerModel.xcdatamodeld in Sources */,
 				DF0D6F1829C34A4A0031DB04 /* SolvesView.swift in Sources */,
 				DF0D6F2A29C363410031DB04 /* SettingsView.swift in Sources */,
+				DFA52E3D2A3598FF0014404C /* DataController.swift in Sources */,
 				DF2654BC2A323A2E00D0E211 /* ChartView.swift in Sources */,
 				DF0D6F2529C358720031DB04 /* StatisticsView.swift in Sources */,
 				DF5810862A332E3000E2638D /* LabelPropertyView.swift in Sources */,
@@ -420,6 +443,7 @@
 				DFD621C12A33718B00A32831 /* Cube.swift in Sources */,
 				DF2654B42A31B71F00D0E211 /* TimeFormatters.swift in Sources */,
 				DF0D6F3329C38F070031DB04 /* Solve.swift in Sources */,
+				DFA52E3F2A35AD210014404C /* SolvesViewModel.swift in Sources */,
 				DF3359F629DE0288000490D2 /* FullwidthButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -750,6 +774,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DF66F6222A35104D00E81C22 /* SpeedCubingTimerModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DF66F6232A35104D00E81C22 /* SolveModel.xcdatamodel */,
+			);
+			currentVersion = DF66F6232A35104D00E81C22 /* SolveModel.xcdatamodel */;
+			path = SpeedCubingTimerModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DF0D6EDA29C329AD0031DB04 /* Project object */;
 }
