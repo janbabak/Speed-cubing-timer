@@ -23,6 +23,8 @@ struct TimerView: View {
             
             cube
             
+            Spacer()
+            
             buttons
         }
         .padding(.all, 16)
@@ -63,9 +65,12 @@ struct TimerView: View {
         .opacity(viewModel.timerIsRunning ? 0 : 1) // stats are not visible, when timer si running
     }
     
+    @ViewBuilder
     var cube: some View {
-        Cube3DView(cube: viewModel.cube)
-            .frame(minHeight: 200, maxHeight: .infinity)
+        if viewModel.scrambleVisualizationOn {
+            Cube3DView(cube: viewModel.cube)
+                .frame(minHeight: 200, maxHeight: .infinity)
+        }
     }
     
     // delete, DNF, +2 buttons

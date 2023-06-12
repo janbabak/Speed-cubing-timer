@@ -73,15 +73,18 @@ struct SolveDetailView: View {
             )
             .scrollContentBackground(.hidden)
             .background(Color.clear)
-            .frame(height: 32)
+            .frame(minHeight: 32, maxHeight: viewModel.scrambleVisualizationOn ? 32 : .infinity)
         } label: {
             Text("Note:")
         }
     }
     
+    @ViewBuilder
     var cube: some View {
-        Cube3DView(cube: viewModel.cube)
-            .frame(minHeight: 80, maxHeight: .infinity)
+        if viewModel.scrambleVisualizationOn {
+            Cube3DView(cube: viewModel.cube)
+                .frame(minHeight: 80, maxHeight: .infinity)
+        }
     }
     
     // penalty buttons

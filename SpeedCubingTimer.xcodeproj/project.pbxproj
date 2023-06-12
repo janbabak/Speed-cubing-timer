@@ -33,6 +33,7 @@
 		DF2654BE2A3253F800D0E211 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2654BD2A3253F800D0E211 /* Color.swift */; };
 		DF2654C02A3266B300D0E211 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */; };
 		DF3359F629DE0288000490D2 /* FullwidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3359F529DE0288000490D2 /* FullwidthButton.swift */; };
+		DF3A00342A36E6880082B324 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A00332A36E6880082B324 /* SettingsViewModel.swift */; };
 		DF5810862A332E3000E2638D /* LabelPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5810852A332E3000E2638D /* LabelPropertyView.swift */; };
 		DF66F6242A35104D00E81C22 /* SpeedCubingTimerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF66F6222A35104D00E81C22 /* SpeedCubingTimerModel.xcdatamodeld */; };
 		DFA52E3D2A3598FF0014404C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA52E3C2A3598FF0014404C /* DataController.swift */; };
@@ -91,6 +92,7 @@
 		DF2654BD2A3253F800D0E211 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		DF3359F529DE0288000490D2 /* FullwidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullwidthButton.swift; sourceTree = "<group>"; };
+		DF3A00332A36E6880082B324 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		DF5810852A332E3000E2638D /* LabelPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPropertyView.swift; sourceTree = "<group>"; };
 		DF66F6232A35104D00E81C22 /* SolveModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SolveModel.xcdatamodel; sourceTree = "<group>"; };
 		DFA52E3C2A3598FF0014404C /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			children = (
 				DF0D6F2929C363410031DB04 /* SettingsView.swift */,
 				DF0D6F2B29C364380031DB04 /* SettingsViewController.swift */,
+				DF3A00332A36E6880082B324 /* SettingsViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				DFA52E412A35B7F70014404C /* CDSolve.swift in Sources */,
 				DF2654B12A31B51300D0E211 /* SolveDetailView.swift in Sources */,
 				DF0D6F1629C349DA0031DB04 /* TimerView.swift in Sources */,
+				DF3A00342A36E6880082B324 /* SettingsViewModel.swift in Sources */,
 				DF0D6F2C29C364380031DB04 /* SettingsViewController.swift in Sources */,
 				DF0D6F2029C350450031DB04 /* UIViewController.swift in Sources */,
 				DF0D6F2E29C368F10031DB04 /* TimerViewModel.swift in Sources */,

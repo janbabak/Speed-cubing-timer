@@ -5,12 +5,14 @@
 //  Created by Jan Babák on 11.06.2023.
 //
 
-import Foundation
+import SwiftUI
 
 final class SolveDetailViewModel: ObservableObject {
     @Published var solve: CDSolve
     @Published var deleteConfirmationDialogPresent = false
     @Published private(set) var cube = Cube()
+    
+    @AppStorage(SettingsViewModel.scrambleVisualizationOnKey) var scrambleVisualizationOn = true
     
     init(solve: CDSolve) {
         self.solve = solve

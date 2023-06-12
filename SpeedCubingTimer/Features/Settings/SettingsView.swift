@@ -9,11 +9,15 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @StateObject private var viewModel = SettingsViewModel()
+    
     var body: some View {
-        VStack {
-            Text("Settings")
+        Form {
+            // scramble visualization
+            Toggle(isOn: viewModel.$scrambleVisualizationOn) {
+                Label("Scramble visualization", systemImage: "cube.fill")
+            }
         }
-        .padding()
     }
 }
 

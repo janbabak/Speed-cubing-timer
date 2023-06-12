@@ -5,7 +5,7 @@
 //  Created by Jan Babák on 16.03.2023.
 //
 
-import Foundation
+import SwiftUI
 
 final class TimerViewModel: ObservableObject {
     @Published var activeSolve = Solve()
@@ -15,6 +15,8 @@ final class TimerViewModel: ObservableObject {
     @Published private(set) var holdingScreen = false
     @Published private(set) var timerIsRunning = false
     @Published private(set) var cube = Cube()
+    
+    @AppStorage(SettingsViewModel.scrambleVisualizationOnKey) var scrambleVisualizationOn = true
     
     // MARK: - computed props
     
