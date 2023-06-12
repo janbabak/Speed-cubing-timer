@@ -50,7 +50,7 @@ struct TimerView: View {
     }
     
     var time: some View {
-        Text(viewModel.activeSolve.formattedTime)
+        Text(viewModel.inspectionRunning ? TimeFormatters.formatTime(seconds: viewModel.inspectionsSeconds) : viewModel.activeSolve.formattedTime)
             .font(.system(size: 44, design: .monospaced))
             .foregroundColor(viewModel.holdingScreen ? .red : .primary)
     }

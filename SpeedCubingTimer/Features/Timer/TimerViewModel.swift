@@ -8,15 +8,27 @@
 import SwiftUI
 
 final class TimerViewModel: ObservableObject {
-    @Published var activeSolve = Solve()
-    @Published var solves: [CDSolve] = []
     @Published var deleteConfirmationDialogPresent = false
+    @Published private(set) var solves: [CDSolve] = []
+    @Published private(set) var activeSolve = Solve()
     @Published private(set) var scramble = ScrambleGenerator.generate()
     @Published private(set) var holdingScreen = false
     @Published private(set) var timerIsRunning = false
     @Published private(set) var cube = Cube()
+    @Published private(set) var inspectionRunning = false
+    @Published private(set) var inspectionsSeconds = 0
     
-    @AppStorage(SettingsViewModel.scrambleVisualizationOnKey) var scrambleVisualizationOn = true
+    @AppStorage(SettingsViewModel.scrambleVisualizationOnKey) private(set) var scrambleVisualizationOn = true
+    @AppStorage(SettingsViewModel.inspectionOnKey) private(set) var inspectionOn = false
+    
+    // MARK: - private props
+    
+    @AppStorage(SettingsViewModel.inspectionLimitKey) private var inspectionLimit = 15
+    
+    private var timer = Timer()
+    private let timerInterval = 0.01
+    private let inspectionTimerInterval = 1.0 // 1 second
+    private var inspectionPenalty = Solve.Penalty.noPenalty
     
     // MARK: - computed props
     
@@ -36,11 +48,6 @@ final class TimerViewModel: ObservableObject {
         StatisticsViewModel.currentAverage(of: 50, from: solves)
     }
     
-    // MARK: - private props
-    
-    private var timer = Timer()
-    private let timerInterval = 0.01
-    
     // MARK: - public methods
     
     init() {
@@ -54,9 +61,13 @@ final class TimerViewModel: ObservableObject {
     }
     
     // on tab gesture - stop the timer based on its state (running or not)
-    func onTapGesture() -> Void {
-        guard timerIsRunning else { return }
-        
+    func onTapGesture() {
+        if !timerIsRunning && inspectionOn {
+            startInspection()
+            return
+        } else if !timerIsRunning {
+            return
+        }
         stopTimer()
         activeSolve.date = Date()
         scramble = ScrambleGenerator.generate() // prepare next scramble
@@ -74,6 +85,7 @@ final class TimerViewModel: ObservableObject {
     func onTouchUpGesture() {
         guard !timerIsRunning else { return }
         holdingScreen = false
+        endInspection()
         startTimer()
     }
     
@@ -82,8 +94,10 @@ final class TimerViewModel: ObservableObject {
         if let lastSolve = solves.last {
             if lastSolve.penalty == penalty {
                 lastSolve.penalty = .noPenalty
+                activeSolve.penalty = .noPenalty
             } else {
                 lastSolve.penalty = penalty
+                activeSolve.penalty = penalty
             }
             DataController.shared.save()
             fetchSolves()
@@ -101,10 +115,48 @@ final class TimerViewModel: ObservableObject {
     
     // MARK: - private methods
     
+    // start inspection time
+    private func startInspection() {
+        guard !inspectionRunning else { return }
+        
+        print("👀 Inspection started.")
+        
+        inspectionsSeconds = 0
+        inspectionPenalty = .noPenalty
+        inspectionRunning = true
+        
+        timer = Timer.scheduledTimer(withTimeInterval: inspectionTimerInterval, repeats: true) { [weak self] timer in
+            self!.inspectionsSeconds += 1
+            if self!.inspectionsSeconds >= self!.inspectionLimit + 2 {
+                self!.endInspection()
+            }
+        }
+    }
+    
+    // end inspection time
+    private func endInspection() {
+        timer.invalidate()
+        inspectionRunning = false
+        print("👀 Inspection ended.")
+        // if limit was eceeded by more than 2 seconds, solve is DNF
+        if inspectionsSeconds >= inspectionLimit + 2 {
+            print("🚨 inspection exeeded, DNF penalty")
+            DataController.shared.addSolve(solve: Solve(scramble: scramble, penalty: .DNF))
+            scramble = ScrambleGenerator.generate()
+            activeSolve.penalty = .DNF
+            fetchSolves()
+        }
+        // inspection limit was eceeded add +2 penalty
+        else if inspectionsSeconds >= inspectionLimit {
+            inspectionPenalty = .plus2
+            print("🚨 inspection exeeded, + 2 penalty")
+        }
+    }
+    
     // start timer
     private func startTimer() {
         print("⏱️ Timer started.")
-        activeSolve = Solve(scramble: scramble)
+        activeSolve = Solve(scramble: scramble, penalty: inspectionPenalty) // reset the active solve
         timerIsRunning = true
         timer = Timer.scheduledTimer(withTimeInterval: timerInterval, repeats: true) { [weak self] timer in
             self!.activeSolve.fractions += 1
