@@ -34,6 +34,14 @@
 		DF2654C02A3266B300D0E211 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */; };
 		DF3359F629DE0288000490D2 /* FullwidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3359F529DE0288000490D2 /* FullwidthButton.swift */; };
 		DF3A00342A36E6880082B324 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A00332A36E6880082B324 /* SettingsViewModel.swift */; };
+		DF3A00382A37883E0082B324 /* TimerActivityWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A00372A37883E0082B324 /* TimerActivityWidgetAttributes.swift */; };
+		DF3A00402A378FD00082B324 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF3A003F2A378FD00082B324 /* WidgetKit.framework */; };
+		DF3A00422A378FD00082B324 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF3A00412A378FD00082B324 /* SwiftUI.framework */; };
+		DF3A00452A378FD00082B324 /* SpeedCubingTimerActivityWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A00442A378FD00082B324 /* SpeedCubingTimerActivityWidgetBundle.swift */; };
+		DF3A00472A378FD00082B324 /* SpeedCubingTimerActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A00462A378FD00082B324 /* SpeedCubingTimerActivityWidget.swift */; };
+		DF3A00492A378FD10082B324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF3A00482A378FD10082B324 /* Assets.xcassets */; };
+		DF3A004D2A378FD10082B324 /* SpeedCubingTimerActivityWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DF3A003D2A378FD00082B324 /* SpeedCubingTimerActivityWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DF3A00532A3795320082B324 /* TimerActivityWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A00372A37883E0082B324 /* TimerActivityWidgetAttributes.swift */; };
 		DF5810862A332E3000E2638D /* LabelPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5810852A332E3000E2638D /* LabelPropertyView.swift */; };
 		DF66F6242A35104D00E81C22 /* SpeedCubingTimerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF66F6222A35104D00E81C22 /* SpeedCubingTimerModel.xcdatamodeld */; };
 		DFA52E3D2A3598FF0014404C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA52E3C2A3598FF0014404C /* DataController.swift */; };
@@ -59,7 +67,28 @@
 			remoteGlobalIDString = DF0D6EE129C329AD0031DB04;
 			remoteInfo = SpeedCubingTimer;
 		};
+		DF3A004B2A378FD10082B324 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF0D6EDA29C329AD0031DB04 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF3A003C2A378FD00082B324;
+			remoteInfo = SpeedCubingTimerActivityWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DF3A00512A378FD10082B324 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DF3A004D2A378FD10082B324 /* SpeedCubingTimerActivityWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		DF0D6EE229C329AD0031DB04 /* SpeedCubingTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeedCubingTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +122,14 @@
 		DF2654BF2A3266B300D0E211 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		DF3359F529DE0288000490D2 /* FullwidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullwidthButton.swift; sourceTree = "<group>"; };
 		DF3A00332A36E6880082B324 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		DF3A00372A37883E0082B324 /* TimerActivityWidgetAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerActivityWidgetAttributes.swift; sourceTree = "<group>"; };
+		DF3A003D2A378FD00082B324 /* SpeedCubingTimerActivityWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SpeedCubingTimerActivityWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF3A003F2A378FD00082B324 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		DF3A00412A378FD00082B324 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		DF3A00442A378FD00082B324 /* SpeedCubingTimerActivityWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedCubingTimerActivityWidgetBundle.swift; sourceTree = "<group>"; };
+		DF3A00462A378FD00082B324 /* SpeedCubingTimerActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedCubingTimerActivityWidget.swift; sourceTree = "<group>"; };
+		DF3A00482A378FD10082B324 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DF3A004A2A378FD10082B324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF5810852A332E3000E2638D /* LabelPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPropertyView.swift; sourceTree = "<group>"; };
 		DF66F6232A35104D00E81C22 /* SolveModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SolveModel.xcdatamodel; sourceTree = "<group>"; };
 		DFA52E3C2A3598FF0014404C /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -125,6 +162,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DF3A003A2A378FD00082B324 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF3A00422A378FD00082B324 /* SwiftUI.framework in Frameworks */,
+				DF3A00402A378FD00082B324 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -134,6 +180,8 @@
 				DF0D6EE429C329AD0031DB04 /* SpeedCubingTimer */,
 				DF0D6EFB29C329AE0031DB04 /* SpeedCubingTimerTests */,
 				DF0D6F0529C329AE0031DB04 /* SpeedCubingTimerUITests */,
+				DF3A00432A378FD00082B324 /* SpeedCubingTimerActivityWidget */,
+				DF3A003E2A378FD00082B324 /* Frameworks */,
 				DF0D6EE329C329AD0031DB04 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -144,6 +192,7 @@
 				DF0D6EE229C329AD0031DB04 /* SpeedCubingTimer.app */,
 				DF0D6EF829C329AE0031DB04 /* SpeedCubingTimerTests.xctest */,
 				DF0D6F0229C329AE0031DB04 /* SpeedCubingTimerUITests.xctest */,
+				DF3A003D2A378FD00082B324 /* SpeedCubingTimerActivityWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,6 +252,7 @@
 				DF0D6F1C29C34BF40031DB04 /* TimerViewController.swift */,
 				DF0D6F2D29C368F10031DB04 /* TimerViewModel.swift */,
 				DF0D6F2F29C386BD0031DB04 /* ScrambleGenerator.swift */,
+				DF3A00372A37883E0082B324 /* TimerActivityWidgetAttributes.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -284,6 +334,26 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		DF3A003E2A378FD00082B324 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF3A003F2A378FD00082B324 /* WidgetKit.framework */,
+				DF3A00412A378FD00082B324 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DF3A00432A378FD00082B324 /* SpeedCubingTimerActivityWidget */ = {
+			isa = PBXGroup;
+			children = (
+				DF3A00442A378FD00082B324 /* SpeedCubingTimerActivityWidgetBundle.swift */,
+				DF3A00462A378FD00082B324 /* SpeedCubingTimerActivityWidget.swift */,
+				DF3A00482A378FD10082B324 /* Assets.xcassets */,
+				DF3A004A2A378FD10082B324 /* Info.plist */,
+			);
+			path = SpeedCubingTimerActivityWidget;
+			sourceTree = "<group>";
+		};
 		DF66F61B2A350EEC00E81C22 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,10 +373,12 @@
 				DF0D6EDE29C329AD0031DB04 /* Sources */,
 				DF0D6EDF29C329AD0031DB04 /* Frameworks */,
 				DF0D6EE029C329AD0031DB04 /* Resources */,
+				DF3A00512A378FD10082B324 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DF3A004C2A378FD10082B324 /* PBXTargetDependency */,
 			);
 			name = SpeedCubingTimer;
 			productName = SpeedCubingTimer;
@@ -349,6 +421,23 @@
 			productReference = DF0D6F0229C329AE0031DB04 /* SpeedCubingTimerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		DF3A003C2A378FD00082B324 /* SpeedCubingTimerActivityWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF3A004E2A378FD10082B324 /* Build configuration list for PBXNativeTarget "SpeedCubingTimerActivityWidgetExtension" */;
+			buildPhases = (
+				DF3A00392A378FD00082B324 /* Sources */,
+				DF3A003A2A378FD00082B324 /* Frameworks */,
+				DF3A003B2A378FD00082B324 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpeedCubingTimerActivityWidgetExtension;
+			productName = SpeedCubingTimerActivityWidgetExtension;
+			productReference = DF3A003D2A378FD00082B324 /* SpeedCubingTimerActivityWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -370,6 +459,9 @@
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = DF0D6EE129C329AD0031DB04;
 					};
+					DF3A003C2A378FD00082B324 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 				};
 			};
 			buildConfigurationList = DF0D6EDD29C329AD0031DB04 /* Build configuration list for PBXProject "SpeedCubingTimer" */;
@@ -388,6 +480,7 @@
 				DF0D6EE129C329AD0031DB04 /* SpeedCubingTimer */,
 				DF0D6EF729C329AE0031DB04 /* SpeedCubingTimerTests */,
 				DF0D6F0129C329AE0031DB04 /* SpeedCubingTimerUITests */,
+				DF3A003C2A378FD00082B324 /* SpeedCubingTimerActivityWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -416,6 +509,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DF3A003B2A378FD00082B324 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF3A00492A378FD10082B324 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -424,6 +525,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF2654B92A32020300D0E211 /* SolveDetailViewController.swift in Sources */,
+				DF3A00382A37883E0082B324 /* TimerActivityWidgetAttributes.swift in Sources */,
 				DF0D6F1D29C34BF40031DB04 /* TimerViewController.swift in Sources */,
 				DFA52E412A35B7F70014404C /* CDSolve.swift in Sources */,
 				DF2654B12A31B51300D0E211 /* SolveDetailView.swift in Sources */,
@@ -473,6 +575,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DF3A00392A378FD00082B324 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF3A00472A378FD00082B324 /* SpeedCubingTimerActivityWidget.swift in Sources */,
+				DF3A00532A3795320082B324 /* TimerActivityWidgetAttributes.swift in Sources */,
+				DF3A00452A378FD00082B324 /* SpeedCubingTimerActivityWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -485,6 +597,11 @@
 			isa = PBXTargetDependency;
 			target = DF0D6EE129C329AD0031DB04 /* SpeedCubingTimer */;
 			targetProxy = DF0D6F0329C329AE0031DB04 /* PBXContainerItemProxy */;
+		};
+		DF3A004C2A378FD10082B324 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF3A003C2A378FD00082B324 /* SpeedCubingTimerActivityWidgetExtension */;
+			targetProxy = DF3A004B2A378FD10082B324 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -617,6 +734,7 @@
 		DF0D6F0D29C329AE0031DB04 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -624,6 +742,7 @@
 				DEVELOPMENT_TEAM = S7CBC7Z8QU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SpeedCubingTimer/Info.plist;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -645,6 +764,7 @@
 		DF0D6F0E29C329AE0031DB04 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -652,6 +772,7 @@
 				DEVELOPMENT_TEAM = S7CBC7Z8QU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SpeedCubingTimer/Info.plist;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -742,6 +863,60 @@
 			};
 			name = Release;
 		};
+		DF3A004F2A378FD10082B324 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S7CBC7Z8QU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpeedCubingTimerActivityWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SpeedCubingTimerActivityWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = babakjan.SpeedCubingTimer.SpeedCubingTimerActivityWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DF3A00502A378FD10082B324 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S7CBC7Z8QU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpeedCubingTimerActivityWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SpeedCubingTimerActivityWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = babakjan.SpeedCubingTimer.SpeedCubingTimerActivityWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -777,6 +952,15 @@
 			buildConfigurations = (
 				DF0D6F1329C329AE0031DB04 /* Debug */,
 				DF0D6F1429C329AE0031DB04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF3A004E2A378FD10082B324 /* Build configuration list for PBXNativeTarget "SpeedCubingTimerActivityWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF3A004F2A378FD10082B324 /* Debug */,
+				DF3A00502A378FD10082B324 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

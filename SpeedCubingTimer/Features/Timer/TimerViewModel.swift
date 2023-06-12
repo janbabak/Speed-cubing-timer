@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ActivityKit
 
 final class TimerViewModel: ObservableObject {
     @Published var deleteConfirmationDialogPresent = false
@@ -16,7 +17,7 @@ final class TimerViewModel: ObservableObject {
     @Published private(set) var timerIsRunning = false
     @Published private(set) var cube = Cube()
     @Published private(set) var inspectionRunning = false
-    @Published private(set) var inspectionsSeconds = 0
+    @Published private(set) var inspectionSeconds = 0
     @Published private(set) var overInpecting = false // true inspection is > inspection limit
     
     @AppStorage(SettingsViewModel.scrambleVisualizationOnKey) private(set) var scrambleVisualizationOn = true
@@ -30,6 +31,17 @@ final class TimerViewModel: ObservableObject {
     private let timerInterval = 0.01
     private let inspectionTimerInterval = 1.0 // 1 second
     private var inspectionPenalty = Solve.Penalty.noPenalty
+    private var _activity: AnyObject?
+    
+    @available(iOS 16.1, *)
+    private var activity: Activity<TimerActivityWidgetAttributes>? {
+        get {
+            return _activity as? Activity<TimerActivityWidgetAttributes>
+        }
+        set {
+            _activity = newValue
+        }
+    }
     
     // MARK: - computed props
     
@@ -122,16 +134,36 @@ final class TimerViewModel: ObservableObject {
         
         print("👀 Inspection started.")
         
-        inspectionsSeconds = 0
+        inspectionSeconds = 0
         inspectionPenalty = .noPenalty
+        
         inspectionRunning = true
         
+        startLiveActivity(
+            state: TimerActivityWidgetAttributes.ContentState(
+                time: TimeFormatters.formatTime(seconds: self.inspectionSeconds)
+            )
+        )
+        
         timer = Timer.scheduledTimer(withTimeInterval: inspectionTimerInterval, repeats: true) { [weak self] timer in
-            self!.inspectionsSeconds += 1
-            if self!.inspectionsSeconds >= self!.inspectionLimit {
+            self!.inspectionSeconds += 1
+            
+            if #available(iOS 16.1, *) {
+                let state = TimerActivityWidgetAttributes.ContentState(
+                    time: TimeFormatters.formatTime(seconds: self!.inspectionSeconds),
+                    timerColor: .inspectionRunning
+                )
+                if let activity = self?.activity {
+                    Task {
+                        await activity.update(using: state)
+                    }
+                }
+            }
+            
+            if self!.inspectionSeconds >= self!.inspectionLimit {
                 self!.overInpecting = true
             }
-            if self!.inspectionsSeconds >= self!.inspectionLimit + 2 {
+            if self!.inspectionSeconds >= self!.inspectionLimit + 2 {
                 self!.endInspection()
             }
         }
@@ -142,19 +174,48 @@ final class TimerViewModel: ObservableObject {
         timer.invalidate()
         inspectionRunning = false
         overInpecting = false
+        
         print("👀 Inspection ended.")
+        
         // if limit was eceeded by more than 2 seconds, solve is DNF
-        if inspectionsSeconds >= inspectionLimit + 2 {
+        if inspectionSeconds >= inspectionLimit + 2 {
             print("🚨 inspection exeeded, DNF penalty")
             DataController.shared.addSolve(solve: Solve(scramble: scramble, penalty: .DNF))
             scramble = ScrambleGenerator.generate()
             activeSolve.penalty = .DNF
             fetchSolves()
+            
+            endLiveActivity()
         }
         // inspection limit was eceeded add +2 penalty
-        else if inspectionsSeconds >= inspectionLimit {
+        else if inspectionSeconds >= inspectionLimit {
             inspectionPenalty = .plus2
             print("🚨 inspection exeeded, + 2 penalty")
+        }
+    }
+    
+    // start live activity timer
+    private func startLiveActivity(state: TimerActivityWidgetAttributes.ContentState) {
+        endLiveActivity() // ends the previous activity
+        
+        if #available(iOS 16.1, *) {
+            activity = try? Activity<TimerActivityWidgetAttributes>.request(
+                attributes: TimerActivityWidgetAttributes(),
+                contentState: state,
+                pushType: nil
+            )
+        }
+    }
+    
+    // end live activity timer
+    private func endLiveActivity() {
+        if #available(iOS 16.1, *) {
+            Task {
+                await activity?.end(
+                    using: TimerActivityWidgetAttributes.ContentState(time: ""),
+                    dismissalPolicy: .immediate
+                )
+            }
         }
     }
     
@@ -163,9 +224,26 @@ final class TimerViewModel: ObservableObject {
         print("⏱️ Timer started.")
         activeSolve = Solve(scramble: scramble, penalty: inspectionPenalty) // reset the active solve
         timerIsRunning = true
+        
+        startLiveActivity(
+            state: TimerActivityWidgetAttributes.ContentState(
+                time: TimeFormatters.formatTime(seconds: activeSolve.isSecondsInteger)
+            )
+        )
+        
         timer = Timer.scheduledTimer(withTimeInterval: timerInterval, repeats: true) { [weak self] timer in
             self!.activeSolve.fractions += 1
             self!.carryToHigherOrder()
+            
+            if #available(iOS 16.1, *) {
+                let state = TimerActivityWidgetAttributes.ContentState(time: self!.activeSolve.formattedTimeWithoutFractions)
+                
+                if let activity = self?.activity {
+                    Task {
+                        await activity.update(using: state)
+                    }
+                }
+            }
         }
     }
     
@@ -191,7 +269,10 @@ final class TimerViewModel: ObservableObject {
     private func stopTimer() {
         timer.invalidate()
         timerIsRunning = false
+        
         print("⏱️ Timer stopped.")
+        
+        endLiveActivity()
         
         // save solve to core data
         DataController.shared.addSolve(solve: activeSolve)

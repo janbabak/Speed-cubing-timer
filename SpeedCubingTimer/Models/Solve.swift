@@ -20,7 +20,12 @@ struct Solve: Identifiable, Hashable {
     
     // result time in seconds
     var inSeconds: Double {
-        return Double(hours * 3600 + minutes * 60 + seconds + (penalty == .plus2 ? 2 : 0)) + Double(fractions) / 100.0
+        Double(hours * 3600 + minutes * 60 + seconds + (penalty == .plus2 ? 2 : 0)) + Double(fractions) / 100.0
+    }
+    
+    // result time in seconds without fractions
+    var isSecondsInteger: Int {
+        Int(hours) * 3600 + Int(minutes) * 60 + Int(seconds) + (penalty == .plus2 ? 2 : 0)
     }
     
     // format time including the penalty
@@ -30,6 +35,15 @@ struct Solve: Identifiable, Hashable {
         }
         
         return TimeFormatters.formatTime(seconds: inSeconds)
+    }
+    
+    // format time includeing the penalty but not including the fracitons
+    var formattedTimeWithoutFractions: String {
+        if penalty == .DNF {
+            return "DNF"
+        }
+        
+        return TimeFormatters.formatTime(seconds: isSecondsInteger)
     }
     
     enum Penalty: String, CaseIterable, Identifiable {
