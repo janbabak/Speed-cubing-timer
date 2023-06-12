@@ -15,20 +15,25 @@ struct TimerView: View {
         VStack {
             scramble
                 .padding(.bottom, 16)
+                .opacity(!viewModel.inspectionRunning && !viewModel.timerIsRunning ? 1 : 0)
             
             time
                 .padding(.bottom, 16)
             
-            stats
-            
-            cube
+            if !viewModel.inspectionRunning && !viewModel.timerIsRunning {
+                stats
+                
+                cube
+            }
             
             Spacer()
             
-            buttons
+            if !viewModel.inspectionRunning && !viewModel.timerIsRunning {
+                buttons
+            }
         }
-        .padding(.all, 16)
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        .padding(.horizontal, 16)
+        .padding(.bottom, 16)
         .contentShape(Rectangle())
         .onTapGesture {
             viewModel.onTapGesture()
@@ -52,7 +57,7 @@ struct TimerView: View {
     var time: some View {
         Text(viewModel.inspectionRunning ? TimeFormatters.formatTime(seconds: viewModel.inspectionsSeconds) : viewModel.activeSolve.formattedTime)
             .font(.system(size: 44, design: .monospaced))
-            .foregroundColor(viewModel.holdingScreen ? .red : .primary)
+            .foregroundColor(viewModel.holdingScreen ? .green : viewModel.overInpecting ? .red : .primary)
     }
     
     var stats: some View {

@@ -17,6 +17,7 @@ final class TimerViewModel: ObservableObject {
     @Published private(set) var cube = Cube()
     @Published private(set) var inspectionRunning = false
     @Published private(set) var inspectionsSeconds = 0
+    @Published private(set) var overInpecting = false // true inspection is > inspection limit
     
     @AppStorage(SettingsViewModel.scrambleVisualizationOnKey) private(set) var scrambleVisualizationOn = true
     @AppStorage(SettingsViewModel.inspectionOnKey) private(set) var inspectionOn = false
@@ -127,6 +128,9 @@ final class TimerViewModel: ObservableObject {
         
         timer = Timer.scheduledTimer(withTimeInterval: inspectionTimerInterval, repeats: true) { [weak self] timer in
             self!.inspectionsSeconds += 1
+            if self!.inspectionsSeconds >= self!.inspectionLimit {
+                self!.overInpecting = true
+            }
             if self!.inspectionsSeconds >= self!.inspectionLimit + 2 {
                 self!.endInspection()
             }
@@ -137,6 +141,7 @@ final class TimerViewModel: ObservableObject {
     private func endInspection() {
         timer.invalidate()
         inspectionRunning = false
+        overInpecting = false
         print("👀 Inspection ended.")
         // if limit was eceeded by more than 2 seconds, solve is DNF
         if inspectionsSeconds >= inspectionLimit + 2 {
