@@ -42,7 +42,6 @@ struct ChartView<ViewModel: StatisticsViewModeling>: View {
                 }
             }
         }
-//        .chartXScale(domain: 0...(max(viewModel.notDnfSolves.count - 1, 1)))
         .chartYScale(domain: 0...(Int(1.1 * Double(viewModel.worstTime ?? 10))))
         .chartYAxis {
             AxisMarks(values: viewModel.xAxisMarks) { axis in
@@ -82,6 +81,6 @@ struct ChartView<ViewModel: StatisticsViewModeling>: View {
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartView(viewModel: StatisticsViewModel())
+        ChartView(viewModel: StatisticsViewModel(dependencies: appDependencies))
     }
 }

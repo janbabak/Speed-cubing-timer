@@ -9,7 +9,20 @@ import UIKit
 import SwiftUI
 
 final class SolvesViewController: UIViewController {
-    private let viewModel: SolvesViewModel = SolvesViewModel()
+    typealias Dependencies = HasDataControllerService
+    
+    private let viewModel = SolvesViewModel(dependencies: appDependencies)
+    private let dataControllerService: any DataControllerServicing // TODO: why any
+    
+    init(dependencies: Dependencies) {
+        dataControllerService = dependencies.dataControllerService
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -20,7 +33,7 @@ final class SolvesViewController: UIViewController {
         // inject core data context
         let rootViewWithCoreDataContext = rootView.environment(
             \.managedObjectContext,
-             DataController.shared.container.viewContext
+             dataControllerService.container.viewContext
         )
         let vc = UIHostingController(rootView: rootViewWithCoreDataContext)
         embedController(vc)
@@ -47,7 +60,7 @@ final class SolvesViewController: UIViewController {
     
     private func onSolveTapped(solve: CDSolve) {
         let vc = SolveDetailViewController(
-            viewModel: SolveDetailViewModel(solve: solve)
+            viewModel: SolveDetailViewModel(solve: solve, dependencies: appDependencies)
         )
         navigationController?.pushViewController(vc, animated: true)
     }

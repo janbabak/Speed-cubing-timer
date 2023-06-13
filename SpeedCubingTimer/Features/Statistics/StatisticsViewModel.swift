@@ -40,9 +40,15 @@ protocol StatisticsViewModeling: ObservableObject {
 // MARK: - implementation
 
 final class StatisticsViewModel: StatisticsViewModeling {
+    typealias Dependencies = HasDataControllerService
+    
     @Published var selectedItemIdx: Int? = nil
     @Published private(set) var solves: [CDSolve] = []
     @Published private(set) var notDnfSolves: [CDSolve] = []
+    
+    static let numberOfMarks = 5
+    
+    private var dataControllerService: any DataControllerServicing // TODO: why any
     
     // MARK: - computed props
     
@@ -106,8 +112,6 @@ final class StatisticsViewModel: StatisticsViewModeling {
         notDnfSolves.max(by: { $0.inSeconds < $1.inSeconds })?.inSeconds
     }
     
-    static let numberOfMarks = 5
-    
     var xAxisMarks: [Int] {
         let gap = max(1, Int(ceil((self.worstTime ?? 0) / Double(Self.numberOfMarks))))
         var marks: [Int] = []
@@ -119,10 +123,14 @@ final class StatisticsViewModel: StatisticsViewModeling {
     
     // MARK: - public methods
     
+    init(dependencies: Dependencies) {
+        dataControllerService = dependencies.dataControllerService
+    }
+    
     // fetch solves
     func fetchSolves() {
-        solves = DataController.shared.fetchSolves()
-        notDnfSolves = DataController.shared.fetchNotDNFSolves()
+        solves = dataControllerService.fetchSolves()
+        notDnfSolves = dataControllerService.fetchNotDNFSolves()
     }
     
     // MARK: - static methods

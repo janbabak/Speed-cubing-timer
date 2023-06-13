@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct SolveDetailView<ViewMode: SolveDetailViewModeling>: View {
-    @ObservedObject var viewModel: ViewMode
+struct SolveDetailView<ViewModel: SolveDetailViewModeling>: View {
+    @ObservedObject var viewModel: ViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -127,7 +127,10 @@ struct SolveDetailView<ViewMode: SolveDetailViewModeling>: View {
 struct SolveDetailView_Previews: PreviewProvider {
     static var previews: some View {
         SolveDetailView(
-            viewModel: SolveDetailViewModel(solve: Self.createSolve())
+            viewModel: SolveDetailViewModel(
+                solve: Self.createSolve(),
+                dependencies: appDependencies
+            )
         )
     }
     

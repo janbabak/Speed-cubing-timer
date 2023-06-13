@@ -26,8 +26,6 @@ protocol TimerViewModeling: ObservableObject {
     var currentAverageOf12: String { get }
     var currentAverageOf50: String { get }
     
-    init()
-    
     func fetchSolves()
     
     // on tab gesture - stop the timer based on its state (running or not)
@@ -43,11 +41,15 @@ protocol TimerViewModeling: ObservableObject {
     func toggleLastSolvePenalty(penalty: Solve.Penalty)
     
     func deleteLastSolve()
+    
+    // TODO: should init be also here??
 }
 
 // MARK: - implementation
 
 final class TimerViewModel: TimerViewModeling {
+    typealias Dependencies = HasDataControllerService
+    
     @Published var deleteConfirmationDialogPresent = false
     @Published private(set) var solves: [CDSolve] = []
     @Published private(set) var activeSolve = Solve()
@@ -71,6 +73,7 @@ final class TimerViewModel: TimerViewModeling {
     private let inspectionTimerInterval = 1.0 // 1 second
     private var inspectionPenalty = Solve.Penalty.noPenalty
     private var _activity: AnyObject?
+    private var dataControllerService: any DataControllerServicing // TODO: why any
     
     @available(iOS 16.1, *)
     private var activity: Activity<TimerActivityWidgetAttributes>? {
@@ -102,14 +105,15 @@ final class TimerViewModel: TimerViewModeling {
     
     // MARK: - public methods
     
-    init() {
+    init(dependencies: Dependencies) {
+        dataControllerService = dependencies.dataControllerService
         fetchSolves()
         cube.scramble(scramble)
     }
     
     // fetch solves
     func fetchSolves() {
-        solves = DataController.shared.fetchSolves()
+        solves = dataControllerService.fetchSolves()
     }
     
     // on tab gesture - stop the timer based on its state (running or not)
@@ -151,7 +155,7 @@ final class TimerViewModel: TimerViewModeling {
                 lastSolve.penalty = penalty
                 activeSolve.penalty = penalty
             }
-            DataController.shared.save()
+            dataControllerService.save()
             fetchSolves()
         }
     }
@@ -160,7 +164,7 @@ final class TimerViewModel: TimerViewModeling {
     func deleteLastSolve() {
         // first is last, when solves are sorted in descending order
         if let lastSolve = solves.last {
-            DataController.shared.deleteSolve(solve: lastSolve)
+            dataControllerService.deleteSolve(solve: lastSolve)
             fetchSolves()
         }
     }
@@ -219,7 +223,7 @@ final class TimerViewModel: TimerViewModeling {
         // if limit was eceeded by more than 2 seconds, solve is DNF
         if inspectionSeconds >= inspectionLimit + 2 {
             print("🚨 inspection exeeded, DNF penalty")
-            DataController.shared.addSolve(solve: Solve(scramble: scramble, penalty: .DNF))
+            dataControllerService.addSolve(solve: Solve(scramble: scramble, penalty: .DNF))
             scramble = ScrambleGenerator.generate()
             activeSolve.penalty = .DNF
             fetchSolves()
@@ -314,7 +318,7 @@ final class TimerViewModel: TimerViewModeling {
         endLiveActivity()
         
         // save solve to core data
-        DataController.shared.addSolve(solve: activeSolve)
+        dataControllerService.addSolve(solve: activeSolve)
         
         fetchSolves()
     }

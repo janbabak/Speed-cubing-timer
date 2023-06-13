@@ -78,6 +78,9 @@ struct SolvesView<ViewModel: SolvesViewModeling>: View {
 
 struct SolvesView_Previews: PreviewProvider {
     static var previews: some View {
-        SolvesView(viewModel: SolvesViewModel(), onSolveTapped: { _ in })
+        SolvesView(
+            viewModel: SolvesViewModel(dependencies: appDependencies),
+            onSolveTapped: { _ in }
+        )
     }
 }

@@ -7,13 +7,61 @@
 
 import CoreData
 
-final class DataController: ObservableObject {
-    static let shared = DataController() // shared singleton instance
+protocol HasDataControllerService {
+    var dataControllerService: any DataControllerServicing { get } // TODO: why any required
+}
+
+protocol DataControllerServicing: ObservableObject {
+    var container: NSPersistentContainer { get }
     
+    // save all changes
+    func save()
+    
+    // return all solves, can specify the fetch request (sorting, predicate)
+    func fetchSolves() -> [CDSolve]
+    
+    // return solves sorted by date from the newest to the oldest
+    func fetchSolvesSortedByDateDesc() -> [CDSolve]
+    
+    // return solves that don't have DNF penalty
+    func fetchNotDNFSolves() -> [CDSolve]
+    
+    func deleteSolve(solve: CDSolve)
+    
+    func deleteAllSolves()
+    
+    func addSolve(solve: Solve)
+    
+    func addSolve(
+        scramble: String,
+        date: Date,
+        hours: Int16,
+        minutes: Int16,
+        seconds: Int16,
+        fractions: Int16,
+        note: String,
+        penalty: Solve.Penalty
+    )
+    
+    func editSolve(
+        solve: CDSolve,
+        scramble: String?,
+        date: Date?,
+        hours: Int16?,
+        minutes: Int16?,
+        seconds: Int16?,
+        fractions: Int16?,
+        note: String?,
+        penalty: Solve.Penalty?
+    )
+}
+
+// MARK: - implementation
+
+final class DataControllerService: DataControllerServicing {
     let container = NSPersistentContainer(name: "SpeedCubingTimerModel")
         
-    // private singleton init
-    private init() {
+    init() {
         container.loadPersistentStores { description, error in
             if let error {
                 print("Failed to load the data \(error.localizedDescription)")
@@ -31,8 +79,12 @@ final class DataController: ObservableObject {
         }
     }
     
+    func fetchSolves() -> [CDSolve] {
+        return fetchSolves(fetchRequest: CDSolve.fetchRequest())
+    }
+    
     // return all solves, can specify the fetch request (sorting, predicate)
-    func fetchSolves(fetchRequest: NSFetchRequest<CDSolve> = CDSolve.fetchRequest()) -> [CDSolve] {
+    private func fetchSolves(fetchRequest: NSFetchRequest<CDSolve>) -> [CDSolve] {
         do {
             let solves = try container.viewContext.fetch(fetchRequest)
             print("🚚 Fetch solves.")

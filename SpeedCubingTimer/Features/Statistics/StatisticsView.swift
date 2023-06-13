@@ -98,6 +98,6 @@ struct StatisticsView<ViewModel: StatisticsViewModeling>: View {
 
 struct StatisticsView_Previews: PreviewProvider {
     static var previews: some View {
-        StatisticsView(viewModel: StatisticsViewModel())
+        StatisticsView(viewModel: StatisticsViewModel(dependencies: appDependencies))
     }
 }

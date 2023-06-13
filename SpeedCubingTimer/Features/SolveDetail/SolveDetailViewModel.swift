@@ -13,7 +13,7 @@ protocol SolveDetailViewModeling: ObservableObject {
     var cube: Cube { get }
     var scrambleVisualizationOn: Bool { get set }
     
-    init(solve: CDSolve)
+//    init(solve: CDSolve, dependencies: Depedency) // TODO: should init be here?
     func deleteSolve()
     func setNote(note: String)
     func togglePenalty(penalty: Solve.Penalty)
@@ -22,23 +22,38 @@ protocol SolveDetailViewModeling: ObservableObject {
 // MARK: - implementation
 
 final class SolveDetailViewModel: SolveDetailViewModeling {
+    typealias Dependencies = HasDataControllerService
+    
     @Published var solve: CDSolve
     @Published var deleteConfirmationDialogPresent = false
     @Published private(set) var cube = Cube()
     
     @AppStorage(SettingsViewModel.scrambleVisualizationOnKey) var scrambleVisualizationOn = true
     
-    init(solve: CDSolve) {
+    private var dataControllerService: any DataControllerServicing // TODO: why any
+    
+    init(solve: CDSolve, dependencies: Dependencies) {
+        dataControllerService = dependencies.dataControllerService
         self.solve = solve
         cube.scramble(solve.scramble ?? "")
     }
     
     func deleteSolve() {
-        DataController.shared.deleteSolve(solve: solve)
+        dataControllerService.deleteSolve(solve: solve)
     }
     
     func setNote(note: String) {
-        DataController.shared.editSolve(solve: solve, note: note)
+        dataControllerService.editSolve(
+            solve: solve,
+            scramble: nil,
+            date: nil,
+            hours: nil,
+            minutes: nil,
+            seconds: nil,
+            fractions: nil,
+            note: note,
+            penalty: nil
+        )
     }
     
     func togglePenalty(penalty: Solve.Penalty) {
@@ -48,7 +63,19 @@ final class SolveDetailViewModel: SolveDetailViewModeling {
             solve.penalty = penalty
         }
         
-        DataController.shared.editSolve(solve: solve)
+        // TODO: fix this ugly method https://medium.com/@georgetsifrikas/swift-protocols-with-default-values-b7278d3eef22
+        dataControllerService.editSolve(
+            solve: solve,
+            scramble: nil,
+            date: nil,
+            hours: nil,
+            minutes: nil,
+            seconds: nil,
+            fractions: nil,
+            note: nil,
+            penalty: nil
+        )
+        
         objectWillChange.send() // triggers the UI refresh
     }
 }

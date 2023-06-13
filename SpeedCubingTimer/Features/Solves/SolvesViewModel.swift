@@ -17,11 +17,18 @@ protocol SolvesViewModeling: ObservableObject {
 // MARK: - implementation
 
 final class SolvesViewModel: SolvesViewModeling {
+    typealias Dependencies = HasDataControllerService
+    
     @Published var deleteConfirmationDialogPresent = false
     
     private var solves: [CDSolve] = []
+    private var dataControllerService: any DataControllerServicing // TODO: why any
     
     // MARK: - public methods
+    
+    init(dependencies: Dependencies) {
+        dataControllerService = dependencies.dataControllerService
+    }
     
     func deleteSolve(at offsets: IndexSet) {
         // refresh data
@@ -29,18 +36,18 @@ final class SolvesViewModel: SolvesViewModeling {
         
         // delete solves
         for offset in offsets {
-            DataController.shared.deleteSolve(solve: solves[offset])
+            dataControllerService.deleteSolve(solve: solves[offset])
         }
     }
     
     func deleteAllSolves() {
-        DataController.shared.deleteAllSolves()
+        dataControllerService.deleteAllSolves()
     }
     
     // MARK: - private methods
     
     // fetch solves from newest to oldest
     private func fetchSolvesReversed() {
-        solves = DataController.shared.fetchSolvesSortedByDateDesc()
+        solves = dataControllerService.fetchSolvesSortedByDateDesc()
     }
 }

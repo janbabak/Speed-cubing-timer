@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @StateObject private var viewModel = SettingsViewModel()
+    @StateObject private var viewModel = SettingsViewModel() // TODO: SettingsViewModeling? inject from controller?
     
     var body: some View {
         Form {

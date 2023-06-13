@@ -8,7 +8,7 @@
 import UIKit
 
 class RootViewController: UIViewController {
-    private var timerViewModel = TimerViewModel()
+    private var timerViewModel = TimerViewModel(dependencies: appDependencies)
     private weak var tabBar: UITabBarController!
 
     override func loadView() {
@@ -21,7 +21,7 @@ class RootViewController: UIViewController {
         timerNavigationController.tabBarItem.image = UIImage(systemName: "timer")
         
         //solves
-        let solvesController = SolvesViewController()
+        let solvesController = SolvesViewController(dependencies: appDependencies)
         let solvesNavigationController = UINavigationController(rootViewController: solvesController)
         solvesNavigationController.tabBarItem.title = "Solves"
         solvesNavigationController.tabBarItem.image = UIImage(systemName: "list.bullet")

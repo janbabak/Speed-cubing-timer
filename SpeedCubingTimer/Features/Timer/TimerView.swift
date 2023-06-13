@@ -124,6 +124,6 @@ struct TimerView<ViewModel: TimerViewModeling>: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(viewModel: TimerViewModel())
+        TimerView(viewModel: TimerViewModel(dependencies: appDependencies))
     }
 }

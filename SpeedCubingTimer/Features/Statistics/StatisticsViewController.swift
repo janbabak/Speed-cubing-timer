@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 final class StatisticsViewController: UIViewController {
-    private let viewModel = StatisticsViewModel()
+    private let viewModel = StatisticsViewModel(dependencies: appDependencies)
     
     override func loadView() {
         super.loadView()
