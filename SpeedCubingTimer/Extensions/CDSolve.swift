@@ -35,4 +35,16 @@ extension CDSolve {
         
         return TimeFormatters.formatTime(seconds: inSeconds)
     }
+    
+    public override var description: String {
+        "CDSolve: {" +
+        "   inSeconds: \(inSeconds)\n" +
+        "   formattedTime: \(formattedTime)\n" +
+        "   fractions: \(fractions)\n" +
+        "   seconds: \(seconds)\n" +
+        "   minutes: \(minutes)\n" +
+        "   hours: \(hours)\n" +
+        "   penalty: \(penalty.rawValue)\n" +
+        "}"
+    }
 }

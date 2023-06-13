@@ -49,6 +49,8 @@
 		DFA52E412A35B7F70014404C /* CDSolve.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA52E402A35B7F70014404C /* CDSolve.swift */; };
 		DFA52E432A35BDE90014404C /* SolveDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA52E422A35BDE90014404C /* SolveDetailViewModel.swift */; };
 		DFD265CC2A388E11001F16A2 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD265CB2A388E11001F16A2 /* AppDependency.swift */; };
+		DFD265CE2A38CD5A001F16A2 /* DataControllerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD265CD2A38CD5A001F16A2 /* DataControllerServiceMock.swift */; };
+		DFD265D02A38D2B0001F16A2 /* StatisticsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD265CF2A38D2B0001F16A2 /* StatisticsViewModelTests.swift */; };
 		DFD621BF2A336A8D00A32831 /* Cube3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD621BE2A336A8D00A32831 /* Cube3DView.swift */; };
 		DFD621C12A33718B00A32831 /* Cube3x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD621C02A33718B00A32831 /* Cube3x3.swift */; };
 /* End PBXBuildFile section */
@@ -138,6 +140,8 @@
 		DFA52E402A35B7F70014404C /* CDSolve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDSolve.swift; sourceTree = "<group>"; };
 		DFA52E422A35BDE90014404C /* SolveDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveDetailViewModel.swift; sourceTree = "<group>"; };
 		DFD265CB2A388E11001F16A2 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
+		DFD265CD2A38CD5A001F16A2 /* DataControllerServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataControllerServiceMock.swift; sourceTree = "<group>"; };
+		DFD265CF2A38D2B0001F16A2 /* StatisticsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModelTests.swift; sourceTree = "<group>"; };
 		DFD621BE2A336A8D00A32831 /* Cube3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube3DView.swift; sourceTree = "<group>"; };
 		DFD621C02A33718B00A32831 /* Cube3x3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube3x3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -220,7 +224,9 @@
 		DF0D6EFB29C329AE0031DB04 /* SpeedCubingTimerTests */ = {
 			isa = PBXGroup;
 			children = (
+				DFD265CF2A38D2B0001F16A2 /* StatisticsViewModelTests.swift */,
 				DF0D6EFC29C329AE0031DB04 /* SpeedCubingTimerTests.swift */,
+				DFD265CD2A38CD5A001F16A2 /* DataControllerServiceMock.swift */,
 			);
 			path = SpeedCubingTimerTests;
 			sourceTree = "<group>";
@@ -567,6 +573,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF0D6EFD29C329AE0031DB04 /* SpeedCubingTimerTests.swift in Sources */,
+				DFD265D02A38D2B0001F16A2 /* StatisticsViewModelTests.swift in Sources */,
+				DFD265CE2A38CD5A001F16A2 /* DataControllerServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
