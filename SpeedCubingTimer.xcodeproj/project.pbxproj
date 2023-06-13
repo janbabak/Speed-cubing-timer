@@ -50,7 +50,7 @@
 		DFA52E432A35BDE90014404C /* SolveDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA52E422A35BDE90014404C /* SolveDetailViewModel.swift */; };
 		DFD265CC2A388E11001F16A2 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD265CB2A388E11001F16A2 /* AppDependency.swift */; };
 		DFD621BF2A336A8D00A32831 /* Cube3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD621BE2A336A8D00A32831 /* Cube3DView.swift */; };
-		DFD621C12A33718B00A32831 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD621C02A33718B00A32831 /* Cube.swift */; };
+		DFD621C12A33718B00A32831 /* Cube3x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD621C02A33718B00A32831 /* Cube3x3.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,7 +139,7 @@
 		DFA52E422A35BDE90014404C /* SolveDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveDetailViewModel.swift; sourceTree = "<group>"; };
 		DFD265CB2A388E11001F16A2 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		DFD621BE2A336A8D00A32831 /* Cube3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube3DView.swift; sourceTree = "<group>"; };
-		DFD621C02A33718B00A32831 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
+		DFD621C02A33718B00A32831 /* Cube3x3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube3x3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,7 +306,7 @@
 			children = (
 				DF66F61B2A350EEC00E81C22 /* DataModel */,
 				DF0D6F3229C38F070031DB04 /* Solve.swift */,
-				DFD621C02A33718B00A32831 /* Cube.swift */,
+				DFD621C02A33718B00A32831 /* Cube3x3.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -554,7 +554,7 @@
 				DFA52E432A35BDE90014404C /* SolveDetailViewModel.swift in Sources */,
 				DF0D6EE629C329AD0031DB04 /* AppDelegate.swift in Sources */,
 				DF2654C02A3266B300D0E211 /* StatisticsViewModel.swift in Sources */,
-				DFD621C12A33718B00A32831 /* Cube.swift in Sources */,
+				DFD621C12A33718B00A32831 /* Cube3x3.swift in Sources */,
 				DF2654B42A31B71F00D0E211 /* TimeFormatters.swift in Sources */,
 				DF0D6F3329C38F070031DB04 /* Solve.swift in Sources */,
 				DFA52E3F2A35AD210014404C /* SolvesViewModel.swift in Sources */,

@@ -21,7 +21,7 @@ struct SolveDetailView<ViewModel: SolveDetailViewModeling>: View {
             
             note
             
-            cube
+            puzzleVisualization
             
             penaltyButtons
         }
@@ -80,9 +80,9 @@ struct SolveDetailView<ViewModel: SolveDetailViewModeling>: View {
     }
     
     @ViewBuilder
-    var cube: some View {
+    var puzzleVisualization: some View {
         if viewModel.scrambleVisualizationOn {
-            Cube3DView(cube: viewModel.cube)
+            Puzzle3DVizualizationView(puzzle: viewModel.puzzle)
                 .frame(minHeight: 80, maxHeight: .infinity)
         }
     }

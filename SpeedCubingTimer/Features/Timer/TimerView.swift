@@ -23,7 +23,7 @@ struct TimerView<ViewModel: TimerViewModeling>: View {
             if !viewModel.inspectionRunning && !viewModel.timerIsRunning {
                 stats
                 
-                cube
+                puzzleVisualization
             }
             
             Spacer()
@@ -74,9 +74,9 @@ struct TimerView<ViewModel: TimerViewModeling>: View {
     }
     
     @ViewBuilder
-    var cube: some View {
+    var puzzleVisualization: some View {
         if viewModel.scrambleVisualizationOn {
-            Cube3DView(cube: viewModel.cube)
+            Puzzle3DVizualizationView(puzzle: viewModel.puzzle)
                 .frame(minHeight: 200, maxHeight: .infinity)
         }
     }

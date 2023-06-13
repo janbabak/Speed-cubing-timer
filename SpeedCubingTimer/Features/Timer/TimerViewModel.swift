@@ -15,7 +15,7 @@ protocol TimerViewModeling: ObservableObject {
     var scramble: String { get }
     var holdingScreen: Bool { get }
     var timerIsRunning: Bool { get }
-    var cube: Cube { get }
+    var puzzle: Cube3x3 { get }
     var inspectionRunning: Bool { get }
     var inspectionSeconds: Int { get }
     var overInspecting: Bool { get }
@@ -56,7 +56,7 @@ final class TimerViewModel: TimerViewModeling {
     @Published private(set) var scramble = ScrambleGenerator.generate()
     @Published private(set) var holdingScreen = false
     @Published private(set) var timerIsRunning = false
-    @Published private(set) var cube = Cube()
+    @Published private(set) var puzzle = Cube3x3()
     @Published private(set) var inspectionRunning = false
     @Published private(set) var inspectionSeconds = 0
     @Published private(set) var overInspecting = false // true inspection is > inspection limit
@@ -108,7 +108,7 @@ final class TimerViewModel: TimerViewModeling {
     init(dependencies: Dependencies) {
         dataControllerService = dependencies.dataControllerService
         fetchSolves()
-        cube.scramble(scramble)
+        puzzle.scramble(scramble)
     }
     
     // fetch solves
@@ -127,7 +127,7 @@ final class TimerViewModel: TimerViewModeling {
         stopTimer()
         activeSolve.date = Date()
         scramble = ScrambleGenerator.generate() // prepare next scramble
-        cube.scramble(scramble) // visualize next scramble on the cube
+        puzzle.scramble(scramble) // visualize next scramble on the cube
     }
     
     // when drag (hold) gesture starts

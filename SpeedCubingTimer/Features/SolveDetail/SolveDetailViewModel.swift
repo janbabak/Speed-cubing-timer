@@ -10,7 +10,7 @@ import SwiftUI
 protocol SolveDetailViewModeling: ObservableObject {
     var solve: CDSolve { get set }
     var deleteConfirmationDialogPresent: Bool { get set }
-    var cube: Cube { get }
+    var puzzle: Puzzle { get }
     var scrambleVisualizationOn: Bool { get set }
     
 //    init(solve: CDSolve, dependencies: Depedency) // TODO: should init be here?
@@ -26,7 +26,7 @@ final class SolveDetailViewModel: SolveDetailViewModeling {
     
     @Published var solve: CDSolve
     @Published var deleteConfirmationDialogPresent = false
-    @Published private(set) var cube = Cube()
+    @Published private(set) var puzzle: Puzzle = Cube3x3()
     
     @AppStorage(SettingsViewModel.scrambleVisualizationOnKey) var scrambleVisualizationOn = true
     
@@ -35,7 +35,7 @@ final class SolveDetailViewModel: SolveDetailViewModeling {
     init(solve: CDSolve, dependencies: Dependencies) {
         dataControllerService = dependencies.dataControllerService
         self.solve = solve
-        cube.scramble(solve.scramble ?? "")
+        puzzle.scramble(solve.scramble ?? "")
     }
     
     func deleteSolve() {
