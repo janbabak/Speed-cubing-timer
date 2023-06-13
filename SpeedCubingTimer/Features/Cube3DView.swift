@@ -11,7 +11,7 @@ import SceneKit
 // 3D Rubiks cube view
 struct Puzzle3DVizualizationView: UIViewRepresentable {
     
-    var puzzle: Puzzle = Cube3x3()
+    var puzzle: Puzzle
     
     func makeUIView(context: Context) -> SCNView {
         let view = SCNView(frame: CGRect(x: 0, y: 0, width: 500, height: 500))
@@ -30,6 +30,6 @@ struct Puzzle3DVizualizationView: UIViewRepresentable {
 
 struct Puzzle3DVizualizationView_Previews: PreviewProvider {
     static var previews: some View {
-        Puzzle3DVizualizationView()
+        Puzzle3DVizualizationView(puzzle: Cube3x3())
     }
 }

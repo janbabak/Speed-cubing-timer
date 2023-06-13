@@ -62,7 +62,7 @@ final class ScrambleGenerator {
         return scrambleToString(scramble)
     }
     
-    static func scrambleToString(_ scramble: [String]) -> String {
+    private static func scrambleToString(_ scramble: [String]) -> String {
         var result = ""
         
         for i in 0..<scramble.count {

@@ -83,18 +83,6 @@ final class DataControllerService: DataControllerServicing {
         return fetchSolves(fetchRequest: CDSolve.fetchRequest())
     }
     
-    // return all solves, can specify the fetch request (sorting, predicate)
-    private func fetchSolves(fetchRequest: NSFetchRequest<CDSolve>) -> [CDSolve] {
-        do {
-            let solves = try container.viewContext.fetch(fetchRequest)
-            print("🚚 Fetch solves.")
-            return solves
-        } catch {
-            print("Fetch solves failded: \(error.localizedDescription)")
-            return []
-        }
-    }
-    
     // return solves sorted by date from the newest to the oldest
     func fetchSolvesSortedByDateDesc() -> [CDSolve] {
         let fetchRequest = CDSolve.fetchRequest()
@@ -231,5 +219,19 @@ final class DataControllerService: DataControllerServicing {
         print("✍️ Edit solve.")
         
         save()
+    }
+    
+    // MARK: - private methods
+    
+    // return all solves, can specify the fetch request (sorting, predicate)
+    private func fetchSolves(fetchRequest: NSFetchRequest<CDSolve>) -> [CDSolve] {
+        do {
+            let solves = try container.viewContext.fetch(fetchRequest)
+            print("🚚 Fetch solves.")
+            return solves
+        } catch {
+            print("Fetch solves failded: \(error.localizedDescription)")
+            return []
+        }
     }
 }

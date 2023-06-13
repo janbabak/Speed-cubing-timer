@@ -49,12 +49,12 @@ struct TimerView<ViewModel: TimerViewModeling>: View {
         )
     }
     
-    var scramble: some View {
+    private var scramble: some View {
         Text(viewModel.scramble)
             .font(.title2)
     }
     
-    var time: some View {
+    private var time: some View {
         Text(viewModel.inspectionRunning
              ? TimeFormatters.formatTime(seconds: viewModel.inspectionSeconds)
              : viewModel.activeSolve.formattedTime
@@ -63,7 +63,7 @@ struct TimerView<ViewModel: TimerViewModeling>: View {
             .foregroundColor(viewModel.holdingScreen ? .green : viewModel.overInspecting ? .red : .primary)
     }
     
-    var stats: some View {
+    private var stats: some View {
         VStack(spacing: 8) {
             LabelPropertyView(label: "mean 3:", property: viewModel.currentMeanOf3)
             LabelPropertyView(label: "avg 5:", property: viewModel.currentAverageOf5)
@@ -74,7 +74,7 @@ struct TimerView<ViewModel: TimerViewModeling>: View {
     }
     
     @ViewBuilder
-    var puzzleVisualization: some View {
+    private var puzzleVisualization: some View {
         if viewModel.scrambleVisualizationOn {
             Puzzle3DVizualizationView(puzzle: viewModel.puzzle)
                 .frame(minHeight: 200, maxHeight: .infinity)
@@ -82,7 +82,7 @@ struct TimerView<ViewModel: TimerViewModeling>: View {
     }
     
     // delete, DNF, +2 buttons
-    var buttons: some View {
+    private var buttons: some View {
         HStack {
             //delete solve
             FullwidthButton(

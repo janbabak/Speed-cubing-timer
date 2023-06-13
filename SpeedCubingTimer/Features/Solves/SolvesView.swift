@@ -10,10 +10,10 @@ import CoreData
 
 struct SolvesView<ViewModel: SolvesViewModeling>: View {
     @ObservedObject var viewModel: ViewModel
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.managedObjectContext) private var managedObjectContext
     @FetchRequest(sortDescriptors: [
         SortDescriptor(\.date, order: .reverse)
-    ]) var solves: FetchedResults<CDSolve>
+    ]) private var solves: FetchedResults<CDSolve>
     
     let onSolveTapped: (CDSolve) -> Void
     
@@ -42,7 +42,7 @@ struct SolvesView<ViewModel: SolvesViewModeling>: View {
         }
     }
     
-    var solvesList: some View {
+    private var solvesList: some View {
         List {
             ForEach(solves, id: \.id) { solve in
                 listItem(solve: solve)
@@ -53,7 +53,7 @@ struct SolvesView<ViewModel: SolvesViewModeling>: View {
     }
     
     @ViewBuilder
-    func listItem(solve: CDSolve) -> some View {
+    private func listItem(solve: CDSolve) -> some View {
         Button {
             onSolveTapped(solve)
         } label: {

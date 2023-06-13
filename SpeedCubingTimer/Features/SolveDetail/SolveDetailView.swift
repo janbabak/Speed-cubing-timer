@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SolveDetailView<ViewModel: SolveDetailViewModeling>: View {
     @ObservedObject var viewModel: ViewModel
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -38,19 +38,19 @@ struct SolveDetailView<ViewModel: SolveDetailViewModeling>: View {
         }
     }
     
-    var time: some View {
+    private var time: some View {
         Text(viewModel.solve.formattedTime)
             .font(.system(size: 44, weight: .medium, design: .monospaced))
     }
     
     @ViewBuilder
-    func date() -> some View {
+    private func date() -> some View {
         Text(TimeFormatters.joinedFormatter.string(from: viewModel.solve.date ?? Date()))
             .foregroundColor(.gray)
             .font(.title3)
     }
     
-    var scramble: some View {
+    private var scramble: some View {
         GroupBox {
             Text(viewModel.solve.scramble ?? "")
         } label: {
@@ -59,7 +59,7 @@ struct SolveDetailView<ViewModel: SolveDetailViewModeling>: View {
         }
     }
     
-    var note: some View {
+    private var note: some View {
         GroupBox {
             TextEditor(text:
                         Binding(
@@ -80,7 +80,7 @@ struct SolveDetailView<ViewModel: SolveDetailViewModeling>: View {
     }
     
     @ViewBuilder
-    var puzzleVisualization: some View {
+    private var puzzleVisualization: some View {
         if viewModel.scrambleVisualizationOn {
             Puzzle3DVizualizationView(puzzle: viewModel.puzzle)
                 .frame(minHeight: 80, maxHeight: .infinity)
@@ -88,7 +88,7 @@ struct SolveDetailView<ViewModel: SolveDetailViewModeling>: View {
     }
     
     // penalty buttons
-    var penaltyButtons: some View {
+    private var penaltyButtons: some View {
         HStack {
             //no penalty
             FullwidthButton(

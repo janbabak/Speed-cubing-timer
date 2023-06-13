@@ -26,7 +26,7 @@ struct FullwidthButton: View {
         }
     }
     
-    var button: some View {
+    private var button: some View {
         Button {
             action()
         } label: {

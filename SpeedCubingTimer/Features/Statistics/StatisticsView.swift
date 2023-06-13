@@ -24,7 +24,7 @@ struct StatisticsView<ViewModel: StatisticsViewModeling>: View {
         .padding(.horizontal, 16)
     }
     
-    var numberStats: some View {
+    private var numberStats: some View {
         HStack(alignment: .top) {
             //left column
             VStack(alignment: .leading, spacing: 8) {
