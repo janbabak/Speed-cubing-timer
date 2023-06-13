@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct SolveDetailView: View {
-    @ObservedObject var viewModel: SolveDetailViewModel
+struct SolveDetailView<ViewMode: SolveDetailViewModeling>: View {
+    @ObservedObject var viewModel: ViewMode
     @Environment(\.dismiss) var dismiss
     
     var body: some View {

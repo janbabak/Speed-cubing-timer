@@ -8,8 +8,8 @@
 import SwiftUI
 import Charts
 
-struct ChartView: View {
-    @ObservedObject var viewModel: StatisticsViewModel
+struct ChartView<ViewModel: StatisticsViewModeling>: View {
+    @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         Chart {
@@ -82,6 +82,6 @@ struct ChartView: View {
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartView(viewModel: .init())
+        ChartView(viewModel: StatisticsViewModel())
     }
 }

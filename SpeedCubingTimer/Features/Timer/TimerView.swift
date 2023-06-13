@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct TimerView: View {
+struct TimerView<ViewModel: TimerViewModeling>: View {
     
-    @ObservedObject var viewModel: TimerViewModel
+    @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         VStack {
@@ -60,7 +60,7 @@ struct TimerView: View {
              : viewModel.activeSolve.formattedTime
         )
             .font(.system(size: 44, design: .monospaced))
-            .foregroundColor(viewModel.holdingScreen ? .green : viewModel.overInpecting ? .red : .primary)
+            .foregroundColor(viewModel.holdingScreen ? .green : viewModel.overInspecting ? .red : .primary)
     }
     
     var stats: some View {
@@ -124,6 +124,6 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(viewModel: .init())
+        TimerView(viewModel: TimerViewModel())
     }
 }

@@ -8,7 +8,46 @@
 import SwiftUI
 import ActivityKit
 
-final class TimerViewModel: ObservableObject {
+protocol TimerViewModeling: ObservableObject {
+    var deleteConfirmationDialogPresent: Bool { get set }
+    var solves: [CDSolve] { get }
+    var activeSolve: Solve { get }
+    var scramble: String { get }
+    var holdingScreen: Bool { get }
+    var timerIsRunning: Bool { get }
+    var cube: Cube { get }
+    var inspectionRunning: Bool { get }
+    var inspectionSeconds: Int { get }
+    var overInspecting: Bool { get }
+    var scrambleVisualizationOn: Bool { get }
+    var inspectionOn: Bool { get }
+    var currentMeanOf3: String { get }
+    var currentAverageOf5: String { get }
+    var currentAverageOf12: String { get }
+    var currentAverageOf50: String { get }
+    
+    init()
+    
+    func fetchSolves()
+    
+    // on tab gesture - stop the timer based on its state (running or not)
+    func onTapGesture()
+    
+    // when drag (hold) gesture starts
+    func onDragGestureChange()
+    
+    // on end of hold gesture - fires the timer (if not running)
+    func onTouchUpGesture()
+    
+    // toggle penalty of last solve (toggle between penalty and no penalty)
+    func toggleLastSolvePenalty(penalty: Solve.Penalty)
+    
+    func deleteLastSolve()
+}
+
+// MARK: - implementation
+
+final class TimerViewModel: TimerViewModeling {
     @Published var deleteConfirmationDialogPresent = false
     @Published private(set) var solves: [CDSolve] = []
     @Published private(set) var activeSolve = Solve()
@@ -18,7 +57,7 @@ final class TimerViewModel: ObservableObject {
     @Published private(set) var cube = Cube()
     @Published private(set) var inspectionRunning = false
     @Published private(set) var inspectionSeconds = 0
-    @Published private(set) var overInpecting = false // true inspection is > inspection limit
+    @Published private(set) var overInspecting = false // true inspection is > inspection limit
     
     @AppStorage(SettingsViewModel.scrambleVisualizationOnKey) private(set) var scrambleVisualizationOn = true
     @AppStorage(SettingsViewModel.inspectionOnKey) private(set) var inspectionOn = false
@@ -161,7 +200,7 @@ final class TimerViewModel: ObservableObject {
             }
             
             if self!.inspectionSeconds >= self!.inspectionLimit {
-                self!.overInpecting = true
+                self!.overInspecting = true
             }
             if self!.inspectionSeconds >= self!.inspectionLimit + 2 {
                 self!.endInspection()
@@ -173,7 +212,7 @@ final class TimerViewModel: ObservableObject {
     private func endInspection() {
         timer.invalidate()
         inspectionRunning = false
-        overInpecting = false
+        overInspecting = false
         
         print("👀 Inspection ended.")
         

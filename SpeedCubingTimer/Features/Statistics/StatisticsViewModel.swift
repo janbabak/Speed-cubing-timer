@@ -7,10 +7,42 @@
 
 import Foundation
 
-final class StatisticsViewModel: ObservableObject {
-    @Published var solves: [CDSolve] = []
-    @Published var notDnfSolves: [CDSolve] = []
+protocol StatisticsViewModeling: ObservableObject {
+    var selectedItemIdx: Int? { get set }
+    var solves: [CDSolve] { get }
+    var notDnfSolves: [CDSolve] { get }
+    var currentMeanOf3: String { get }
+    var bestMeanOf3: String { get }
+    var currentAverageOf5: String { get }
+    var bestAverageOf5: String { get }
+    var currentAverageOf12: String { get }
+    var bestAverageOf12: String { get }
+    var currentAverageOf50: String { get }
+    var bestAverageOf50: String { get }
+    var currentAverageOf100: String { get }
+    var bestAverageOf100: String { get }
+    var currentAverageOfAll: String { get }
+    var formattedBestTime: String { get }
+    var formattedWorstTime: String { get }
+    var worstTime: Double? { get }
+    static var numberOfMarks: Int { get }
+    var xAxisMarks: [Int] { get }
+    
+    func fetchSolves()
+    
+    /// computes average of last `numberOfSolves` solves
+    static func currentAverage(of numberOfSolves: Int, from solves: [CDSolve]) -> String
+
+    /// computes best average of `numberOfSolves`
+    static func bestAverage(of numberOfSolves: Int, from solves: [CDSolve]) -> String
+}
+
+// MARK: - implementation
+
+final class StatisticsViewModel: StatisticsViewModeling {
     @Published var selectedItemIdx: Int? = nil
+    @Published private(set) var solves: [CDSolve] = []
+    @Published private(set) var notDnfSolves: [CDSolve] = []
     
     // MARK: - computed props
     

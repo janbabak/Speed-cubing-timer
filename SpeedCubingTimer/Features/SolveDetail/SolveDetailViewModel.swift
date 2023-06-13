@@ -7,7 +7,21 @@
 
 import SwiftUI
 
-final class SolveDetailViewModel: ObservableObject {
+protocol SolveDetailViewModeling: ObservableObject {
+    var solve: CDSolve { get set }
+    var deleteConfirmationDialogPresent: Bool { get set }
+    var cube: Cube { get }
+    var scrambleVisualizationOn: Bool { get set }
+    
+    init(solve: CDSolve)
+    func deleteSolve()
+    func setNote(note: String)
+    func togglePenalty(penalty: Solve.Penalty)
+}
+
+// MARK: - implementation
+
+final class SolveDetailViewModel: SolveDetailViewModeling {
     @Published var solve: CDSolve
     @Published var deleteConfirmationDialogPresent = false
     @Published private(set) var cube = Cube()

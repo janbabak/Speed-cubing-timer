@@ -7,7 +7,16 @@
 
 import Foundation
 
-final class SolvesViewModel: ObservableObject {
+protocol SolvesViewModeling: ObservableObject {
+    var deleteConfirmationDialogPresent: Bool { get set }
+    
+    func deleteSolve(at offsets: IndexSet)
+    func deleteAllSolves()
+}
+
+// MARK: - implementation
+
+final class SolvesViewModel: SolvesViewModeling {
     @Published var deleteConfirmationDialogPresent = false
     
     private var solves: [CDSolve] = []

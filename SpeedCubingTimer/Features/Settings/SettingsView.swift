@@ -32,13 +32,13 @@ struct SettingsView: View {
     }
     
     private var scrambleVisualizationToggle: some View {
-        Toggle(isOn: viewModel.$scrambleVisualizationOn) {
+        Toggle(isOn: $viewModel.scrambleVisualizationOn) {
             Label("Scramble visualization", systemImage: "cube.fill")
         }
     }
     
     private var inspectionToggle: some View {
-        Toggle(isOn: viewModel.$inspectionOn) {
+        Toggle(isOn: $viewModel.inspectionOn) {
             Label("Inspection on", systemImage: "eye")
         }
     }

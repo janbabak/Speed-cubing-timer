@@ -15,7 +15,7 @@ class RootViewController: UIViewController {
         super.loadView()
         
         //timer
-        let timerController = TimerViewController(timerViewModel: timerViewModel)
+        let timerController = TimerViewController(viewModel: timerViewModel)
         let timerNavigationController = UINavigationController(rootViewController: timerController)
         timerNavigationController.tabBarItem.title = "Timer"
         timerNavigationController.tabBarItem.image = UIImage(systemName: "timer")

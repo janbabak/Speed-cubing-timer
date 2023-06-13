@@ -8,8 +8,8 @@
 import SwiftUI
 import CoreData
 
-struct SolvesView: View {
-    @ObservedObject var viewModel: SolvesViewModel
+struct SolvesView<ViewModel: SolvesViewModeling>: View {
+    @ObservedObject var viewModel: ViewModel
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors: [
         SortDescriptor(\.date, order: .reverse)
@@ -78,6 +78,6 @@ struct SolvesView: View {
 
 struct SolvesView_Previews: PreviewProvider {
     static var previews: some View {
-        SolvesView(viewModel: .init(), onSolveTapped: { _ in })
+        SolvesView(viewModel: SolvesViewModel(), onSolveTapped: { _ in })
     }
 }

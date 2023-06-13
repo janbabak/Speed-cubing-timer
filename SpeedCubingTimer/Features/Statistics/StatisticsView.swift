@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct StatisticsView: View {
+struct StatisticsView<ViewModel: StatisticsViewModeling>: View {
     
-    @ObservedObject var viewModel: StatisticsViewModel
+    @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         VStack {
@@ -98,6 +98,6 @@ struct StatisticsView: View {
 
 struct StatisticsView_Previews: PreviewProvider {
     static var previews: some View {
-        StatisticsView(viewModel: .init())
+        StatisticsView(viewModel: StatisticsViewModel())
     }
 }

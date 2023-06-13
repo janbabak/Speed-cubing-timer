@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 final class SolvesViewController: UIViewController {
-    private let viewModel = SolvesViewModel()
+    private let viewModel: SolvesViewModel = SolvesViewModel()
     
     override func loadView() {
         super.loadView()

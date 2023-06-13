@@ -8,10 +8,10 @@
 import UIKit
 import SwiftUI
 
-final class SolveDetailViewController: UIViewController {
-    private let viewModel: SolveDetailViewModel
+final class SolveDetailViewController<ViewModel: SolveDetailViewModeling>: UIViewController {
+    private let viewModel: ViewModel
     
-    init(viewModel: SolveDetailViewModel) {
+    init(viewModel: ViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
