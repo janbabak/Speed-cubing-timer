@@ -33,7 +33,7 @@ Speed Cube Timer is an application used for practicing speedcubing. It can gener
 - MVVC architecture
 - Dependency Injection for maintainability
 
-# ✅ Feature Improvements
+# ✅ Future Improvements
 
 - Support for multiple puzzles
 - Multiple sessions for better organization

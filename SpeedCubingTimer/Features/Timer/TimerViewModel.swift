@@ -111,7 +111,6 @@ final class TimerViewModel: TimerViewModeling {
         puzzle.scramble(scramble)
     }
     
-    // fetch solves
     func fetchSolves() {
         solves = dataControllerService.fetchSolves()
     }
